@@ -21,6 +21,9 @@ class CreateReservationsTable extends Migration
             $table->date('date');
             $table->unsignedBiginteger ('branch_id');
             $table->timestamps();
+
+            $table->foreign('branch_id')->references('id')->on('branches');
+            
         });
     }
 
