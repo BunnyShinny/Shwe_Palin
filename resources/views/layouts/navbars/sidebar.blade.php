@@ -78,6 +78,12 @@
           <p>{{ __('Maps') }}</p>
         </a>
       </li> -->
+      <li class = " @if ($activePage == 'Category') active @endif">
+        <a href="{{ route('category.index','Category') }}">
+          <i class="now-ui-icons text_align-left"></i>
+          <p>{{ __('Category') }}</p>
+        </a>
+      </li>
       <li class = " @if ($activePage == 'notifications') active @endif">
         <a href="{{ route('page.index','notifications') }}">
           <i class="now-ui-icons ui-1_bell-53"></i>
