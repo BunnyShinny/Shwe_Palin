@@ -50,14 +50,14 @@ class MenuController extends Controller
         $image=$request->file('image');
         $path='';
         if($image !== null){
-            $fileWithExt = $image->getClientOriginalName();
-            $filename = pathinfo($fileWithExt, PATHINFO_FILENAME);
+            $filenameWithExt = $image->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $image->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
             $public_path=public_path().'/storage/images/';
             $image->move($public_path, $fileNameToStore);
-            $path = '/storage/image'.$fileNameToStore;
-            $save->$image =$path;
+            $path = '/storage/images/'.$fileNameToStore;
+            $save->image =$path;
         }else{
             $save->$image=$path;
         }
