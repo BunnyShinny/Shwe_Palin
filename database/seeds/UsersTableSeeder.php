@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use App\User;
+use Spatie\Permission\Models\Role;
 
 class UsersTableSeeder extends Seeder
 {
@@ -12,13 +14,13 @@ class UsersTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([
-            'name' => 'Admin',
-            'email' => 'admin@nowui.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('secret'),
-            'created_at' => now(),
-            'updated_at' => now()
-        ]);
+        $user = new User();
+        $user->name = 'Admin';
+        $user->email = 'admin@nowui.com';
+        $user->email_verified_at = now();
+        $user->password = Hash::make('secret') ;
+        $user->save();
+
+        $user->assignRole('admin');
     }
 }
