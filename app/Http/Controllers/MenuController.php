@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Menu;
-use Illuminate\Http\Request;
+use App\Category;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 class MenuController extends Controller
 {
     /**
@@ -15,7 +17,8 @@ class MenuController extends Controller
     public function index()
     {
         $menus=Menu::all();
-        return view('menu.read',compact('menus'));
+        $categories=Category::all();
+        return view('menu.read',compact('menus','categories'));
     }
 
     /**
@@ -24,8 +27,10 @@ class MenuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
+    {   
+        $menus=Menu::all();
+        $categories=Category::all();
+        return view('menu.create',compact('menus','categories'));
     }
 
     /**
@@ -36,7 +41,29 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $save = new Menu;
+        $save->name = request('name');
+        $save->price = request('price');
+        $save->description = request('description');
+        $save->category_id = request('category_id');
+
+        $image=$request->file('image');
+        $path='';
+        if($image !== null){
+            $fileWithExt = $image->getClientOriginalName();
+            $filename = pathinfo($fileWithExt, PATHINFO_FILENAME);
+            $extension = $image->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $public_path=public_path().'/storage/images/';
+            $image->move($public_path, $fileNameToStore);
+            $path = '/storage/image'.$fileNameToStore;
+            $save->$image =$path;
+        }else{
+            $save->$image=$path;
+        }
+
+        $save->save();
+        return redirect()->route('showmenu');
     }
 
     /**

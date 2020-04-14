@@ -8,7 +8,6 @@
 @section('content')
 <div class="panel-header panel-header-sm">
   </div>
-<a href="{{route('category.create')}}" class="btn btn-info col-2 float-right" >Add New</a>
 <div class="card">
           <div class="card-header">
             <h4 class="card-title">Add New Category</h4>
