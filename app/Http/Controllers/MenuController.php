@@ -16,9 +16,12 @@ class MenuController extends Controller
      */
     public function index()
     {
-        $menus=Menu::all();
-        $categories=Category::all();
-        return view('menu.read',compact('menus','categories'));
+
+        $menus = DB::table('menus')
+        ->join('categories', 'categories.id', '=', 'menus.category_id')
+        ->select('menus.*', 'Categories.name as category_name')
+        ->get();
+        return view('menu.read',compact('menus'));
     }
 
     /**
@@ -106,8 +109,10 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Menu $menu)
+    public function destroy($id)
     {
-        //
+        $menu=Menu::find($id);
+        $menu->delete();
+        return redirect()->route('showmenu');
     }
 }

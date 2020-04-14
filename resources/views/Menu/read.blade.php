@@ -34,12 +34,19 @@
                   </th> 
                 </thead>
                 <tbody>
-                    
+
+                   @php
+                        $i=1;
+                    @endphp
+
+                    @foreach($menus as $menu)
+
                 <tr>
-                    <td>1</td>
-                    <td>Chicken Puff</td>
-                    <td>Puff</td>
-                    <td>500ks</td>
+
+                    <td>{{$i}}</td>
+                    <td>{{$menu->name}}</td>
+                    <td>{{$menu->category_name}}</td>
+                    <td>{{$menu->price}}kyats</td>
                     <td>
                       <a href="" class="btn btn-warning">Detail</a>
                     </td>
@@ -49,13 +56,17 @@
                     </td>
 
                     <td>
-                      <form method="POST" action="">
-
+                      <form method="POST" action="{{route('menu.destroy',$menu->id)}}">
+                      @csrf
+                      @method('DELETE')
                         <button type="submit" class="btn btn-danger" onclick="return confirm('Are You Confirm')">Delete</button>
                       </form>
                     </td>
-                  </tr>
-
+                </tr>
+                  @php
+                      $i++;
+                  @endphp
+                  @endforeach
                 </tbody>
               </table>
             </div>
