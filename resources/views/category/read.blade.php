@@ -11,7 +11,7 @@
 <a href="{{route('category.create')}}" class="btn btn-info col-2 float-right" >Add New</a>
 <div class="card">
           <div class="card-header">
-            <h4 class="card-title"> Category</h4>
+            <h4 class="card-title">Category</h4>
           </div>
           <div class="card-body">
             <div class="table-responsive">

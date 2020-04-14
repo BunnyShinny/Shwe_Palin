@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Menu extends Model
 {
     protected $fillable = [
-        'name','description','price',
+        'name','description','price','image','category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongTo('App\Category');
+    }
 }
