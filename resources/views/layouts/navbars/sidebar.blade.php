@@ -19,30 +19,54 @@
         </a>
       </li>
       <li>
-        <a data-toggle="collapse" href="#laravelExamples">
+        <a data-toggle="collapse" href="#admin">
             <i class="fab fa-laravel"></i>
           <p>
-            {{ __("Laravel Examples") }}
+            {{ __("Admin") }}
             <b class="caret"></b>
           </p>
         </a>
-        <div class="collapse show" id="laravelExamples">
+        <div class="collapse show" id="admin">
           <ul class="nav">
             <li class="@if ($activePage == 'profile') active @endif">
               <a href="{{ route('profile.edit') }}">
                 <i class="now-ui-icons users_single-02"></i>
-                <p> {{ __("User Profile") }} </p>
+                <p> {{ __("Admin Profile") }} </p>
               </a>
             </li>
             <li class="@if ($activePage == 'users') active @endif">
               <a href="{{ route('user.index') }}">
                 <i class="now-ui-icons design_bullet-list-67"></i>
-                <p> {{ __("User Management") }} </p>
+                <p> {{ __("Admin Management") }} </p>
               </a>
             </li>
           </ul>
         </div>
-      <li class="@if ($activePage == 'icons') active @endif">
+
+        <a data-toggle="collapse" href="#user">
+                  <i class="fab fa-laravel"></i>
+                <p>
+                  {{ __("Member") }}
+                  <b class="caret"></b>
+                </p>
+              </a>
+              <div class="collapse show" id="user">
+                <ul class="nav">
+                  <li >
+                    <a href="{{ route('profile.edit') }}">
+                      <i class="now-ui-icons users_single-02"></i>
+                      <p> {{ __("User Profile") }} </p>
+                    </a>
+                  </li>
+                  <li class="">
+                    <a href="{{ route('user.index') }}">
+                      <i class="now-ui-icons design_bullet-list-67"></i>
+                      <p> {{ __("User Management") }} </p>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+      <!-- <li class="@if ($activePage == 'icons') active @endif">
         <a href="{{ route('page.index','icons') }}">
           <i class="now-ui-icons education_atom"></i>
           <p>{{ __('Icons') }}</p>
@@ -53,7 +77,7 @@
           <i class="now-ui-icons location_map-big"></i>
           <p>{{ __('Maps') }}</p>
         </a>
-      </li>
+      </li> -->
       <li class = " @if ($activePage == 'notifications') active @endif">
         <a href="{{ route('page.index','notifications') }}">
           <i class="now-ui-icons ui-1_bell-53"></i>
@@ -63,21 +87,21 @@
       <li class = " @if ($activePage == 'table') active @endif">
         <a href="{{ route('page.index','table') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
-          <p>{{ __('Table List') }}</p>
+          <p>{{ __('Food Menu') }}</p>
         </a>
       </li>
-      <li class = "@if ($activePage == 'typography') active @endif">
+      <!-- <li class = "@if ($activePage == 'typography') active @endif">
         <a href="{{ route('page.index','typography') }}">
           <i class="now-ui-icons text_caps-small"></i>
           <p>{{ __('Typography') }}</p>
-        </a>
+        </a> -->
       </li>
-      <li class = "@if ($activePage == 'upgrade') active @endif active-pro">
+      <!-- <li class = "@if ($activePage == 'upgrade') active @endif active-pro">
         <a href="{{ route('page.index','upgrade') }}" class="color-ev">
           <i class="now-ui-icons arrows-1_cloud-download-93"></i>
           <p>{{ __('Upgrade to PRO') }}</p>
         </a>
-      </li>
+      </li> -->
     </ul>
   </div>
 </div>

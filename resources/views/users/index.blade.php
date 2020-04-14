@@ -168,14 +168,38 @@
             </a>
           </li>
           <li>
-              <a data-toggle="collapse" href="#laravelExamples">
+              <a data-toggle="collapse" href="#admin">
                   <i class="fab fa-laravel"></i>
                 <p>
-                  {{ __("Laravel Examples") }}
+                  {{ __("Admin") }}
                   <b class="caret"></b>
                 </p>
               </a>
-              <div class="collapse show" id="laravelExamples">
+              <div class="collapse show" id="admin">
+                <ul class="nav">
+                  <li >
+                    <a href="{{ route('profile.edit') }}">
+                      <i class="now-ui-icons users_single-02"></i>
+                      <p> {{ __("Admin Profile") }} </p>
+                    </a>
+                  </li>
+                  <li class=" active">
+                    <a href="{{ route('user.index') }}">
+                      <i class="now-ui-icons design_bullet-list-67"></i>
+                      <p> {{ __("Admin Management") }} </p>
+                    </a>
+                  </li>
+                </ul>
+              </div>
+              
+              <a data-toggle="collapse" href="#user">
+                  <i class="fab fa-laravel"></i>
+                <p>
+                  {{ __("Member") }}
+                  <b class="caret"></b>
+                </p>
+              </a>
+              <div class="collapse show" id="user">
                 <ul class="nav">
                   <li >
                     <a href="{{ route('profile.edit') }}">
@@ -183,7 +207,7 @@
                       <p> {{ __("User Profile") }} </p>
                     </a>
                   </li>
-                  <li class=" active">
+                  <li class="">
                     <a href="{{ route('user.index') }}">
                       <i class="now-ui-icons design_bullet-list-67"></i>
                       <p> {{ __("User Management") }} </p>
@@ -191,7 +215,7 @@
                   </li>
                 </ul>
               </div>
-          <li >
+          <!-- <li >
             <a href="{{ route('page.index','icons') }}">
               <i class="now-ui-icons education_atom"></i>
               <p>{{ __('Icons') }}</p>
@@ -202,7 +226,7 @@
               <i class="now-ui-icons location_map-big"></i>
               <p>{{ __('Maps') }}</p>
             </a>
-          </li>
+          </li> -->
           <li >
             <a href="{{ route('page.index','notifications') }}">
               <i class="now-ui-icons ui-1_bell-53"></i>
@@ -212,21 +236,21 @@
           <li >
             <a href="{{ route('page.index','table') }}">
               <i class="now-ui-icons design_bullet-list-67"></i>
-              <p>Table List</p>
+              <p>Food Menu</p>
             </a>
           </li>
-          <li>
+          <!-- <li>
             <a href="{{ route('page.index','typography') }}">
               <i class="now-ui-icons text_caps-small"></i>
               <p>{{ __('Typography') }}</p>
             </a>
-          </li>
-          <li class = " active-pro">
+          </li> -->
+          <!-- <li class = " active-pro">
             <a href="{{ route('page.index','upgrade') }}">
               <i class="now-ui-icons arrows-1_cloud-download-93"></i>
               <p>{{ __('Upgrade to PRO') }}</p>
             </a>
-          </li>
+          </li> -->
         </ul>
       </div>
     </div><div class="main-panel">
