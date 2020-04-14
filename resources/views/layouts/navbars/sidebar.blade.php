@@ -90,10 +90,10 @@
           <p>{{ __('Notifications') }}</p>
         </a>
       </li>
-      <li class = " @if ($activePage == 'table') active @endif">
-        <a href="{{ route('page.index','table') }}">
+      <li class = " @if ($activePage == 'Menu') active @endif">
+        <a href="{{ route('menu.index','menu') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
-          <p>{{ __('Food Menu') }}</p>
+          <p>{{ __('Menu') }}</p>
         </a>
       </li>
       <!-- <li class = "@if ($activePage == 'typography') active @endif">

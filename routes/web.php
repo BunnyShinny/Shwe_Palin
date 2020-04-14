@@ -21,8 +21,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+// Category
 Route::resource('/category', 'CategoryController');
 Route::get('/showcategory', 'CategoryController@index')->name('showcategory');
+
+// Menu
+Route::resource('/menu', 'MenuController');
+Route::get('/showcmenu', 'MenuController@index')->name('showmenu');
 
 
 Route::group(['middleware' => 'auth'], function () {
