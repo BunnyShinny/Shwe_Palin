@@ -52,7 +52,7 @@
                     </td>
 
                     <td>
-                      <a href="" class="btn btn-primary">Update</a>
+                      <a href="{{route('menu.edit',$menu->id)}}" class="btn btn-primary">Update</a>
                     </td>
 
                     <td>

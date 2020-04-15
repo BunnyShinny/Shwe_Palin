@@ -92,9 +92,16 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit(Menu $menu)
+    public function edit( $id)
     {
-        //
+        $categories=Category::all();
+        $menu = DB::table('menus')
+        ->join('categories', 'categories.id', '=', 'menus.category_id')
+        ->select('menus.*', 'Categories.name as category_name')
+        ->where('menus.id', '=' , $id)
+        ->first();
+        
+        return view('menu.edit',compact('menu','categories'));
     }
 
     /**
@@ -104,9 +111,32 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Menu $menu)
+    public function update(Request $request, $id)
     {
-        //
+        $menu=Menu::find($id);
+        
+        $menu->name = request('name');
+        $menu->price = request('price');
+        $menu->description = request('description');
+        $menu->category_id = request('category_id');
+
+        $image=$request->file('image');
+        $path='';
+        if($image !== null){
+            $filenameWithExt = $image->getClientOriginalName();
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            $extension = $image->getClientOriginalExtension();
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            $public_path=public_path().'/assets/img/';
+            $image->move($public_path, $fileNameToStore);
+            $path = '/assets/img/'.$fileNameToStore;
+            $menu->image =$path;
+        }else{
+            $menu->$image=$path;
+        }
+
+        $menu->save();
+        return redirect()->route('showmenu');
     }
 
     /**
