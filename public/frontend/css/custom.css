@@ -1,0 +1,198 @@
+.logo img{
+    margin-left: 30px;
+    height: 150px;
+}
+
+.header-area .main-header-area .say_hello a{
+    padding: 0px 10px;
+}
+.flaticon-bell{
+  margin-left: 0px;
+}
+
+.single_delicious .thumb img{
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+}
+.info{
+    margin-top: 30px;
+}
+.info h4{
+    color: #22F17C;
+}
+.available{
+    margin-left: 5px;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: #22F17C;
+}
+.login{
+    background: #f9f9f9;
+    padding: 50px 0px;
+    min-height: 785px;
+}
+.login .logo img{
+    margin-left: 0px;
+}
+
+.lgform{
+    padding: 0px 30px;
+    width: 100%;
+    height: 260px;
+    border: 0px solid;
+    background: #fff;
+    border-radius: 10px;
+}
+.lgform label{
+    margin-top: 15px;
+}
+.lgform input[type=text], select {
+  width: 100%;
+  padding: 5px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  background: rgb(232, 240, 254);
+}
+.lgform input[type=password], select {
+    width: 100%;
+    padding: 5px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: rgb(232, 240, 254);
+  }
+
+  .lgform input[type=submit] {
+    width: 100%;
+    background-color: #DB9A64;
+    color: white;
+    padding: 10px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .lgform input[type=submit]:hover {
+    background-color: #DB9A64;
+    opacity: 0.9;
+  }
+
+  .create input[type=submit] {
+      width: 100%;
+      margin: 15px 0px;
+  }
+
+  .sgup{
+      background: #1A0D01;
+      
+  }
+  .signup{
+    background: #f9f9f9;
+    padding: 180px 0px;
+    min-height: 785px;
+  }
+  .sgform{
+    padding: 0px 30px;
+    width: 100%;
+    height: 460px;
+    border: 0px solid;
+    background: #fff;
+    border-radius: 10px;
+}
+.sgform label{
+    margin-top: 15px;
+}
+.sgform input[type=text], select {
+    width: 100%;
+    padding: 5px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    background: rgb(232, 240, 254);
+  }
+  .sgform input[type=password], select {
+      width: 100%;
+      padding: 5px 20px;
+      margin: 8px 0;
+      display: inline-block;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+      background: rgb(232, 240, 254);
+    }
+  
+    .sgform input[type=submit] {
+      width: 100%;
+      background-color: #DB9A64;
+      color: white;
+      padding: 10px 20px;
+      margin: 8px 0;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+    
+    .sgform input[type=submit]:hover {
+      background-color: #DB9A64;
+      opacity: 0.9;
+    }
+    .menu{
+      padding: 50px 0px;
+    }
+
+    .wrapper{
+      width:100%;
+    }
+    @media(max-width:992px){
+     .wrapper{
+      width:100%;
+    } 
+    }
+    .panel-heading {
+      padding: 0;
+      border:0;
+      background: #E6EAEA;
+    }
+    .panel-title>a, .panel-title>a:active{
+      display:block;
+      padding:15px;
+      color:#555;
+      font-size:16px;
+      font-weight:bold;
+      text-transform:uppercase;
+      letter-spacing:1px;
+      word-spacing:3px;
+      text-decoration:none;
+    }
+    .panel-heading  a:before {
+       font-family: 'Glyphicons Halflings';
+       content: "\e114";
+       float: right;
+       transition: all 0.5s;
+    }
+    .panel-heading.active a:before {
+      -webkit-transform: rotate(180deg);
+      -moz-transform: rotate(180deg);
+      transform: rotate(180deg);
+    } 
+
+    .thumb{
+      margin-bottom: 10px;
+    }
+    .info{
+      margin-bottom: 10px;
+    }
+    .food{
+      margin-left: 0;
+      margin-right: 0;
+    }

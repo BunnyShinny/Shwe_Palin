@@ -21,24 +21,30 @@
     <link rel="stylesheet" href="frontend/css/gijgo.css">
     <link rel="stylesheet" href="frontend/css/nice-select.css">
     <link rel="stylesheet" href="frontend/css/flaticon.css">
+    <link rel="stylesheet" href="frontend/fonts/flat-font/flaticon.css">
+    <link rel="stylesheet" href="frontend/css/icomoon.css">
     <link rel="stylesheet" href="frontend/css/slicknav.css">
 
     <link rel="stylesheet" href="frontend/css/style.css">
     <link rel="stylesheet" href="frontend/css/custom.css">
-    <!-- <link rel="stylesheet" href="frontend/css/responsive.css"> -->
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
 <body>
+    <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
     <!-- header-start -->
     <header>
-        <div class="header-area sgup">
+        <div class="header-area ">
             <div id="sticky-header" class="main-header-area">
                 <div class="container-fluid p-0">
                     <div class="header_bottom_border">
                         <div class="row align-items-center no-gutters">
                             <div class="col-xl-3 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html">
+                                    <a href="/">
                                         <img src="frontend/img/shwe/logo.png" alt="">
                                     </a>
                                 </div>
@@ -47,7 +53,7 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
-                                            <li><a class="active" href="index.html">home</a></li>
+                                            <li><a class="active" href="/">home</a></li>
                                             <li><a href="Menu.html">Menu <i class="ti-angle-down"></i> </a>
                                                 <ul class="submenu">
                                                     <li><a href="drinks.html">drinks</a></li>
@@ -66,15 +72,17 @@
                                                     <li><a href="single-blog.html">single-blog</a></li>
                                                 </ul>
                                             </li> -->
-                                            <li><a href="contact.html">Contact</a></li>
+                                            <li><a href="contact">Contact</a></li>
                                         </ul>
                                     </nav>
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="say_hello">
-                                    <a href="#">Log In</a>
-                                    <a href="#">Sign Up</a>
+                                    <a href=""><i class="flaticon-supermarket"></i></a>
+                                    <a href=""><i class="flaticon-bell"></i></a>
+                                    <a href="login">Log In</a>
+                                    <a href="register">Sign Up</a>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -88,53 +96,15 @@
         </div>
     </header>
     <!-- header-end -->
-    <div class="signup">
-        <div class="container">
-            <div class="row">
-                <div class="col-md-4"></div>
-                <div class="col-md-4">
-                    <div class="logo text-center">
-                            <h2>Create Your Account</h2>
-                    </div>
-                    <div class="sgform">
-                        <form method="POST" action="{{ route('register') }}">
-                        @csrf
-                            <label for="fname">Name</label>
-                            <input type="text" id="fname" name="name" placeholder="name" value="{{ old('name') }}">
-                            @if ($errors->has('name'))
-                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('name') }}</strong>
-                                </span>
-                            @endif
 
-                            <label for="fname">Email Address</label>
-                            <input type="text" id="fname" name="email" placeholder="Email" value="{{ old('email') }}">
-                            @if ($errors->has('email'))
-                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('email') }}</strong>
-                                </span>
-                            @endif
-                            
-                            <label for="lname">Password</label>
-                            <input type="password" id="lname" name="password" placeholder="Password">
-                            @if ($errors->has('password'))
-                                <span class="invalid-feedback" style="display: block;" role="alert">
-                                <strong>{{ $errors->first('password') }}</strong>
-                                </span>
-                            @endif
+    <!-- slider_area_start -->
+    @yield('slider_area')
+    
+    <!-- slider_area_end -->
 
-                            <label for="lname">Confirm Password</label>
-                            <input type="password" id="lname" name="password_confirmation" placeholder="Confirm Password">
+    
+    @yield('content')
 
-                            <input type="submit" value="{{__('Create')}}">
-                        </form>
-                    </div>
-                    
-                </div>
-                <div class="col-md-4"></div>
-            </div>
-        </div>
-    </div>
     <!-- footer_start  -->
     <footer class="footer">
         <div class="footer_top">
@@ -235,6 +205,55 @@
         </div>
     </footer>
     <!-- footer_end  -->
+
+    <!-- JS here -->
+    <script src="frontend/js/myjs.js"></script>
+    <script src="frontend/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="frontend/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="frontend/js/popper.min.js"></script>
+    <script src="frontend/js/bootstrap.min.js"></script>
+    <script src="frontend/js/owl.carousel.min.js"></script>
+    <script src="frontend/js/isotope.pkgd.min.js"></script>
+    <script src="frontend/js/ajax-form.js"></script>
+    <script src="frontend/js/waypoints.min.js"></script>
+    <script src="frontend/js/jquery.counterup.min.js"></script>
+    <script src="frontend/js/imagesloaded.pkgd.min.js"></script>
+    <script src="frontend/js/scrollIt.js"></script>
+    <script src="frontend/js/jquery.scrollUp.min.js"></script>
+    <script src="frontend/js/wow.min.js"></script>
+    <script src="frontend/js/gijgo.min.js"></script>
+    <script src="frontend/js/nice-select.min.js"></script>
+    <script src="frontend/js/jquery.slicknav.min.js"></script>
+    <script src="frontend/js/jquery.magnific-popup.min.js"></script>
+    <script src="frontend/js/plugins.js"></script>
+
+
+
+    <!--contact js-->
+    <script src="frontend/js/contact.js"></script>
+    <script src="frontend/js/jquery.ajaxchimp.min.js"></script>
+    <script src="frontend/js/jquery.form.js"></script>
+    <script src="frontend/js/jquery.validate.min.js"></script>
+    <script src="frontend/js/mail-script.js"></script>
+
+
+    <script src="frontend/js/main.js"></script>
+
+    <script>
+        $('#datepicker').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<span class="fa fa-calendar-o"></span>'
+            }
+        });
+        $('#datepicker2').datepicker({
+            iconsLibrary: 'fontawesome',
+            icons: {
+                rightIcon: '<span class="fa fa-calendar-o"></span>'
+            }
+
+        });
+    </script>
 </body>
 
 </html>
