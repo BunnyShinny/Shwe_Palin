@@ -1,7 +1,7 @@
 @extends('layouts.app', [
     'namePage' => 'Dashboard',
     'class' => 'login-page sidebar-mini ',
-    'activePage' => 'Category',
+    'activePage' => 'Menu',
     'backgroundImage' => asset('now') . "/img/bg14.jpg",
 ])
 

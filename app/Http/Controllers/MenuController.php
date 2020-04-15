@@ -57,9 +57,9 @@ class MenuController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $image->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $public_path=public_path().'/storage/images/';
+            $public_path=public_path().'/assets/img/';
             $image->move($public_path, $fileNameToStore);
-            $path = '/storage/images/'.$fileNameToStore;
+            $path = '/assets/img/'.$fileNameToStore;
             $save->image =$path;
         }else{
             $save->$image=$path;
@@ -75,9 +75,15 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function show(Menu $menu)
+    public function show($id)
     {
-        //
+        $menu = DB::table('menus')
+        ->join('categories', 'categories.id', '=', 'menus.category_id')
+        ->select('menus.*', 'Categories.name as category_name')
+        ->where('menus.id', '=' , $id)
+        ->first();
+        
+        return view('menu.detail',compact('menu'));
     }
 
     /**

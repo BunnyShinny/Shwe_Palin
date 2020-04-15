@@ -48,7 +48,7 @@
                     <td>{{$menu->category_name}}</td>
                     <td>{{$menu->price}}kyats</td>
                     <td>
-                      <a href="" class="btn btn-warning">Detail</a>
+                      <a href="{{route('menu.show',$menu->id)}}" class="btn btn-warning">Detail</a>
                     </td>
 
                     <td>
