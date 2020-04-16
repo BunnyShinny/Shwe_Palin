@@ -54,14 +54,14 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a class="active" href="/">home</a></li>
-                                            <li><a href="Menu.html">Menu <i class="ti-angle-down"></i> </a>
-                                                <ul class="submenu">
+                                            <li><a href="foodmenu">Menu </a>
+                                                <!-- <ul class="submenu">
                                                     <li><a href="drinks.html">drinks</a></li>
                                                     <li><a href="">noodles</a></li>
                                                     <li><a href="">steamed and fried</a></li>
                                                     <li><a href="">traditional food</a></li>
                                                     <li><a href="">bread and puff</a></li>
-                                                </ul>
+                                                </ul> -->
                                             </li>
                                             <li><a href="#">Branches</a>
 
@@ -113,9 +113,7 @@
                     <div class="col-xl-3 col-md-6 col-lg-3 ">
                         <div class="footer_widget">
                             <div class="footer_logo">
-                                <a href="#">
-                                    <img src="frontend/img/footer_logo.png" alt="">
-                                </a>
+                                <h3>ေရႊပလႅင္ - Shwepalin</h3>
                             </div>
                             <p>5th flora, 700/D kings road, green <br> lane New York-1782 <br>
                                 <a href="#">+10 367 826 2567</a> <br>
@@ -194,9 +192,7 @@
                         <p class="copy_right text-center">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved 
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>

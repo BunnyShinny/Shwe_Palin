@@ -1121,6 +1121,9 @@ h3 {
   position: relative;
   text-transform: capitalize;
 }
+.header-area .main-header-area .main-menu ul li a:hover{
+  color: #B0B1B1;
+}
 
 @media (min-width: 992px) and (max-width: 1200px) {
   /* line 168, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_header.scss */
@@ -1351,12 +1354,12 @@ h3 {
 
 /* line 1, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_slider.scss */
 .slider_bg_1 {
-  background-image: url(../img/banner/banner.png);
+  background-image: url(../img/banner/bg.jpeg);
 }
 
 /* line 4, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_slider.scss */
 .slider_bg_2 {
-  background-image: url(../img/banner/banner2.png);
+  background-image: url(../img/banner/bg3.jpeg);
 }
 
 /* line 7, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_slider.scss */
@@ -2506,6 +2509,7 @@ h3 {
 /* line 29, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_reservation.scss */
 .Reservation_area .book_Form {
   margin-bottom: 30px;
+  height: 480px;
   background: #DB9A64;
   padding: 34px 40px;
 }
@@ -2687,7 +2691,7 @@ h3 {
 
 /* line 19, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_delicious.scss */
 .Delicious_area .tablist_menu .nav li a .single_menu .icon i {
-  font-size: 50px;
+  font-size: 40px;
   color: #596672;
 }
 
@@ -2822,6 +2826,11 @@ h3 {
 /* line 4, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_bradcam.scss */
 .bradcam_bg_2 {
   background-image: url(../img/menu/drinks/drink.jpeg);
+  background-attachment: fixed;
+}
+.bradcam_bg_5{
+  background-image: url(../img/banner/bg2.jpeg);
+  background-attachment: fixed;
 }
 
 /* line 7, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_bradcam.scss */
@@ -2831,7 +2840,7 @@ h3 {
 
 /* line 10, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_bradcam.scss */
 .bradcam_bg_4 {
-  background-image: url(../img/banner/details.png);
+  background-image: url(../img/banner/book.jpeg);
 }
 
 /* line 13, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_bradcam.scss */
@@ -3295,8 +3304,8 @@ h3 {
 
 /* line 9, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_footer.scss */
 .footer .footer_top {
-  padding-top: 145px;
-  padding-bottom: 129px;
+  padding-top: 155px;
+  padding-bottom: 139px;
 }
 
 @media (max-width: 767px) {

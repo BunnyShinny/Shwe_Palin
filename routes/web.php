@@ -20,6 +20,12 @@ Route::get('/', function () {
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::get('/foodmenu', function () {
+	return view('foodmenu');
+});
+Route::get('/booktable', function () {
+	return view('booktable');
+});
 
 Auth::routes();
 

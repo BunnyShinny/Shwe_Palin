@@ -1,6 +1,7 @@
 .logo img{
     margin-left: 30px;
     height: 150px;
+    object-fit: cover;
 }
 
 .header-area .main-header-area .say_hello a{
@@ -40,7 +41,7 @@
 .lgform{
     padding: 0px 30px;
     width: 100%;
-    height: 260px;
+    min-height: 260px;
     border: 0px solid;
     background: #fff;
     border-radius: 10px;
@@ -102,7 +103,7 @@
   .sgform{
     padding: 0px 30px;
     width: 100%;
-    height: 460px;
+    min-height: 460px;
     border: 0px solid;
     background: #fff;
     border-radius: 10px;
@@ -195,4 +196,7 @@
     .food{
       margin-left: 0;
       margin-right: 0;
+    }
+    .footer_logo h3{
+      color: white;
     }

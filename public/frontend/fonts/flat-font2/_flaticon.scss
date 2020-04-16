@@ -1,6 +1,6 @@
     /*
     Flaticon icon font: Flaticon
-    Creation date: 15/04/2020 14:10
+    Creation date: 15/04/2020 15:20
     */
 
     @font-face {
@@ -37,20 +37,8 @@
   font-smoothing: antialiased;
     }
 
-    .flaticon-bell:before { content: "\f100"; }
-.flaticon-supermarket:before { content: "\f101"; }
-.flaticon-smart-cart:before { content: "\f102"; }
-.flaticon-ramen:before { content: "\f103"; }
-.flaticon-sandwich:before { content: "\f104"; }
-.flaticon-rice:before { content: "\f105"; }
-.flaticon-puff:before { content: "\f106"; }
-.flaticon-puff-1:before { content: "\f107"; }
+    .flaticon-puff-1:before { content: "\f100"; }
+.flaticon-fruit:before { content: "\f101"; }
     
-    $font-Flaticon-bell: "\f100";
-    $font-Flaticon-supermarket: "\f101";
-    $font-Flaticon-smart-cart: "\f102";
-    $font-Flaticon-ramen: "\f103";
-    $font-Flaticon-sandwich: "\f104";
-    $font-Flaticon-rice: "\f105";
-    $font-Flaticon-puff: "\f106";
-    $font-Flaticon-puff-1: "\f107";
+    $font-Flaticon-puff-1: "\f100";
+    $font-Flaticon-fruit: "\f101";
