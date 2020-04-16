@@ -42,7 +42,7 @@ class CategoryController extends Controller
         Category::create([
             "name"=>request('name')
         ]);
-
+        
         return redirect()->route('showcategory');
     }
 

@@ -46,7 +46,7 @@
                                 role="tab" aria-controls="pills-home" aria-selected="true">
                                 <div class="single_menu text-center">
                                     <div class="icon">
-                                        <!-- <i class="flaticon-bell"></i> -->
+                                        
                                     </div>
                                     <h4>{{$category->name}}</h4>
                                 </div>
@@ -64,7 +64,7 @@
         <div class="tab-content" id="pills-tabContent">
          
             <div class="tab-pane fade show active" id="" role="tabpanel" aria-labelledby="-tab">
-            <!-- <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab"> -->
+            
                 <div class="row">
                     @foreach($menus as $menu)
                     <div class="col-xl-6 col-md-6 col-lg-6 {{$menu->category_name}}">

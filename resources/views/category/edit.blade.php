@@ -19,13 +19,13 @@
           @csrf
           @method('PUT')
             <div class="form-group">
-              <label for="exampleInputEmail1">Name</label>
+              <label>Name</label>
               <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" id="name" name="name" value="{{$category->name}}">
               @error('name')
                 <div class="alert text-danger">{{$message}}</div>
               @enderror 
             </div>
-            <button type="add" class="btn btn-primary mb-2">Add</button>
+            <button type="add" class="btn btn-primary mb-2">Update</button>
             </form>
       </div>
       <div class="col-md-5">

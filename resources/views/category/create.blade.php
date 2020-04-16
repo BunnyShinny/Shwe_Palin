@@ -10,16 +10,16 @@
 </div>
 <div class="card">
   <div class="card-header">
-    <h3 class="card-title">Add New Menu</h3>
+    <h3 class="card-title">Add New Category</h3>
   </div>
   <div class="container">
     <div class="row">
       <div class="col-md-5">
-        <form class="" method="POST" action="{{route('menu.store')}}" enctype="multipart/form-data">
+        <form class="" method="POST" action="{{route('category.store')}}" enctype="multipart/form-data">
           @csrf
             <div class="form-group">
-              <label for="exampleInputEmail1">Name</label>
-              <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" id="name" name="name">
+              <label>Name</label>
+              <input type="text" class="form-control " placeholder="Name" id="name" name="name">
               @error('name')
                 <div class="alert text-danger">{{$message}}</div>
               @enderror 
