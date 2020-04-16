@@ -7,28 +7,34 @@
 
 @section('content')
 <div class="panel-header panel-header-sm">
-  </div>
-<a href="{{route('category.create')}}" class="btn btn-info col-2 float-right" >Add New</a>
+</div>
 <div class="card">
-          <div class="card-header">
-            <h4 class="card-title">Update Category</h4>
-          </div>
-          <div class="card-body">
-          <form class="form-inline" method="POST" action="{{route('category.update',$category->id)}}" enctype="multipart/form-data">
+  <div class="card-header">
+    <h3 class="card-title">Add New Menu</h3>
+  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-5">
+          <form class="" method="POST" action="{{route('category.update',$category->id)}}" enctype="multipart/form-data">
           @csrf
           @method('PUT')
-            <div class="form-group mb-2">
-                
-                <input type="text" readonly class="form-control-plaintext" value="Category Name">
+            <div class="form-group">
+              <label for="exampleInputEmail1">Name</label>
+              <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" id="name" name="name" value="{{$category->name}}">
+              @error('name')
+                <div class="alert text-danger">{{$message}}</div>
+              @enderror 
             </div>
-            <div class="form-group mx-sm-3 mb-2">
-
-                <input type="label" class="form-control" id="name" name="name" placeholder="{{$category->name}}">
-            </div>
-            <button type="add" class="btn btn-primary mb-2">Update</button>
+            <button type="add" class="btn btn-primary mb-2">Add</button>
             </form>
-          </div>
-        </div>
+      </div>
+      <div class="col-md-5">
+
+      </div>
+    </div>
+
+  </div>
+</div>
 @endsection
 
 @push('js')

@@ -43,7 +43,7 @@
           </ul>
         </div>
 
-        <a data-toggle="collapse" href="#user">
+        <!-- <a data-toggle="collapse" href="#user">
                   <i class="fab fa-laravel"></i>
                 <p>
                   {{ __("Member") }}
@@ -65,7 +65,7 @@
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
       <!-- <li class="@if ($activePage == 'icons') active @endif">
         <a href="{{ route('page.index','icons') }}">
           <i class="now-ui-icons education_atom"></i>

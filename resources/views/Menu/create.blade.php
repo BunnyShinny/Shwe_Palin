@@ -27,42 +27,6 @@
   <div class="card-header">
     <h3 class="card-title">Add New Menu</h3>
   </div>
-  <!-- <div class="card-body">
-    <form class="form-inline" method="POST" action="{{route('menu.store')}}" enctype="multipart/form-data">
-      @csrf
-
-      <div class="form-row">
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Name" id="name" name="name">
-        </div>
-        <div class="col">
-          <input type="text" class="form-control" placeholder="Price" id="price" name="price">
-        </div>
-        <div class="col">
-
-          <select class="form-control" id="category" name="category_id">
-            <option selected>Choose Category</option>
-
-            @foreach($categories as $category)
-
-            <option value="{{$category->id}}">{{$category->name}}</option>
-
-            @endforeach
-
-          </select>
-        </div>
-        <div class="col">
-          <textarea rows="1" class="form-control" cols="50" placeholder="Description" id="description"
-            name="description"></textarea>
-        </div>
-        <div class="col">
-          <input type="file" class="" name="image">
-        </div>
-        <button type="add" class="btn btn-primary mb-2">Add</button>
-      </div>
-    </form>
-  </div> -->
-
   <div class="container">
     <div class="row">
       <div class="col-md-5">
@@ -70,17 +34,22 @@
           @csrf
           <div class="form-group">
             <label for="exampleInputEmail1">Name</label>
-            <input type="text" class="form-control" placeholder="Name" id="name" name="name">
-
+            <input type="text" class="form-control @error('name') is-invalid @enderror" placeholder="Name" id="name" name="name">
+            @error('name')
+              <div class="alert text-danger">{{$message}}</div>
+            @enderror 
           </div>
           <div class="form-group">
             <label for="exampleInputPassword1">Price</label>
-            <input type="text" class="form-control" placeholder="Price" id="price" name="price">
+            <input type="text" class="form-control @error('price') is-invalid @enderror" placeholder="Price" id="price" name="price">
+            @error('price')
+              <div class="alert text-danger">{{$message}}</div>
+            @enderror 
           </div>
           <div class="form-group">
-            <label for="inputState">State</label>
+            <label for="inputState">Choose Category</label>
             <select class="form-control" id="category" name="category_id">
-              <option selected>Choose Category</option>
+              
 
               @foreach($categories as $category)
 
@@ -90,12 +59,18 @@
             </select>
           </div>
           <div class="form-group">
-            <textarea rows="1" class="form-control" cols="50" placeholder="Description" id="description"
+            <textarea rows="1" class="form-control @error('description') is-invalid @enderror" cols="50" placeholder="Description" id="description"
               name="description"></textarea>
+              @error('description')
+              <div class="alert text-danger">{{$message}}</div>
+            @enderror 
 
           </div>
           <div>
-            <input type="file" class="" name="image">
+            <input type="file" class="@error('image') is-invalid @enderror" name="image">
+            @error('image')
+              <div class="alert text-danger">{{$message}}</div>
+            @enderror 
           </div>
 
           <button type="add" class="btn btn-primary mb-2">Add</button>

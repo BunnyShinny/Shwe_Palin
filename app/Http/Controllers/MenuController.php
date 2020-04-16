@@ -44,6 +44,15 @@ class MenuController extends Controller
      */
     public function store(Request $request)
     {
+        $request->validate([
+            "name"=>'required',
+            "price"=>'required',
+            "description"=>'required',
+            "category_id"=>'required',
+            "image"=>'required',
+            
+        ]);
+
         $save = new Menu;
         $save->name = request('name');
         $save->price = request('price');
@@ -114,7 +123,14 @@ class MenuController extends Controller
     public function update(Request $request, $id)
     {
         $menu=Menu::find($id);
-        
+        $request->validate([
+            "name"=>'required',
+            "price"=>'required',
+            "description"=>'required',
+            "category_id"=>'required',
+            "image"=>'required',
+            
+        ]);
         $menu->name = request('name');
         $menu->price = request('price');
         $menu->description = request('description');
