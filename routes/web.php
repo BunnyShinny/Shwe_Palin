@@ -26,6 +26,9 @@ Route::get('/foodmenu', function () {
 Route::get('/booktable', function () {
 	return view('booktable');
 });
+Route::get('/branch', function () {
+	return view('branch');
+});
 
 Auth::routes();
 
