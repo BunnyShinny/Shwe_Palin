@@ -12,12 +12,12 @@
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">
     <ul class="nav">
-      <li class="@if ($activePage == 'home') active @endif">
+      <!-- <li class="@if ($activePage == 'home') active @endif">
         <a href="{{ route('home') }}">
           <i class="now-ui-icons design_app"></i>
           <p>{{ __('Dashboard') }}</p>
         </a>
-      </li>
+      </li> -->
       <li>
         <a data-toggle="collapse" href="#admin">
             <i class="fab fa-laravel"></i>
@@ -43,7 +43,7 @@
           </ul>
         </div>
 
-        <a data-toggle="collapse" href="#user">
+        <!-- <a data-toggle="collapse" href="#user">
                   <i class="fab fa-laravel"></i>
                 <p>
                   {{ __("Member") }}
@@ -65,7 +65,7 @@
                     </a>
                   </li>
                 </ul>
-              </div>
+              </div> -->
       <!-- <li class="@if ($activePage == 'icons') active @endif">
         <a href="{{ route('page.index','icons') }}">
           <i class="now-ui-icons education_atom"></i>
@@ -84,12 +84,12 @@
           <p>{{ __('Category') }}</p>
         </a>
       </li>
-      <li class = " @if ($activePage == 'notifications') active @endif">
+      <!-- <li class = " @if ($activePage == 'notifications') active @endif">
         <a href="{{ route('page.index','notifications') }}">
           <i class="now-ui-icons ui-1_bell-53"></i>
           <p>{{ __('Notifications') }}</p>
         </a>
-      </li>
+      </li> -->
       <li class = " @if ($activePage == 'Menu') active @endif">
         <a href="{{ route('menu.index','menu') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
