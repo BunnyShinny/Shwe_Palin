@@ -14,15 +14,21 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/', function () {
-    return view('index');
-});
+// Route::get('/', function () {
+//     return view('index');
+// });
+// Route::get('/foodmenu', function () {
+// 	return view('foodmenu');
+// });
+
+// Frontend
+Route::get('/', 'FrontendController@index');
+Route::get('/foodmenu', 'FrontendController@foodmenu');
+
 Route::get('/contact', function () {
     return view('contact');
 });
-Route::get('/foodmenu', function () {
-	return view('foodmenu');
-});
+
 Route::get('/booktable', function () {
 	return view('booktable');
 });
