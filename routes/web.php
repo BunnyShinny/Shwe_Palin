@@ -22,7 +22,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 // Frontend
-Route::get('/', 'FrontendController@index');
+Route::get('/', 'FrontendController@index')->name('welcome');
 Route::get('/foodmenu', 'FrontendController@foodmenu');
 
 Route::get('/contact', function () {
@@ -38,23 +38,18 @@ Route::get('/branch', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::group(['middleware' => ['role:admin']], function () {
+	Route::get('/home', 'HomeController@index')->name('home');
+	// Category
+	Route::resource('categories', 'CategoryController');
 
-// Category
-Route::resource('/category', 'CategoryController');
-Route::get('/showcategory', 'CategoryController@index')->name('showcategory');
-
-// Menu
-Route::resource('/menu', 'MenuController');
-Route::get('/showcmenu', 'MenuController@index')->name('showmenu');
-
-
-Route::group(['middleware' => 'auth'], function () {
+	// Menu
+	Route::resource('menus', 'MenuController');
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-	Route::get('{page}', ['as' => 'page.index', 'uses' => 'PageController@index']);
+
 });
 
 

@@ -15,7 +15,7 @@ class CategoryController extends Controller
     public function index()
     {
         $categories=Category::all();
-        return view('category.read',compact('categories'));
+        return view('categories.read',compact('categories'));
     }
 
     /**
@@ -25,7 +25,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        return view('category.create');
+        return view('categories.create');
     }
 
     /**
@@ -37,13 +37,13 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            "name"=>'required',
+            "name"=>'required|unique:categories',
         ]);
         Category::create([
             "name"=>request('name')
         ]);
         
-        return redirect()->route('showcategory');
+        return redirect()->route('categories.read');
     }
 
     /**
@@ -64,10 +64,9 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Category $category)
     {
-        $category=Category::find($id);
-        return view('category.edit',compact('category'));
+        return view('categories.edit',compact('category'));
     }
 
     /**
@@ -77,15 +76,14 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request,Category $category)
     {
-        $category=Category::find($id);
         $request->validate([
-            "name"=>'required',
+            "name"=>'required|unique:categories,name,'.$category->id,
         ]);
         $category->name = request("name");
         $category->save();
-        return redirect()->route('showcategory');
+        return redirect()->route('categories.read');
     }
 
     /**
@@ -94,10 +92,9 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        $category=Category::find($id);
         $category->delete();
-        return redirect()->route('showcategory');
+        return redirect()->route('categories.read');
     }
 }

@@ -1,8 +1,10 @@
 <!doctype html>
-<html class="no-js" lang="zxx">
+<html class="no-js" lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
 <head>
     <meta charset="utf-8">
+
+    <meta name="csrf-token" content="{{csrf_token()}}">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>Restaurant</title>
     <meta name="description" content="">
@@ -78,11 +80,41 @@
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                                <div class="say_hello">
-                                    <a href=""><i class="flaticon-supermarket"></i></a>
-                                    <a href=""><i class="flaticon-bell"></i></a>
-                                    <a href="login">Log In</a>
-                                    <a href="register">Sign Up</a>
+                                <div class="main-menu d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li>
+                                                <a href="#"><i class="flaticon-supermarket"></i></a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="flaticon-bell"></i></a>
+                                            </li>
+                                            @if (Auth::guest())
+                                            <li>
+                                                <a href="login">Log In</a>
+                                            </li>
+                                            <li>
+                                            <a href="register">Sign Up</a>
+                                            </li>
+                                            @else
+                                            <li>
+                                                <a href="#">{{auth()->user()->name}}</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();">
+                                                        {{ __('Logout') }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                            @endif
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                             <div class="col-12">

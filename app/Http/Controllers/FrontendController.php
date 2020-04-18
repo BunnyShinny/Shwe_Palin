@@ -7,6 +7,7 @@ use App\Category;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class FrontendController extends Controller
 {

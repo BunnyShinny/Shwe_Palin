@@ -21,7 +21,7 @@ class MenuController extends Controller
         ->join('categories', 'categories.id', '=', 'menus.category_id')
         ->select('menus.*', 'Categories.name as category_name')
         ->get();
-        return view('menu.read',compact('menus'));
+        return view('menus.read',compact('menus'));
     }
 
     /**
@@ -33,7 +33,7 @@ class MenuController extends Controller
     {   
         $menus=Menu::all();
         $categories=Category::all();
-        return view('menu.create',compact('menus','categories'));
+        return view('menus.create',compact('menus','categories'));
     }
 
     /**
@@ -48,7 +48,7 @@ class MenuController extends Controller
             "name"=>'required',
             "price"=>'required',
             "description"=>'required',
-            "category_id"=>'required',
+            "category"=>'required',
             "image"=>'required',
             
         ]);
@@ -57,7 +57,7 @@ class MenuController extends Controller
         $save->name = request('name');
         $save->price = request('price');
         $save->description = request('description');
-        $save->category_id = request('category_id');
+        $save->category_id = request('category');
 
         $image=$request->file('image');
         $path='';
@@ -75,7 +75,7 @@ class MenuController extends Controller
         }
 
         $save->save();
-        return redirect()->route('showmenu');
+        return redirect()->route('menus.read');
     }
 
     /**
@@ -92,7 +92,7 @@ class MenuController extends Controller
         ->where('menus.id', '=' , $id)
         ->first();
         
-        return view('menu.detail',compact('menu'));
+        return view('menus.detail',compact('menu'));
     }
 
     /**
@@ -110,7 +110,7 @@ class MenuController extends Controller
         ->where('menus.id', '=' , $id)
         ->first();
         
-        return view('menu.edit',compact('menu','categories'));
+        return view('menus.edit',compact('menu','categories'));
     }
 
     /**
@@ -127,14 +127,14 @@ class MenuController extends Controller
             "name"=>'required',
             "price"=>'required',
             "description"=>'required',
-            "category_id"=>'required',
+            "category"=>'required',
             "image"=>'required',
             
         ]);
         $menu->name = request('name');
         $menu->price = request('price');
         $menu->description = request('description');
-        $menu->category_id = request('category_id');
+        $menu->category_id = request('category');
 
         $image=$request->file('image');
         $path='';
@@ -152,7 +152,7 @@ class MenuController extends Controller
         }
 
         $menu->save();
-        return redirect()->route('showmenu');
+        return redirect()->route('menus.index');
     }
 
     /**
@@ -165,6 +165,6 @@ class MenuController extends Controller
     {
         $menu=Menu::find($id);
         $menu->delete();
-        return redirect()->route('showmenu');
+        return redirect()->route('menus.index');
     }
 }
