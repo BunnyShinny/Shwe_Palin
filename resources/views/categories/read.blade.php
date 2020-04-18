@@ -11,10 +11,10 @@ sidebar-mini ', 'activePage' => 'Category', 'backgroundImage' => asset('now') .
                     <div class="col-md-6">
                       <h4 class="card-title">Category</h4>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-right">
                       <a
                           href="{{ route('categories.create') }}"
-                          class="btn btn-info col-2 float-right"
+                          class="btn btn-info"
                           >Add New</a
                       >
                     </div>

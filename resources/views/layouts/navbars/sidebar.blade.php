@@ -3,11 +3,11 @@
     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
 -->
   <div class="logo">
-    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-      {{ __('CT') }}
+    <a href="/home" class="simple-text logo-mini">
+      <img src="frontend/img/shwe/logo.png" alt="">
     </a>
-    <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+    <a href="/home" class="simple-text logo-normal">
+      {{ __('Shwe Palin') }}
     </a>
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">

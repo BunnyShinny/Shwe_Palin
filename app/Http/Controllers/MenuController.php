@@ -75,7 +75,7 @@ class MenuController extends Controller
         }
 
         $save->save();
-        return redirect()->route('menus.read');
+        return redirect()->route('menus.index');
     }
 
     /**

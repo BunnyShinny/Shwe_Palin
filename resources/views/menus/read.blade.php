@@ -11,10 +11,10 @@ sidebar-mini ', 'activePage' => 'Menu', 'backgroundImage' => asset('now') .
                     <div class="col-md-6">
                       <h4 class="card-title">Menu</h4>
                     </div>
-                    <div class="col-md-6">
+                    <div class="col-md-6 text-right">
                       <a
                           href="{{ route('menus.create') }}"
-                          class="btn btn-info col-2 float-right"
+                          class="btn btn-info"
                           >Add New</a
                       >
                     </div>
