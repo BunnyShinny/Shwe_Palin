@@ -24,17 +24,15 @@ use Illuminate\Support\Facades\Route;
 // Frontend
 Route::get('/', 'FrontendController@index')->name('welcome');
 Route::get('/foodmenu', 'FrontendController@foodmenu');
+Route::get('/branch', 'FrontendController@branch');
+Route::get('/booktable', 'FrontendController@reservation');
 
 Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/booktable', function () {
-	return view('booktable');
-});
-Route::get('/branch', function () {
-	return view('branch');
-});
+
+
 
 Auth::routes();
 
@@ -42,6 +40,7 @@ Route::group(['middleware' => ['role:admin']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
 	// Category
 	Route::resource('categories', 'CategoryController');
+	Route::resource('branches', 'BranchController');
 
 	// Menu
 	Route::resource('menus', 'MenuController');

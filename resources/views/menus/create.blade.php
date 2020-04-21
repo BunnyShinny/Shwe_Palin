@@ -29,8 +29,12 @@
               <div class="col-md-12 pr-4 pl-4">
                   <div class="form-group">
                       <label>Price</label>
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">Kyats</div>
+                      </div> 
                           <input type="number" name="price" class="form-control" value="{{ old('price') }}">
                           @include('alerts.feedback', ['field' => 'price'])
+                        
                   </div>
               </div>
               <div class="col-md-12 pr-4 pl-4">

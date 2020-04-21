@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Menu;
 use App\Category;
+use App\Branch;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -30,5 +31,17 @@ class FrontendController extends Controller
         ->select('menus.*', 'Categories.name as category_name')
         ->get();
         return view('foodmenu',compact('menus','categories'));
+    }
+
+    public function branch()
+    {
+        $branches=Branch::all();
+        return view('branch',compact('branches'));
+    }
+
+    public function reservation()
+    {
+        $branches=Branch::all();
+        return view('booktable',compact('branches'));
     }
 }
