@@ -1,7 +1,7 @@
 @extends('layouts.app', [
 'namePage' => 'Dashboard',
 'class' => 'login-page sidebar-mini ',
-'activePage' => 'Menu',
+'activePage' => 'Branch',
 'backgroundImage' => asset('now') . "/img/bg14.jpg",
 ])
 
@@ -13,13 +13,13 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">New Menu</h3>
+          <h3 class="card-title">New Branch</h3>
         </div>
         <div class="card-body">
-        <form class="" method="POST" action="{{route('menus.store')}}" enctype="multipart/form-data">
+        <form class="" method="POST" action="{{route('branches.store')}}" enctype="multipart/form-data">
           @csrf
           <div class="row">
-              <div class="col-md-12 pr-4 pl-4">
+          <div class="col-md-12 pr-4 pl-4">
                   <div class="form-group">
                       <label>Name</label>
                           <input type="text" name="name" class="form-control" value="{{ old('name') }}">
@@ -28,26 +28,24 @@
               </div>
               <div class="col-md-12 pr-4 pl-4">
                   <div class="form-group">
-                      <label>Price</label>
-                      <div class="input-group-prepend">
-                        <div class="input-group-text">Kyats</div>
-                      </div> 
-                          <input type="number" name="price" class="form-control" value="{{ old('price') }}">
-                          @include('alerts.feedback', ['field' => 'price'])
-                        
+                      <label>Address</label>
+                          <input type="text" name="address" class="form-control" value="{{ old('address') }}">
+                          @include('alerts.feedback', ['field' => 'address'])
                   </div>
               </div>
               <div class="col-md-12 pr-4 pl-4">
-                <div class="form-group">
-                  <label for="category">Category</label>
-                  <select class="form-control" id="category" name="category">
-                    <option selected disabled>Select a category</option>
-                    @foreach($categories as $category)
-                      <option value="{{$category->id}}">{{$category->name}}</option>
-                    @endforeach
-                  </select>
-                  @include('alerts.feedback', ['field' => 'category'])
-                </div>
+                  <div class="form-group">
+                      <label>Phone</label>
+                          <input type="text" name="phone" class="form-control" value="{{ old('phone') }}">
+                          @include('alerts.feedback', ['field' => 'phone'])
+                  </div>
+              </div>
+              <div class="col-md-12 pr-4 pl-4">
+                  <div class="form-group">
+                      <label>Open Hours</label>
+                          <input type="text" name="open_hour" class="form-control" value="{{ old('open_hour') }}">
+                          @include('alerts.feedback', ['field' => 'open_hour'])
+                  </div>
               </div>
               <div class="col-md-12 pr-4 pl-4">
                   <div class="form-group">
@@ -55,13 +53,6 @@
                           <input type="file" name="image" class="form-control" style="position:static;opacity:1">
                           @include('alerts.feedback', ['field' => 'image'])
                   </div>
-              </div>
-              <div class="col-md-12 pr-4 pl-4">
-                <div class="form-group">
-                  <label for="description">Description</label>
-                  <textarea class="form-control" id="description" rows="3" name="description"></textarea>
-                  @include('alerts.feedback', ['field' => 'description'])
-                </div>
               </div>
           </div>
               <div class="card-footer text-center">

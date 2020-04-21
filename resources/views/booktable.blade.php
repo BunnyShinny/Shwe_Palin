@@ -44,30 +44,31 @@
                     <div class="row ">
                         <div class="col-lg-6">
                             <div class="input_field mb_15">
-                                <input type="text" placeholder="Your Name">
+                                <input type="text" placeholder="Your Name" name="name">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="input_field mb_15">
-                                <input type="text" placeholder="Phone no.">
+                                <input type="text" placeholder="Phone no." name="phone">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="input_field">
-                                <input id="datepicker2" placeholder="Date">
+                                <input id="datepicker2" placeholder="Date" name="date">
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="input_field mb_15">
-                                <input type="text" placeholder="Person">
+                                <input type="text" placeholder="Person" name="no_of_people">
                             </div>
                         </div>
                         <div class="col-lg-12">
                             <div class="input_field">
                                 <select class="wide">
-                                    <option data-display="Branch">Branch</option>
-                                    <option value="1">Branch</option>
-                                    <option value="1">Branch</option>
+                                    <option selected disabled name="branch">Select a Branch</option>
+                                    @foreach($branches as $branch)
+                                    <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

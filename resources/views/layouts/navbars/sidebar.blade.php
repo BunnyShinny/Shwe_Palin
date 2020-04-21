@@ -32,12 +32,19 @@
           <p>{{ __('Categories') }}</p>
         </a>
       </li>
+      
       <li class = " @if ($activePage == 'Menu') active @endif">
         <a href="{{ route('menus.index') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
           <p>{{ __('Menu') }}</p>
         </a>
       </li>
+      
+      <li class = " @if ($activePage == 'Branch') active @endif">
+        <a href="{{ route('branches.index') }}">
+          <i class="now-ui-icons text_align-left"></i>
+          <p>{{ __('Branches') }}</p>
+        </a>
       </li>
     </ul>
   </div>

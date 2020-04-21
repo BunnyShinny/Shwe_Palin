@@ -13,7 +13,7 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Edit Menu</h3>
+          <h3 class="card-title">Update Menu</h3>
         </div>
         <div class="card-body">
         <form class="" method="POST" action="{{route('menus.update',$menu->id)}}" enctype="multipart/form-data">
