@@ -16,9 +16,9 @@ class UsersTableSeeder extends Seeder
     {
         $user = new User();
         $user->name = 'Admin';
-        $user->email = 'admin@nowui.com';
+        $user->email = 'admin@shwepalin.com';
         $user->email_verified_at = now();
-        $user->password = Hash::make('secret') ;
+        $user->password = Hash::make('admin123') ;
         $user->save();
 
         $user->assignRole('admin');
