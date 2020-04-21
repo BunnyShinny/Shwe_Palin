@@ -44,4 +44,10 @@ class FrontendController extends Controller
         $branches=Branch::all();
         return view('booktable',compact('branches'));
     }
+
+    public function saving_reservation()
+    {
+        $branches=Branch::all();
+        return view('booktable',compact('branches'));
+    }
 }

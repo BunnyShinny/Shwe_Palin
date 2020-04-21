@@ -19,7 +19,7 @@ class MenuController extends Controller
 
         $menus = DB::table('menus')
         ->join('categories', 'categories.id', '=', 'menus.category_id')
-        ->select('menus.*', 'Categories.name as category_name')
+        ->select('menus.*', 'categories.name as category_name')
         ->get();
         return view('menus.read',compact('menus'));
     }
