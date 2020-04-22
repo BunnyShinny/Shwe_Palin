@@ -5,7 +5,9 @@
 
 # Xampp
  1. start `Apache` and `MySQL` servers
- 2. Create database in MySQL server
+ 2. MySQL
+    - Open http://localhost/phpmyadmin/ in browser
+    - Create a database
  
 # Project Installation Manual
  1. First clone the project & go to the project
@@ -27,6 +29,8 @@
  5. Done !
 
 # Run Project
+ 1. run this in terminal
  ```
  php artisan serve
  ```
+ 2. Open <a href="http://localhost:8000">http://localhost:8000</a> in Browser
