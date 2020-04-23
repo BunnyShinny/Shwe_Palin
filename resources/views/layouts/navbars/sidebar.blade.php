@@ -3,11 +3,11 @@
     Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
 -->
   <div class="logo">
-    <a href="http://www.creative-tim.com" class="simple-text logo-mini">
-      {{ __('CT') }}
+    <a href="/home" class="simple-text logo-mini">
+      <img src="frontend/img/shwe/logo.png" alt="">
     </a>
-    <a href="http://www.creative-tim.com" class="simple-text logo-normal">
-      {{ __('Creative Tim') }}
+    <a href="/home" class="simple-text logo-normal">
+      {{ __('Shwe Palin') }}
     </a>
   </div>
   <div class="sidebar-wrapper" id="sidebar-wrapper">
@@ -32,13 +32,28 @@
           <p>{{ __('Categories') }}</p>
         </a>
       </li>
+      
       <li class = " @if ($activePage == 'Menu') active @endif">
         <a href="{{ route('menus.index') }}">
           <i class="now-ui-icons design_bullet-list-67"></i>
           <p>{{ __('Menu') }}</p>
         </a>
       </li>
+      
+      <li class = " @if ($activePage == 'Branch') active @endif">
+        <a href="{{ route('branches.index') }}">
+          <i class="now-ui-icons text_align-left"></i>
+          <p>{{ __('Branches') }}</p>
+        </a>
       </li>
+
+      <li class = " @if ($activePage == 'Reservationlist') active @endif">
+        <a href="{{ route('reservations.index') }}">
+          <i class="now-ui-icons text_align-left"></i>
+          <p>{{ __('Reservations') }}</p>
+        </a>
+      </li>
+
     </ul>
   </div>
 </div>

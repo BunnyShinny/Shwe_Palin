@@ -43,7 +43,7 @@ class CategoryController extends Controller
             "name"=>request('name')
         ]);
         
-        return redirect()->route('categories.read');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -83,7 +83,7 @@ class CategoryController extends Controller
         ]);
         $category->name = request("name");
         $category->save();
-        return redirect()->route('categories.read');
+        return redirect()->route('categories.index');
     }
 
     /**
@@ -95,6 +95,6 @@ class CategoryController extends Controller
     public function destroy(Category $category)
     {
         $category->delete();
-        return redirect()->route('categories.read');
+        return redirect()->route('categories.index');
     }
 }

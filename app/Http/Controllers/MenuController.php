@@ -19,7 +19,7 @@ class MenuController extends Controller
 
         $menus = DB::table('menus')
         ->join('categories', 'categories.id', '=', 'menus.category_id')
-        ->select('menus.*', 'Categories.name as category_name')
+        ->select('menus.*', 'categories.name as category_name')
         ->get();
         return view('menus.read',compact('menus'));
     }
@@ -66,16 +66,16 @@ class MenuController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $image->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $public_path=public_path().'/assets/img/';
+            $public_path=public_path().'/assets/img/menu/';
             $image->move($public_path, $fileNameToStore);
-            $path = '/assets/img/'.$fileNameToStore;
+            $path = '/assets/img/menu/'.$fileNameToStore;
             $save->image =$path;
         }else{
             $save->$image=$path;
         }
 
         $save->save();
-        return redirect()->route('menus.read');
+        return redirect()->route('menus.index');
     }
 
     /**
@@ -88,7 +88,7 @@ class MenuController extends Controller
     {
         $menu = DB::table('menus')
         ->join('categories', 'categories.id', '=', 'menus.category_id')
-        ->select('menus.*', 'Categories.name as category_name')
+        ->select('menus.*', 'categories.name as category_name')
         ->where('menus.id', '=' , $id)
         ->first();
         
@@ -106,7 +106,7 @@ class MenuController extends Controller
         $categories=Category::all();
         $menu = DB::table('menus')
         ->join('categories', 'categories.id', '=', 'menus.category_id')
-        ->select('menus.*', 'Categories.name as category_name')
+        ->select('menus.*', 'categories.name as category_name')
         ->where('menus.id', '=' , $id)
         ->first();
         

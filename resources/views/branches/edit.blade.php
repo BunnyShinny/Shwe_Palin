@@ -1,7 +1,7 @@
 @extends('layouts.app', [
 'namePage' => 'Dashboard',
 'class' => 'login-page sidebar-mini ',
-'activePage' => 'Menu',
+'activePage' => 'Branch',
 'backgroundImage' => asset('now') . "/img/bg14.jpg",
 ])
 
@@ -13,38 +13,41 @@
     <div class="col-md-5">
       <div class="card">
         <div class="card-header">
-          <h3 class="card-title">Update Menu</h3>
+          <h3 class="card-title">Update Branch </h3>
         </div>
         <div class="card-body">
-        <form class="" method="POST" action="{{route('menus.update',$menu->id)}}" enctype="multipart/form-data">
+        <form class="" method="POST" action="{{route('branches.update',$branch->id)}}" enctype="multipart/form-data">
           @csrf
           @method('PUT')
           <div class="row">
               <div class="col-md-12 pr-4 pl-4">
                   <div class="form-group">
                       <label>Name</label>
-                          <input type="text" name="name" class="form-control" value="{{ old('name',$menu->name) }}">
+                          <input type="text" name="name" class="form-control" value="{{ old('name',$branch->name) }}">
                           @include('alerts.feedback', ['field' => 'name'])
+                  </div>
+              </div>
+              </div>
+              <div class="col-md-12 pr-4 pl-4">
+                  <div class="form-group">
+                      <label>Address</label>
+                          <input type="text" name="address" class="form-control" value="{{ old('price',$branch->address) }}">
+                          @include('alerts.feedback', ['field' => 'address'])
                   </div>
               </div>
               <div class="col-md-12 pr-4 pl-4">
                   <div class="form-group">
-                      <label>Price</label>
-                          <input type="number" name="price" class="form-control" value="{{ old('price',$menu->price) }}">
-                          @include('alerts.feedback', ['field' => 'price'])
+                      <label>Phone</label>
+                          <input type="text" name="phone" class="form-control" value="{{ old('price',$branch->phone) }}">
+                          @include('alerts.feedback', ['field' => 'phone'])
                   </div>
               </div>
               <div class="col-md-12 pr-4 pl-4">
-                <div class="form-group">
-                  <label for="category">Category</label>
-                  <select class="form-control" id="category" name="category">
-                    <option selected disabled>Select a category</option>
-                    @foreach($categories as $category)
-                      <option value="{{$category->id}}" {{$menu->category_id == $category->id ? 'selected':''}}>{{$category->name}}</option>
-                    @endforeach
-                  </select>
-                  @include('alerts.feedback', ['field' => 'category'])
-                </div>
+                  <div class="form-group">
+                      <label>Open Hour</label>
+                          <input type="text" name="open_hour" class="form-control" value="{{ old('price',$branch->open_hour) }}">
+                          @include('alerts.feedback', ['field' => 'open_hour'])
+                  </div>
               </div>
               <div class="col-md-12 pr-4 pl-4">
                   <div class="form-group">
@@ -53,18 +56,11 @@
                           @include('alerts.feedback', ['field' => 'image'])
                   </div>
               </div>
-              <div class="col-md-12 pr-4 pl-4">
-                <div class="form-group">
-                  <label for="description">Description</label>
-                  <textarea class="form-control" id="description" rows="3" name="description">{{$menu->description}}</textarea>
-                  @include('alerts.feedback', ['field' => 'description'])
-                </div>
-              </div>
           </div>
               <div class="card-footer text-center">
                 <button type="submit" class="btn btn-primary btn-round ">Update</button>
                 <a
-                  href="{{route('menus.index')}}"
+                  href="{{route('branches.index')}}"
                   class="btn btn-default btn-round"
                   >Cancel</a
               >

@@ -52,14 +52,9 @@
           </div>
               <div class="card-footer text-center">
               <a
-                  href="{{route('menus.edit',$menu->id)}}"
-                  class="btn btn-info btn-round"
-                  >Edit</a
-              >
-              <a
                   href="{{route('menus.index')}}"
                   class="btn btn-default btn-round"
-                  >Cancel</a
+                  ><- Back to Menu</a
               >
               </div>
             </form>

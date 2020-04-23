@@ -1,5 +1,5 @@
 @extends('layouts.app', [ 'namePage' => 'Dashboard', 'class' => 'login-page
-sidebar-mini ', 'activePage' => 'Category', 'backgroundImage' => asset('now') .
+sidebar-mini ', 'activePage' => 'Reservationlist', 'backgroundImage' => asset('now') .
 "/img/bg14.jpg", ]) @section('content')
 <div class="panel-header panel-header-sm"></div>
 <div class="content">
@@ -9,14 +9,9 @@ sidebar-mini ', 'activePage' => 'Category', 'backgroundImage' => asset('now') .
                 <div class="card-header">
                   <div class="row">
                     <div class="col-md-6">
-                      <h4 class="card-title">Category</h4>
+                      <h4 class="card-title">Reservationlists</h4>
                     </div>
                     <div class="col-md-6 text-right">
-                      <a
-                          href="{{ route('categories.create') }}"
-                          class="btn btn-info"
-                          >Add New</a
-                      >
                     </div>
                   </div>
                 </div>
@@ -32,27 +27,39 @@ sidebar-mini ', 'activePage' => 'Category', 'backgroundImage' => asset('now') .
                                         Name
                                     </th>
                                     <th>
-                                        Action
+                                        Phone
+                                    </th>
+                                    <th>
+                                        No. of People
+                                    </th>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Branch Name
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $i=1; @endphp @foreach($categories as
-                                $category)
+                                @php $i=1; @endphp @foreach($reservations as
+                                $reservation)
 
                                 <tr>
                                     <td class="text-center">{{ $i }}</td>
-                                    <td>{{$category->name}}</td>
-
+                                    <td>{{$reservation->name}}</td>
+                                    <td>{{$reservation->phone}}</td>
+                                    <td>{{$reservation->no_of_people}}</td>
+                                    <td>{{$reservation->date}}</td>
+                                    <td>{{$reservation->branch_name}}</td>
                                     <td>
                                         <a
-                                            href="{{route('categories.edit',$category->id)}}"
+                                            href="{{route('reservations.edit',$reservation->id)}}"
                                             class="btn btn-success btn-sm btn-icon"
                                             ><i class="now-ui-icons ui-2_settings-90"></i></a
                                         >
                                         <form
                                             method="POST"
-                                            action="{{route('categories.destroy',$category->id)}}"
+                                            action="{{route('reservations.destroy',$reservation->id)}}"
                                             style="display: inline-block;"
                                         >
                                             @csrf @method('DELETE')

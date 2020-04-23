@@ -1,70 +1,48 @@
-@extends('layouts.frontend')
-
-@section('slider_area')
-<!-- bradcam_area  -->
-<div class="bradcam_area bradcam_bg_4">
-    <div class="container">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="bradcam_text text-center">
-                    <h3>Book A table</h3>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!--/ bradcam_area  -->
-@endsection
+@extends('layouts.app', [
+'namePage' => 'Dashboard',
+'class' => 'login-page sidebar-mini ',
+'activePage' => 'Reservationlist',
+'backgroundImage' => asset('now') . "/img/bg14.jpg",
+])
 
 @section('content')
-    <div class="Reservation_area">
-    <div class="rev_icon_1 d-none d-md-block">
-        <img src="img/icon/4.png" alt="">
-    </div>
-    <div class="rev_icon_2 d-none d-md-block">
-        <img src="img/icon/5.png" alt="">
-    </div>
-    <div class="rev_icon_3 d-none d-md-block">
-        <img src="img/icon/6.png" alt="">
-    </div>
-    <div class="container p-0">
-        <div class="row">
-            <div class="col-xl-12">
-                <div class="section_title text-center mb-75">
-                    <h3>Reservation</h3>
-                </div>
-            </div>
+<div class="panel-header panel-header-sm">
+</div>
+<div class="content">
+  <div class="row">
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Update Reservation</h3>
         </div>
-        <div class="row no-gutters">
-            <div class="col-lg-2"></div>
-            
-                <div class="col-lg-8">
-                    <form class="" method="POST" action="booktablesave" enctype="multipart/form-data">  
+        <div class="card-body">
+        <form class="" method="POST" action="{{route('reservations.update',$reservations->id)}}" enctype="multipart/form-data">  
                         @csrf 
+                        @method('PUT')
                         <div class="book_Form">
-                            <h3>Book a Table</h3>
+                            <h3></h3>
                             <div class="row ">
                                 <div class="col-lg-6">
                                     <div class="input_field mb_15">
-                                        <input type="text" placeholder="Your Name" name="name" value="{{ old('name') }}" class="form-control">
+                                        <input type="text" name="name" value="{{ old('name',$reservations->name) }}" class="form-control">
                                         @include('alerts.feedback', ['field' => 'name'])
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input_field mb_15">
-                                        <input type="text" placeholder="Phone no." name="phone" value="{{ old('phone') }}" class="form-control">
+                                        <input type="text"  name="phone" value="{{ old('phone',$reservations->phone) }}" class="form-control">
                                         @include('alerts.feedback', ['field' => 'phone'])
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input_field">
-                                        <input id="" type="date" placeholder="Date" name="date" value="{{ old('date') }}" class="form-control">
+                                        <input id="datepicker2" type="date" name="date" value="{{ old('date',$reservations->date) }}" class="form-control">
                                         @include('alerts.feedback', ['field' => 'date'])
                                     </div>
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input_field mb_15">
-                                        <input type="number" placeholder="Person" name="no_of_people" value="{{ old('no_of_people') }}" class="form-control">
+                                        <input type="number"  name="no_of_people" value="{{ old('no_of_people',$reservations->no_of_people) }}" class="form-control">
                                         @include('alerts.feedback', ['field' => 'no_of_people'])
                                     </div>
                                 </div>
@@ -73,15 +51,15 @@
                                         <select class="wide" name="branch">
                                             <option selected disabled>Select a Branch</option>
                                             @foreach($branches as $branch)
-                                            <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                            <option value="{{$branch->id}}"{{$reservations->branch_id == $branch->id ? 'selected':''}}>{{$branch->name}}</option>
                                             @endforeach
                                         </select>
                                     </div>
                                 </div>
                                 <div class="col-xl-12">
-                                    <button class="sumbit_btn" type="submit">Book</button>
+                                    <button class="sumbit_btn" type="submit">Update</button>
                                 </div>
-                                <div class="col-lg-6">
+                                <!-- <div class="col-lg-6">
                                     <div class="single_add d-flex">
                                         <div class="icon">
                                             <img src="img/svg_icon/address.svg" alt="">
@@ -102,14 +80,22 @@
                                             <p>+10 673 567 367</p>
                                         </div>
                                     </div>
-                                </div>
+                                </div> -->
                             </div>
                         </div>
                     </div>
-                </div>
-            
-            <div class="col-lg-2"></div>
-        </div>
+      </div>
     </div>
+  </div>
 </div>
 @endsection
+
+@push('js')
+<script>
+  $(document).ready(function () {
+    // Javascript method's body can be found in assets/js/demos.js
+    demo.initDashboardPageCharts();
+
+  });
+</script>
+@endpush
