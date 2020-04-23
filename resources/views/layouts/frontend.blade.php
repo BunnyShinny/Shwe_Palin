@@ -24,11 +24,14 @@
     <link rel="stylesheet" href="frontend/css/nice-select.css">
     <link rel="stylesheet" href="frontend/css/flaticon.css">
     <link rel="stylesheet" href="frontend/fonts/flat-font/flaticon.css">
+    
+
     <link rel="stylesheet" href="frontend/css/icomoon.css">
     <link rel="stylesheet" href="frontend/css/slicknav.css">
 
     <link rel="stylesheet" href="frontend/css/style.css">
     <link rel="stylesheet" href="frontend/css/custom.css">
+    <link rel="stylesheet" href="frontend/css/cart.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 </head>
 
@@ -84,10 +87,10 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li>
-                                                <a href="#"><i class="flaticon-supermarket"></i></a>
+                                                <a href="cart"><i class="flaticon-shopping-cart"></i></a>
                                             </li>
                                             <li>
-                                                <a href="#"><i class="flaticon-bell"></i></a>
+                                                <a href="#"><i class="flaticon-notification"></i></a>
                                             </li>
                                             @if (Auth::guest())
                                             <li>

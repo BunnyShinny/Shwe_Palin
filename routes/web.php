@@ -35,6 +35,9 @@ Route::get('/booktable', function () {
 Route::get('/branch', function () {
 	return view('branch');
 });
+Route::get('/cart', function (){
+	return view('cart');
+});
 
 Auth::routes();
 

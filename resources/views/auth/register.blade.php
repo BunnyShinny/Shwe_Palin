@@ -48,7 +48,7 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a class="active" href="/">home</a></li>
-                                            <li><a href="foodmenu">Menu <i class="ti-angle-down"></i> </a>
+                                            <li><a href="foodmenu">Menu</a>
                                                 
                                             </li>
                                             <li><a href="#">Branches</a>
