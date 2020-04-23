@@ -46,6 +46,14 @@
           <p>{{ __('Branches') }}</p>
         </a>
       </li>
+
+      <li class = " @if ($activePage == 'Reservationlist') active @endif">
+        <a href="{{ route('reservations.index') }}">
+          <i class="now-ui-icons text_align-left"></i>
+          <p>{{ __('Reservations') }}</p>
+        </a>
+      </li>
+
     </ul>
   </div>
 </div>

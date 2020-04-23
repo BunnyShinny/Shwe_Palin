@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Menu;
 use App\Category;
 use App\Branch;
+use App\Reservation;
+use Illuminate\Http\Request;
+
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\DB;
@@ -45,9 +48,26 @@ class FrontendController extends Controller
         return view('booktable',compact('branches'));
     }
 
-    public function saving_reservation()
+    public function save_reservation(Request $request)
     {
-        $branches=Branch::all();
-        return view('booktable',compact('branches'));
+        $request->validate([
+            "name"=>'required',
+            "phone"=>'required',
+            "date"=>'required',
+            "no_of_people"=>'required',
+            "branch"=>'required',
+            
+        ]);
+        $save = new Reservation;
+        $save->name = request('name');
+        $save->phone = request('phone');
+        $save->date = request('date');
+        $save->branch_id = request('branch');
+        $save->no_of_people = request('no_of_people');
+    
+        $save->save();
+        return view('index');
     }
+
+    
 }

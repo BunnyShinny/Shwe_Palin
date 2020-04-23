@@ -25,7 +25,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontendController@index')->name('welcome');
 Route::get('/foodmenu', 'FrontendController@foodmenu');
 Route::get('/branch', 'FrontendController@branch');
+
 Route::get('/booktable', 'FrontendController@reservation');
+Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
 
 Route::get('/contact', function () {
     return view('contact');
@@ -38,12 +40,18 @@ Auth::routes();
 
 Route::group(['middleware' => ['role:admin']], function () {
 	Route::get('/home', 'HomeController@index')->name('home');
+
+	
 	// Category
 	Route::resource('categories', 'CategoryController');
 	Route::resource('branches', 'BranchController');
 
 	// Menu
 	Route::resource('menus', 'MenuController');
+
+	// Reservation
+	Route::resource('reservations', 'ReservationController');
+
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);

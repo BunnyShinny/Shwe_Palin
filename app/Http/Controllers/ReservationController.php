@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Reservation;
+use App\Branch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationController extends Controller
 {
@@ -14,7 +16,11 @@ class ReservationController extends Controller
      */
     public function index()
     {
-        //
+        $reservations = DB::table('reservations')
+        ->join('branches', 'branches.id', '=', 'reservations.branch_id')
+        ->select('reservations.*', 'branches.name as branch_name')
+        ->get();
+        return view('reservations.read',compact('reservations'));
     }
 
     /**
@@ -35,7 +41,23 @@ class ReservationController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            "name"=>'required',
+            "phone"=>'required',
+            "date"=>'required',
+            "no_of_people"=>'required',
+            "branch"=>'required',
+            
+        ]);
+        $save = new Reservation;
+        $save->name = request('name');
+        $save->phone = request('phone');
+        $save->date = request('date');
+        $save->branch_id = request('branch');
+        $save->no_of_people = request('no_of_people');
+
+        $save->save();
+        return view('index');
     }
 
     /**
@@ -46,7 +68,8 @@ class ReservationController extends Controller
      */
     public function show(Reservation $reservation)
     {
-        //
+        $reservations=Reservation::all();
+        return view('reservationlist',compact('reservations'));
     }
 
     /**
@@ -55,9 +78,15 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function edit(Reservation $reservation)
+    public function edit($id)
     {
-        //
+        $branches=Branch::all();
+        $reservations = DB::table('reservations')
+        ->join('branches', 'branches.id', '=', 'reservations.branch_id')
+        ->select('reservations.*', 'branches.name as branch_name')
+        ->where('reservations.id', '=' , $id)
+        ->first();
+        return view('reservations.edit',compact('reservations','branches'));
     }
 
     /**
@@ -67,9 +96,26 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reservation $reservation)
+    public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            "name"=>'required',
+            "phone"=>'required',
+            "date"=>'required',
+            "no_of_people"=>'required',
+            "branch"=>'required',
+            
+        ]);
+        $reservation=Reservation::find($id);
+        
+        $reservation->name = request('name');
+        $reservation->phone = request('phone');
+        $reservation->date = request('date');
+        $reservation->branch_id = request('branch');
+        $reservation->no_of_people = request('no_of_people');
+
+        $reservation->save();
+        return redirect()->route('reservations.index');
     }
 
     /**
@@ -78,8 +124,10 @@ class ReservationController extends Controller
      * @param  \App\Reservation  $reservation
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservation $reservation)
+    public function destroy($id)
     {
-        //
+        $reservation=Reservation::find($id);
+        $reservation->delete();
+        return redirect()->route('reservations.index');
     }
 }

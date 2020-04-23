@@ -30,9 +30,10 @@
                   <div class="form-group">
                       <label>Price</label>
                       <div class="input-group-prepend">
+                          <input type="number" name="price" class="form-control" value="{{ old('price') }}">
+                          
                         <div class="input-group-text">Kyats</div>
                       </div> 
-                          <input type="number" name="price" class="form-control" value="{{ old('price') }}">
                           @include('alerts.feedback', ['field' => 'price'])
                         
                   </div>

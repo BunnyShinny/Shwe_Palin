@@ -18,7 +18,7 @@ class CreateReservationsTable extends Migration
             $table->string('name');
             $table->string('phone');
             $table->integer('no_of_people');
-            $table->date('date');
+            $table->string('date');
             $table->unsignedBigInteger ('branch_id');
             $table->timestamps();
 
