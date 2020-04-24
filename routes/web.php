@@ -33,12 +33,7 @@ Route::get('/contact', function () {
     return view('contact');
 });
 
-Route::get('/booktable', function () {
-	return view('booktable');
-});
-Route::get('/branch', function () {
-	return view('branch');
-});
+
 Route::get('/cart', function (){
 	return view('cart');
 });

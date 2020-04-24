@@ -40,12 +40,7 @@
                         
                     </div>
 
-                    <div class="form-group row">
-                        <div class="col-md-12">
-                            <label for="c_companyname" class="text-black">Phone No </label>
-                            <input type="text" class="form-control" id="c_companyname" name="c_companyname">
-                        </div>
-                    </div>
+                    
 
                     <div class="form-group row">
                         <div class="col-md-12">
@@ -55,9 +50,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group">
-                        <input type="text" class="form-control" placeholder="Apartment, suite, unit etc. (optional)">
-                    </div>
+                    
 
                     <div class="form-group row">
                         <div class="col-md-6">
@@ -247,31 +240,28 @@
                                         <td>10000 MMK</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-black font-weight-bold"><strong>Cart Subtotal</strong></td>
+                                        <td class="text-black font-weight-bold"><strong>Subtotal</strong></td>
                                         <td class="text-black">35000 MMK</td>
                                     </tr>
                                     <tr>
-                                        <td class="text-black font-weight-bold"><strong>Order Total</strong></td>
+                                        <td class="text-black font-weight-bold"><strong>Total</strong></td>
                                         <td class="text-black font-weight-bold"><strong>35000 MMK</strong></td>
                                     </tr>
                                 </tbody>
                             </table>
 
-                            <div class="border p-3 mb-3">
+                            <div class=" p-3 mb-3">
                                 <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank"
-                                        role="button" aria-expanded="false" aria-controls="collapsebank">Direct Bank
-                                        Transfer</a></h3>
+                                        role="button" aria-expanded="false" aria-controls="collapsebank">Cash On Delivery<span class="text-danger">*</span></a></h3>
 
                                 <div class="collapse" id="collapsebank">
                                     <div class="py-2">
-                                        <p class="mb-0">Make your payment directly into our bank account. Please use
-                                            your Order ID as the payment reference. Your order won’t be shipped until
-                                            the funds have cleared in our account.</p>
+                                        <p class="mb-0">Only available cash on delivery</p>
                                     </div>
                                 </div>
                             </div>
 
-                            <div class="border p-3 mb-3">
+                            <!-- <div class="border p-3 mb-3">
                                 <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque"
                                         role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque
                                         Payment</a></h3>
@@ -297,7 +287,7 @@
                                             the funds have cleared in our account.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
 
                             <div class="form-group">
                                 <button class="btn btn-primary btn-lg py-3 btn-block"
