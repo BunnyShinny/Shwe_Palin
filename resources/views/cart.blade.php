@@ -125,7 +125,7 @@
                             <div class="cart_total_price ml-auto">$40.00</div>
                         </li>
                     </ul>
-                    <button class="cart_total_button">proceed to checkout</button>
+                    <a href="checkout"><button class="cart_total_button">proceed to checkout</button></a>
                 </div>
             </div>
         </div>

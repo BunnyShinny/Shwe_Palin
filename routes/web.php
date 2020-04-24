@@ -42,7 +42,9 @@ Route::get('/branch', function () {
 Route::get('/cart', function (){
 	return view('cart');
 });
-
+Route::get('/checkout', function (){
+	return view('checkout');
+});
 Auth::routes();
 
 Route::group(['middleware' => ['role:admin']], function () {
