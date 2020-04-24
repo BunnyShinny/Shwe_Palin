@@ -99,11 +99,11 @@
             <!-- Cart Coupon -->
             <div class="col-lg-6">
                 <div class="cart_coupon">
-                    <div class="cart_title">coupon code</div>
+                    <div class="cart_title">Reservation</div>
                     <form action="#" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
                         id="cart_coupon_form">
-                        <input type="text" class="cart_coupon_input" placeholder="Coupon code" required="required">
-                        <button class="button_clear cart_button_2">apply coupon</button>
+                        
+                        <button class="button_clear cart_button_2">RESERVE</button>
                     </form>
                 </div>
             </div>

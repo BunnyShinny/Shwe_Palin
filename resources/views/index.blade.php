@@ -11,7 +11,7 @@
                         <div class="slider_text text-center">
                             <h3>Fresh and Delicious Food
                                 For your Health</h3>
-                            <a href="booktable" class="boxed-btn3">Book a Table</a>
+                            <a href="cart" class="boxed-btn3">Book a Table</a>
                         </div>
                     </div>
                 </div>
@@ -24,7 +24,7 @@
                         <div class="slider_text text-center">
                             <h3>Fresh and Delicious Food
                                 For your Health</h3>
-                            <a href="booktable" class="boxed-btn3">Book a Table</a>
+                            <a href="cart" class="boxed-btn3">Book a Table</a>
                         </div>
                     </div>
                 </div>
