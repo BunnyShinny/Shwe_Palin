@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontendController@index')->name('welcome');
 Route::get('/foodmenu', 'FrontendController@foodmenu');
 Route::get('/branch', 'FrontendController@branch');
-
+Route::resource('carts', 'CartController');
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
 

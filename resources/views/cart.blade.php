@@ -90,8 +90,8 @@
             <div class="col">
                 <div class="cart_control_bar d-flex flex-md-row flex-column align-items-start justify-content-start">
                     <button class="button_clear cart_button">clear cart</button>
-                    <button class="button_update cart_button">update cart</button>
-                    <a href="foodmenu"><button class="button_update cart_button_2 ml-md-auto">Add More Food</button></a>
+                    <button class="button_update cart_button">Add More Food</button>
+                    <!-- <a href="foodmenu"><button class="button_update cart_button_2 ml-md-auto">Add More Food</button></a> -->
                 </div>
             </div>
         </div>
