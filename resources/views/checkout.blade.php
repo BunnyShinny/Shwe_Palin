@@ -290,8 +290,11 @@
                             </div> -->
 
                             <div class="form-group">
-                                <button class="btn btn-primary btn-lg py-3 btn-block"
-                                    onclick="window.location='thankyou.html'">Place Order</button>
+                            <form action="{{ route('send-push') }}" method="POST">
+                                @csrf
+
+                                <input class="btn btn-primary btn-lg py-3 btn-block" type="submit" value="Place Order">
+                            </form>
                             </div>
 
                         </div>
@@ -305,3 +308,7 @@
 </div>
 
 @endsection
+
+@push('scripts')
+
+@endpush

@@ -51,6 +51,16 @@
   <!-- CSS Files -->
   <link href="{{ asset('assets') }}/css/bootstrap.min.css" rel="stylesheet" />
   <link href="{{ asset('assets') }}/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
+
+  <link rel="manifest" href="manifest.json">
+    <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+    <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
+
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-messaging.js"></script>
+
   <script>
     // Facebook Pixel Code Don't Delete
     ! function(f, b, e, v, n, t, s) {
@@ -102,6 +112,59 @@
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('assets') }}/js/now-ui-dashboard.min.js?v=1.3.0" type="text/javascript"></script>
   @stack('js')
+
+  <script>
+        $(document).ready(function(){
+            console.log('hello')
+            const config = {
+                apiKey: "AIzaSyAt17cRDm6O0jBr5_AWwKVOKxkqu5Cd5-U",
+                authDomain: "shwepalin-25d94.firebaseapp.com",
+                databaseURL: "https://shwepalin-25d94.firebaseio.com",
+                projectId: "shwepalin-25d94",
+                storageBucket: "shwepalin-25d94.appspot.com",
+                messagingSenderId: "509437086415",
+                appId: "1:509437086415:web:8319facfece4ae53a085ba",
+            };
+            firebase.initializeApp(config);
+            const messaging = firebase.messaging();
+            
+            messaging
+                .requestPermission()
+                .then(function () {
+                    return messaging.getToken()
+                })
+                .then(function(token) {
+                    $.ajax({
+                        url: '{{ URL::to('/save-device-token') }}',
+                        type: 'POST',
+                        data: {
+                           _token: "{{ csrf_token() }}",
+                            user_id: {!! json_encode($user_id ?? '') !!},
+                            fcm_token: token
+                        },
+                        dataType: 'JSON',
+                        success: function (response) {
+                            console.log(response)
+                        },
+                        error: function (err) {
+                            console.log(" Can't do because: " + err);
+                        },
+                    });
+                })
+                .catch(function (err) {
+                    console.log("Unable to get permission to notify.", err);
+                });
+        
+            messaging.onMessage(function(payload) {
+                const noteTitle = payload.notification.title;
+                const noteOptions = {
+                    body: payload.notification.body,
+                    icon: payload.notification.icon,
+                };
+                new Notification(noteTitle, noteOptions);
+            });
+        });
+    </script>
 </body>
 
 </html>
