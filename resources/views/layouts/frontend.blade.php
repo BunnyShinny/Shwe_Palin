@@ -92,7 +92,9 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li>
-                                                <a href="cart"><i class="flaticon-shopping-cart"></i></a>
+                                                <a href="cart"><i class="flaticon-shopping-cart"></i>
+                                                <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty :''}}</span>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#"><i class="flaticon-notification"></i></a>

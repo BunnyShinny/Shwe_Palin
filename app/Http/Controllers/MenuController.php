@@ -69,7 +69,7 @@ class MenuController extends Controller
             $public_path=public_path().'/assets/img/menu/';
             $image->move($public_path, $fileNameToStore);
             $path = '/assets/img/menu/'.$fileNameToStore;
-            $save->$image =$path;
+            $save->image =$path;
         }else{
             $save->$image=$path;
         }

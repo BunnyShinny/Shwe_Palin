@@ -25,9 +25,12 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'FrontendController@index')->name('welcome');
 Route::POST('/send-push', 'UserController@sendPush')->name('send-push');
 
-Route::get('/foodmenu', 'FrontendController@foodmenu');
+Route::get('/foodmenu', 'FrontendController@foodmenu')->name('foodmenu');
 Route::get('/branch', 'FrontendController@branch');
-Route::resource('carts', 'CartController');
+
+Route::get('/add_to_cart/{id}', 'FrontendController@getAddToCart')->name('addtocart');
+Route::get('/cart', 'FrontendController@getCart');
+
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
 Route::POST('/save-device-token', 'UserController@saveToken');
@@ -36,9 +39,9 @@ Route::get('/contact', function () {
 });
 
 
-Route::get('/cart', function (){
-	return view('cart');
-});
+// Route::get('/cart', function (){
+// 	return view('cart');
+// });
 Route::get('/checkout', function (){
 	return view('checkout');
 });

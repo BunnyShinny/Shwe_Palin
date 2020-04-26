@@ -6,7 +6,9 @@ use App\Menu;
 use App\Category;
 use App\Branch;
 use App\Reservation;
+use App\Cart;
 use Illuminate\Http\Request;
+use Session;
 
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -67,6 +69,32 @@ class FrontendController extends Controller
     
         $save->save();
         return view('index');
+    }
+
+    public function getAddToCart(Request $request, $id)
+    {
+
+        $menu = Menu::find($id);
+        $oldcart = Session::has('cart') ? Session::get('cart') :null;
+        $cart = new Cart($oldcart);
+        $cart->add($menu, $menu->id);
+        
+        $request->session()->put('cart',$cart);
+        // dd($request->session()->get('cart'));    
+        return redirect()->route('foodmenu');
+ 
+        
+    }
+
+    public function getCart()
+    {
+        if (!Session::has('cart')){
+            return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $cart =  new Cart($oldcart);
+        
+        return view('cart',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
     

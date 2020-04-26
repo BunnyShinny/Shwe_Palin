@@ -41,21 +41,22 @@
                 </div>
             </div>
         </div>
+        @if(Session::has('cart'))
         <div class="row">
             <div class="col">
                 <div class="cart_products">
                     <ul>
-                        <li
-                            class=" cart_product d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-start">
+                        @foreach($menus as $menu)
+                        <li class=" cart_product d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-start">
                             <!-- Product Image -->
-                            <div class="cart_product_image"><img src="frontend/img/menu/drinks/drink3.jpg" alt=""></div>
+                            <div class="cart_product_image"><img src="{{$menu->image}}" alt=""></div>
                             <!-- Product Name -->
-                            <div class="cart_product_name"><a href="product.html">Strawberry Juice</a></div>
+                            <div class="cart_product_name"><a href="product.html">{{$menu->name}}</a></div>
                             <div class="cart_product_info ml-auto">
                                 <div
                                     class="cart_product_info_inner d-flex flex-row align-items-center justify-content-md-end justify-content-start">
                                     <!-- Product Price -->
-                                    <div class="cart_product_price">1000 MMKS</div>
+                                    <div class="cart_product_price">{{$menu->price}}</div>
                                     <!-- Product Quantity -->
                                     <div class="product_quantity_container">
                                         <div class="input-group mb-3" style="max-width: 120px;">
@@ -73,7 +74,7 @@
                                         </div>
                                     </div>
                                     <!-- Products Total Price -->
-                                    <div class="cart_product_total">1000 MMKS</div>
+                                    <div class="cart_product_total">{{$totalPrice}}</div>
                                     <!-- Product Cart Trash Button -->
                                     <div class="cart_product_button">
                                         <button class="cart_product_remove"><i class="flaticon-delete"></i></button>
@@ -81,11 +82,13 @@
                                 </div>
                             </div>
                         </li>
-                        
+                    @endforeach 
                     </ul>
                 </div>
             </div>
         </div>
+        @else
+        @endif
         <div class="row">
             <div class="col">
                 <div class="cart_control_bar d-flex flex-md-row flex-column align-items-start justify-content-start">

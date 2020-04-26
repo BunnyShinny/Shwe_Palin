@@ -78,7 +78,7 @@
                                 <p>{{$menu->description}}</p>
                                 <span name="price">{{$menu->price}} MMKS</span>
                                 <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;" name="quantity">
+                                <!-- <div class="input-group mb-3" style="max-width: 120px;" name="quantity">
                                     <div class="input-group-prepend">
                                         <button class="btn btn-outline-primary js-btn-minus"
                                             type="button">&minus;</button>
@@ -89,8 +89,8 @@
                                         <button class="btn btn-outline-primary js-btn-plus"
                                             type="button">&plus;</button>
                                     </div>
-                                </div>
-                                <p><a href="{{route('carts.store',$menu->name,$menu->price)}}" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
+                                </div> -->
+                                <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
                             </div>
                         </div>
                     </div>
