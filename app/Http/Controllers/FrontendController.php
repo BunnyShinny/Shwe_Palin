@@ -93,9 +93,18 @@ class FrontendController extends Controller
         }
         $oldcart = Session::get('cart');
         $cart =  new Cart($oldcart);
-        
+        // dd($cart =  new Cart($oldcart));
         return view('cart',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
-    
+    public function getCartToCheckout()
+    {
+        if (!Session::has('cart')){
+            return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $cart =  new Cart($oldcart);
+        // dd($cart =  new Cart($oldcart));
+        return view('checkout',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
+    }
 }

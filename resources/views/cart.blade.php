@@ -49,32 +49,33 @@
                         @foreach($menus as $menu)
                         <li class=" cart_product d-flex flex-md-row flex-column align-items-md-center align-items-start justify-content-start">
                             <!-- Product Image -->
-                            <div class="cart_product_image"><img src="{{$menu->image}}" alt=""></div>
+                            <div class="cart_product_image"><img src="{{$menu['item']['image']}}" alt=""></div>
                             <!-- Product Name -->
-                            <div class="cart_product_name"><a href="product.html">{{$menu->name}}</a></div>
+                            <div class="cart_product_name">{{$menu['item']['name']}}</div>
                             <div class="cart_product_info ml-auto">
                                 <div
                                     class="cart_product_info_inner d-flex flex-row align-items-center justify-content-md-end justify-content-start">
                                     <!-- Product Price -->
-                                    <div class="cart_product_price">{{$menu->price}}</div>
+                                    <div class="cart_product_price">{{$menu['item']['price']}} MMK</div>
                                     <!-- Product Quantity -->
                                     <div class="product_quantity_container">
                                         <div class="input-group mb-3" style="max-width: 120px;">
-                                            <div class="input-group-prepend">
-                                                <button class="btn btn-outline-primary js-btn-minus"
-                                                    type="button">&minus;</button>
+                                            
+                                            <div class="form-control text-center">
+                                                {{$menu['qty']}}
                                             </div>
-                                            <input type="text" class="form-control text-center" value="1" placeholder=""
-                                                aria-label="Example text with button addon"
-                                                aria-describedby="button-addon1">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-primary js-btn-plus"
-                                                    type="button">&plus;</button>
-                                            </div>
+                                            
+                                            
                                         </div>
                                     </div>
                                     <!-- Products Total Price -->
-                                    <div class="cart_product_total">{{$totalPrice}}</div>
+                                    <div class="cart_product_total">
+                                    
+                                    @php
+                                       $item_total = $menu['item']['price'] * $menu['qty'];
+                                    @endphp
+                                        {{$item_total}} MMK
+                                    </div>
                                     <!-- Product Cart Trash Button -->
                                     <div class="cart_product_button">
                                         <button class="cart_product_remove"><i class="flaticon-delete"></i></button>
@@ -87,8 +88,7 @@
                 </div>
             </div>
         </div>
-        @else
-        @endif
+        
         <div class="row">
             <div class="col">
                 <div class="cart_control_bar d-flex flex-md-row flex-column align-items-start justify-content-start">
@@ -117,20 +117,28 @@
                     <ul>
                         <li class="d-flex flex-row align-items-center justify-content-start">
                             <div class="cart_total_title">Subtotal</div>
-                            <div class="cart_total_price ml-auto">$35.00</div>
+                            <div class="cart_total_price ml-auto">{{$totalPrice}} MMK</div>
                         </li>
                         <li class="d-flex flex-row align-items-center justify-content-start">
                             <div class="cart_total_title">Shipping</div>
-                            <div class="cart_total_price ml-auto">$5.00</div>
+                            <div class="cart_total_price ml-auto">500 kyats</div>
                         </li>
                         <li class="d-flex flex-row align-items-center justify-content-start">
                             <div class="cart_total_title">Total</div>
-                            <div class="cart_total_price ml-auto">$40.00</div>
+                            <div class="cart_total_price ml-auto">
+                            @php
+                                $i = 500;
+                                $final_total = $totalPrice + $i;
+                            @endphp
+                        {{$final_total}} Kyats
+                            </div>
                         </li>
                     </ul>
-                    <a href="checkout"><button class="cart_total_button">proceed to checkout</button></a>
+                    <a href="{{ route('checkout') }}"><button class="cart_total_button">proceed to checkout</button></a>
                 </div>
             </div>
+            @else
+            @endif
         </div>
     </div>
 </div>

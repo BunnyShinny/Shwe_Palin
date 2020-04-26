@@ -26,6 +26,7 @@
             </div>
           </div>
         </div> -->
+        
         <div class="row">
             <div class="col-md-6 mb-5 mb-md-0">
                 <h2 class="h3 mb-3 text-black">Billing Details</h2>
@@ -33,9 +34,10 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="c_fname" class="text-black">Name <span
+                            <label for="name" class="text-black">Name <span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="c_fname" name="c_fname">
+                            <input type="text" class="form-control" id="name" name="name" value="{{ old('name') }}">
+                            @include('alerts.feedback', ['field' => 'name'])
                         </div>
                         
                     </div>
@@ -44,17 +46,18 @@
 
                     <div class="form-group row">
                         <div class="col-md-12">
-                            <label for="c_address" class="text-black">Address <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="c_address" name="c_address"
-                                placeholder="Street address">
+                            <label for="address" class="text-black">Address <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="address" name="address"
+                                placeholder="" value="{{ old('address') }}">
+                                @include('alerts.feedback', ['field' => 'address'])
                         </div>
                     </div>
 
                     
 
-                    <div class="form-group row">
+                    <!-- <div class="form-group row">
                         <div class="col-md-6">
-                            <label for="c_state_country" class="text-black">State / Country <span
+                            <label for="state_country" class="text-black">State / Country <span
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="c_state_country" name="c_state_country">
                         </div>
@@ -63,18 +66,20 @@
                                     class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="c_postal_zip" name="c_postal_zip">
                         </div>
-                    </div>
+                    </div> -->
 
                     <div class="form-group row mb-5">
                         <div class="col-md-6">
-                            <label for="c_email_address" class="text-black">Email Address <span
+                            <label for="email" class="text-black">Email Address <span
                                     class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="c_email_address" name="c_email_address">
+                            <input type="text" class="form-control" id="email" name="email" value="{{ old('email') }}">
+                            @include('alerts.feedback', ['field' => 'email'])
                         </div>
                         <div class="col-md-6">
-                            <label for="c_phone" class="text-black">Phone <span class="text-danger">*</span></label>
-                            <input type="text" class="form-control" id="c_phone" name="c_phone"
-                                placeholder="Phone Number">
+                            <label for="phone" class="text-black">Phone <span class="text-danger">*</span></label>
+                            <input type="text" class="form-control" id="phone" name="phone"
+                                placeholder="" value="{{ old('phone') }}">
+                                @include('alerts.feedback', ['field' => 'phone'])
                         </div>
                     </div>
 
@@ -220,7 +225,7 @@
                         </div>
                     </div>
                 </div> -->
-
+                @if(Session::has('cart'))
                 <div class="row mb-5">
                     <div class="col-md-12">
                         <h2 class="h3 mb-3 text-black">Your Order</h2>
@@ -231,21 +236,30 @@
                                     <th>Total</th>
                                 </thead>
                                 <tbody>
+                                    @foreach($menus as $menu)
                                     <tr>
-                                        <td>Top Up T-Shirt <strong class="mx-2">x</strong> 1</td>
-                                        <td>25000 MMK</td>
+                                        <td>{{$menu['item']['name']}}<strong class="mx-2">x</strong>{{$menu['qty']}}</td>
+                                        <td>
+                                        @php
+                                            $item_total = $menu['item']['price'] * $menu['qty'];
+                                        @endphp
+                                        {{$item_total}} MMK
+                                        </td>
                                     </tr>
+                                    @endforeach
                                     <tr>
-                                        <td>Polo Shirt <strong class="mx-2">x</strong> 1</td>
-                                        <td>10000 MMK</td>
-                                    </tr>
-                                    <tr>
-                                        <td class="text-black font-weight-bold"><strong>Subtotal</strong></td>
-                                        <td class="text-black">35000 MMK</td>
+                                        <td >Delivery</td>
+                                        <td >500 MMK</td>
                                     </tr>
                                     <tr>
                                         <td class="text-black font-weight-bold"><strong>Total</strong></td>
-                                        <td class="text-black font-weight-bold"><strong>35000 MMK</strong></td>
+                                        <td class="text-black font-weight-bold"><strong>
+                                        @php
+                                            $i = 500;
+                                            $final_total = $totalPrice + $i;
+                                        @endphp
+                                        {{$final_total}} MMK
+                                        </strong></td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -260,7 +274,7 @@
                                     </div>
                                 </div>
                             </div>
-
+                            
                             <!-- <div class="border p-3 mb-3">
                                 <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque"
                                         role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque
@@ -300,7 +314,8 @@
                         </div>
                     </div>
                 </div>
-
+                @else
+                @endif
             </div>
         </div>
         <!-- </form> -->
