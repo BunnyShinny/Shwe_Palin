@@ -32,7 +32,7 @@
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row">
-                @foreach ($branches as $branch)
+                @foreach($branches as $branch)
                     <div class="col-xl-6 col-md-6 col-lg-6">
                         <div class="single_delicious d-flex align-items-center">
                             <div class="thumb">

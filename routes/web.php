@@ -27,7 +27,7 @@ Route::POST('/send-push', 'UserController@sendPush')->name('send-push');
 
 Route::get('/foodmenu', 'FrontendController@foodmenu');
 Route::get('/branch', 'FrontendController@branch');
-
+Route::resource('carts', 'CartController');
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
 Route::POST('/save-device-token', 'UserController@saveToken');
