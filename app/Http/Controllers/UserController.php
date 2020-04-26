@@ -77,6 +77,6 @@ class UserController extends Controller
   
         curl_exec($ch);
 
-        return redirect('/checkout')->with('message', 'Notification sent!'); 
+        return redirect('/')->with('message', 'Notification sent!'); 
     }
 }
