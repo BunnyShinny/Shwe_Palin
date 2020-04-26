@@ -76,7 +76,6 @@ class UserController extends Controller
         curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
   
         curl_exec($ch);
-        dd('hahah');
 
         return redirect('/')->with('message', 'Notification sent!'); 
     }
