@@ -57,7 +57,7 @@ class UserController extends Controller
                     "title" => 'Reserve',
                     "body" => "You Got a new Order From ".auth()->user()->name,
                     "icon" => url('/logo.png'),
-                    "click_action"=> 'reservations',
+                    "click_action"=> '/reservations',
                 ],
         ];
         $dataString = json_encode($data);
@@ -77,6 +77,6 @@ class UserController extends Controller
   
         curl_exec($ch);
 
-        return redirect('/checkout')->with('message', 'Notification sent!'); 
+        return redirect('/')->with('message', 'Notification sent!'); 
     }
 }

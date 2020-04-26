@@ -35,3 +35,8 @@ messaging.setBackgroundMessageHandler(function(payload) {
   return self.registration.showNotification(notificationTitle,
       notificationOptions);
 });
+
+messaging.onMessage((payload) => {
+  console.log('Message received. ', payload);
+  // ...
+});
