@@ -111,6 +111,7 @@
   <script src="{{ asset('assets') }}/js/plugins/bootstrap-notify.js"></script>
   <!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
   <script src="{{ asset('assets') }}/js/now-ui-dashboard.min.js?v=1.3.0" type="text/javascript"></script>
+  <script src="{{ asset('assets') }}/js/custom.js" type="text/javascript"></script>
   @stack('js')
 
   <script>
@@ -160,7 +161,10 @@
                 const noteOptions = {
                     body: payload.notification.body,
                     icon: payload.notification.icon,
+                    click_action: payload.notification.click_action
                 };
+                myNoti.showNotification('bottom','right',noteOptions);
+                
                 new Notification(noteTitle, noteOptions);
             });
         });

@@ -57,7 +57,7 @@ class UserController extends Controller
                     "title" => 'Reserve',
                     "body" => "You Got a new Order From ".auth()->user()->name,
                     "icon" => url('/logo.png'),
-                    "click_action"=> 'reservations',
+                    "click_action"=> '/reservations',
                 ],
         ];
         $dataString = json_encode($data);
