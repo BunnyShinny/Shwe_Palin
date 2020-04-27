@@ -54,6 +54,12 @@
         </a>
       </li>
 
+      <li class = " @if ($activePage == 'orderlist') active @endif">
+        <a href="{{ route('orders.index') }}">
+          <i class="now-ui-icons text_align-left"></i>
+          <p>{{ __('Order') }}</p>
+        </a>
+      </li>
     </ul>
   </div>
 </div>

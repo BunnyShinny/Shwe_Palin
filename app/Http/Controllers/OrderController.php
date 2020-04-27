@@ -14,7 +14,12 @@ class OrderController extends Controller
      */
     public function index()
     {
-        //
+        $orders = Order::All();
+        $orders->transform(function($orders, $key){
+            $orders->cart = unserialize($orders->cart);
+            return $orders;
+        });
+        return view('orders.read',compact('orders'));
     }
 
     /**
@@ -44,9 +49,14 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function show(Order $order)
+    public function show($id)
     {
-        //
+        $orders = Order::find($id);
+        $orders->transform(function($orders, $key){
+            $orders->cart = unserialize($orders->cart);
+            return $orders;
+        });
+        return view('orders.detail',compact('orders'));
     }
 
     /**
@@ -78,8 +88,10 @@ class OrderController extends Controller
      * @param  \App\Order  $order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Order $order)
+    public function destroy( $id)
     {
-        //
+        $orders = Order::find($id);
+        $orders->delete();
+        return view('orders.read',compact('orders'));
     }
 }
