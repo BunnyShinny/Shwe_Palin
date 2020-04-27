@@ -230,5 +230,6 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
+    'firebase_server_key' => env('FIREBASE_SERVER_KEY'),
 
 ];

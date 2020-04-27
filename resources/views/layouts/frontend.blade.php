@@ -33,6 +33,11 @@
     <link rel="stylesheet" href="frontend/css/custom.css">
     <link rel="stylesheet" href="frontend/css/cart.css">
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
+
+    <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-messaging.js"></script>
+
 </head>
 
 <body>
@@ -87,7 +92,9 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li>
-                                                <a href="cart"><i class="flaticon-shopping-cart"></i></a>
+                                                <a href="cart"><i class="flaticon-shopping-cart"></i>
+                                                <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty :''}}</span>
+                                                </a>
                                             </li>
                                             <li>
                                                 <a href="#"><i class="flaticon-notification"></i></a>
@@ -285,6 +292,59 @@
 
         });
     </script>
+    <script>
+        $(document).ready(function(){
+            console.log('hello')
+            const config = {
+                apiKey: "AIzaSyAt17cRDm6O0jBr5_AWwKVOKxkqu5Cd5-U",
+                authDomain: "shwepalin-25d94.firebaseapp.com",
+                databaseURL: "https://shwepalin-25d94.firebaseio.com",
+                projectId: "shwepalin-25d94",
+                storageBucket: "shwepalin-25d94.appspot.com",
+                messagingSenderId: "509437086415",
+                appId: "1:509437086415:web:8319facfece4ae53a085ba",
+            };
+            firebase.initializeApp(config);
+            const messaging = firebase.messaging();
+            
+            messaging
+                .requestPermission()
+                .then(function () {
+                    return messaging.getToken()
+                })
+                .then(function(token) {
+                    $.ajax({
+                        url: '{{ URL::to('/save-device-token') }}',
+                        type: 'POST',
+                        data: {
+                            _token: "{{ csrf_token() }}",
+                            user_id: {!! json_encode($user_id ?? '') !!},
+                            fcm_token: token
+                        },
+                        dataType: 'JSON',
+                        success: function (response) {
+                            console.log(response)
+                        },
+                        error: function (err) {
+                            console.log(" Can't do because: " + err);
+                        },
+                    });
+                })
+                .catch(function (err) {
+                    console.log("Unable to get permission to notify.", err);
+                });
+        
+            messaging.onMessage(function(payload) {
+                const noteTitle = payload.notification.title;
+                const noteOptions = {
+                    body: payload.notification.body,
+                    icon: payload.notification.icon,
+                };
+                new Notification(noteTitle, noteOptions);
+            });
+        });
+    </script>
+    @stack('scripts')
 </body>
 
 </html>

@@ -23,12 +23,21 @@ use Illuminate\Support\Facades\Route;
 
 // Frontend
 Route::get('/', 'FrontendController@index')->name('welcome');
-Route::get('/foodmenu', 'FrontendController@foodmenu');
+Route::POST('/send-push', 'UserController@sendPush')->name('send-push');
+
+Route::get('/foodmenu', 'FrontendController@foodmenu')->name('foodmenu');
 Route::get('/branch', 'FrontendController@branch');
+
+//Cart
+Route::get('/add_to_cart/{id}', 'FrontendController@getAddToCart')->name('addtocart');
+Route::get('/cart', 'FrontendController@getCart');
+Route::get('/checkout', 'FrontendController@getCartToCheckout')->name('checkout');
+Route::POST('/checkout', 'FrontendController@postCartToCheckout')->name('postcheckout');
+
 
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
-
+Route::POST('/save-device-token', 'UserController@saveToken');
 Route::get('/contact', function () {
     return view('contact');
 });
@@ -62,6 +71,9 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 	// Reservation
 	Route::resource('reservations', 'ReservationController');
+
+	//Order
+	Route::resource('orders', 'OrderController');
 
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
