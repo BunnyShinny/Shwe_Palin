@@ -176,7 +176,7 @@
       text-decoration:none;
     }
     .panel-heading  a:before {
-       font-family: 'Glyphicons Halflings';
+       font-family: "Poppins", sans-serif;
        content: "\e114";
        float: right;
        transition: all 0.5s;
@@ -202,8 +202,12 @@
     }
 
     .site-section {
+      font-family: "Poppins", sans-serif;
       padding: 2.5em 0; }
       @media (min-width: 768px) {
+        .site-section h3{
+          font-family: "Philosopher", sans-serif;
+        }
         .site-section {
           padding: 5em 0; } }
       .site-section.site-section-sm {
@@ -232,3 +236,9 @@
         width: 40px;
         height: 2px;
         background: #7971ea; }
+
+        .check img{
+          width: 200px;
+          height: auto;
+          object-fit: cover;
+        }

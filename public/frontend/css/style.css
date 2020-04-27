@@ -30,6 +30,10 @@ body {
   font-weight: normal;
   font-style: normal;
 }
+html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
 
 /* line 13, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/theme-default.scss */
 .img {
@@ -2831,6 +2835,12 @@ h3 {
 .bradcam_bg_5{
   background-image: url(../img/banner/bg2.jpeg);
   background-attachment: fixed;
+}
+.bradcam_cart{
+  background-image: url(../img/cart.jpeg);
+}
+.bradcam_checkout{
+  background-image: url(../img/checkout.jpeg);
 }
 
 /* line 7, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_bradcam.scss */

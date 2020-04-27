@@ -3,12 +3,12 @@
 <!-- slider_area_start -->
 @section('slider_area')
 <!-- bradcam_area  -->
-<div class="bradcam_area bradcam_bg_5">
+<div class="bradcam_area bradcam_cart">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
                 <div class="bradcam_text text-center">
-                    <h3>contact</h3>
+                    <h3>cart</h3>
                 </div>
             </div>
         </div>
@@ -100,10 +100,10 @@
             <div class="col-lg-6">
                 <div class="cart_coupon">
                     <div class="cart_title">Reservation</div>
-                    <form action="#" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
+                    <form action="" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
                         id="cart_coupon_form">
                         
-                        <button class="button_clear cart_button_2">RESERVE</button>
+                        <a href="booktable"><button class="button_clear cart_button_2">RESERVE</button></a>
                     </form>
                 </div>
             </div>

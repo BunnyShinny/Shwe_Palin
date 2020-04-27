@@ -2,12 +2,12 @@
 
 @section('slider_area')
 <!-- bradcam_area  -->
-<div class="bradcam_area bradcam_bg_2">
+<div class="bradcam_area bradcam_checkout">
     <div class="container">
         <div class="row">
             <div class="col-xl-12">
                 <div class="bradcam_text text-center">
-                    <h3>Our Menu</h3>
+                    <h3>Checkout</h3>
                 </div>
             </div>
         </div>

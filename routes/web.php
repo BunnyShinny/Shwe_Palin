@@ -40,6 +40,13 @@ Route::get('/cart', function (){
 Route::get('/checkout', function (){
 	return view('checkout');
 });
+Route:: get('/thankyou', function (){
+	return view('thankyou');
+});
+Route:: get('/bookdisplay', function (){
+	return view('bookdisplay');
+});
+
 Auth::routes();
 
 Route::group(['middleware' => ['role:admin']], function () {
