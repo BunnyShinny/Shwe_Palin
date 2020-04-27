@@ -32,6 +32,8 @@ Route::get('/branch', 'FrontendController@branch');
 Route::get('/add_to_cart/{id}', 'FrontendController@getAddToCart')->name('addtocart');
 Route::get('/cart', 'FrontendController@getCart');
 Route::get('/checkout', 'FrontendController@getCartToCheckout')->name('checkout');
+Route::POST('/checkout', 'FrontendController@postCartToCheckout')->name('postcheckout');
+
 
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');

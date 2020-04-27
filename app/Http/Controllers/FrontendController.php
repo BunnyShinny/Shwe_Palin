@@ -7,6 +7,7 @@ use App\Category;
 use App\Branch;
 use App\Reservation;
 use App\Cart;
+use App\Order;
 use Illuminate\Http\Request;
 use Session;
 
@@ -106,5 +107,25 @@ class FrontendController extends Controller
         $cart =  new Cart($oldcart);
         // dd($cart =  new Cart($oldcart));
         return view('checkout',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
+    }
+
+    public function postCartToCheckout(Request $request)
+    {
+        if (!Session::has('cart')){
+            return redirect()->route('foodmenu');
+            // return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $cart =  new Cart($oldcart);
+        // dd($cart =  new Cart($oldcart));
+        $order = new Order();
+        $order->cart=serialize($cart);
+        $order->name=request("name");
+        $order->address=request('address');
+
+        $order->phone=request('phone');
+        $order->save();
+        Session::forget('cart');
+        return redirect()->route('welcome')->with('Success', 'Successfully purchased products!');
     }
 }
