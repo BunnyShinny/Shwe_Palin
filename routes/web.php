@@ -43,17 +43,20 @@ Route::get('/contact', function () {
 });
 
 
-Route::get('/cart', function (){
-	return view('cart');
-});
-Route::get('/checkout', function (){
-	return view('checkout');
-});
+// Route::get('/cart', function (){
+// 	return view('cart');
+// });
+// Route::get('/checkout', function (){
+// 	return view('checkout');
+// });
 Route:: get('/thankyou', function (){
 	return view('thankyou');
 });
 Route:: get('/bookdisplay', function (){
 	return view('bookdisplay');
+});
+Route:: get('/accountsetting', function (){
+	return view('accountsetting');
 });
 
 Auth::routes();
