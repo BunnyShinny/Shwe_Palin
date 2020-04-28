@@ -60,6 +60,11 @@
           <p>{{ __('Order') }}</p>
         </a>
       </li>
+      <li class = " @if ($activePage == 'reservationwithorderlist') active @endif">
+        <a href="{{ route('reservationwithorders.index') }}">
+          <i class="now-ui-icons text_align-left"></i>
+          <p>{{ __('Reservation With Order') }}</p>
+        </a>
     </ul>
   </div>
 </div>

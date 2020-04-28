@@ -106,7 +106,7 @@
                     <form action="" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
                         id="cart_coupon_form">
                         
-                        <a href="booktable" class="button_clear cart_button_2 text-center">RESERVE</a>
+                        <a href="booktable" class="button_clear cart_button_2">RESERVE</a>
                     </form>
                 </div>
             </div>
@@ -146,9 +146,29 @@
                     <a href="{{ route('checkout') }}"><button class="cart_total_button">proceed to checkout</button></a>
                 </div>
             </div>
-            @else
-            @endif
+            
         </div>
+
+
+        @else
+        
+        <div class="row cart_extra">
+            <!-- Cart Coupon -->
+            <div class="col-lg-6">
+                <div class="cart_coupon">
+                    <div class="cart_title">Reservation</div>
+                    <form action="" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
+                        id="cart_coupon_form">
+                        
+                        <a href="booktable" class="button_clear cart_button_2">RESERVE</a>
+                    </form>
+                </div>
+            </div>
+            <!-- Cart Total -->
+            
+            
+        </div> 
+        @endif
     </div>
 </div>
 @endsection

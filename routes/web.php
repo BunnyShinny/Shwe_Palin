@@ -37,9 +37,11 @@ Route::get('/checkout', 'FrontendController@getCartToCheckout')->name('checkout'
 Route::POST('/checkout', 'FrontendController@postCartToCheckout')->name('postcheckout');
 
 
-
+//Booking
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
+Route::POST('/booktable_with_ordersave', 'FrontendController@booktable_with_ordersave')->name('booktablewithordersave');
+
 Route::POST('/save-device-token', 'UserController@saveToken');
 Route::get('/contact', function () {
     return view('contact');
@@ -57,9 +59,6 @@ Route:: get('/thankyou', function (){
 });
 Route:: get('/bookdisplay', function (){
 	return view('bookdisplay');
-});
-Route:: get('/accountsetting', function (){
-	return view('accountsetting');
 });
 
 Auth::routes();
@@ -80,6 +79,9 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 	//Order
 	Route::resource('orders', 'OrderController');
+
+	//Reservation With Order
+	Route::resource('reservationwithorders', 'ReservationWithOrderController');
 
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);

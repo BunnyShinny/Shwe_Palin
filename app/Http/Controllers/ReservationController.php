@@ -57,7 +57,7 @@ class ReservationController extends Controller
         $save->no_of_people = request('no_of_people');
 
         $save->save();
-        return view('index');
+        return view('thankyou')->with('Success', 'Successfully purchased products!');
     }
 
     /**
