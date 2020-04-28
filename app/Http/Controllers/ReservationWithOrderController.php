@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Reservation_with_Order;
+use App\Branch;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class ReservationWithOrderController extends Controller
 {
@@ -14,7 +16,16 @@ class ReservationWithOrderController extends Controller
      */
     public function index()
     {
-        //
+        
+        $rwo = DB::table('reservation_with__orders')
+        ->join('branches', 'branches.id', '=', 'reservation_with__orders.branch_id')
+        ->select('reservation_with__orders.*', 'branches.name as branch_name')
+        ->get();
+        $rwo->transform(function($rwo, $key){
+            $rwo->cart = unserialize($rwo->cart);
+            return $rwo;
+        });
+        return view('reservation_with_order.read',compact('rwo'));
     }
 
     /**

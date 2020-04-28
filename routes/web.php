@@ -80,6 +80,9 @@ Route::group(['middleware' => ['role:admin']], function () {
 	//Order
 	Route::resource('orders', 'OrderController');
 
+	//Reservation With Order
+	Route::resource('reservationwithorders', 'ReservationWithOrderController');
+
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
 	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
