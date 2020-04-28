@@ -37,9 +37,11 @@ Route::get('/checkout', 'FrontendController@getCartToCheckout')->name('checkout'
 Route::POST('/checkout', 'FrontendController@postCartToCheckout')->name('postcheckout');
 
 
-
+//Booking
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
+Route::POST('/booktablesave', 'FrontendController@booktable_with_ordersave')->name('booktablewithordersave');
+
 Route::POST('/save-device-token', 'UserController@saveToken');
 Route::get('/contact', function () {
     return view('contact');

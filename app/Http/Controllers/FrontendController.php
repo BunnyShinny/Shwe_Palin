@@ -10,6 +10,7 @@ use App\Cart;
 use App\Order;
 use Illuminate\Http\Request;
 use Session;
+use Reservation_with_Order;
 
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -47,8 +48,14 @@ class FrontendController extends Controller
 
     public function reservation()
     {
+        if (!Session::has('cart')){
+            $branches=Branch::all();
+            return view('booktable',compact('branches'),['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $cart =  new Cart($oldcart);
         $branches=Branch::all();
-        return view('booktable',compact('branches'));
+        return view('booktable',compact('branches'), ['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
     public function save_reservation(Request $request)
@@ -72,6 +79,41 @@ class FrontendController extends Controller
         return view('index');
     }
 
+    public function booktable_with_ordersave(Request $request)
+    {
+        if (!Session::has('cart')){
+            return redirect()->route('foodmenu');
+            // return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $cart =  new Cart($oldcart);
+        // dd($cart =  new Cart($oldcart));
+        
+        $request->validate([
+            "name"=>'required',
+            "phone"=>'required',
+            "date"=>'required',
+            "no_of_people"=>'required',
+            "branch"=>'required',
+            
+        ]);
+        
+        
+
+        $rwo = new Reservation_with_Order;
+        $rwo->name = request('name');
+        $rwo->phone = request('phone');
+        $rwo->date = request('date');
+        $rwo->branch_id = request('branch');
+        $rwo->no_of_people = request('no_of_people'); 
+        $rwo->cart=serialize($cart);
+        $rwo->save();
+        
+
+        Session::forget('cart');
+        return view('thankyou')->with('Success', 'Successfully purchased products!');
+    }
+
     public function getAddToCart(Request $request, $id)
     {
 
@@ -90,7 +132,7 @@ class FrontendController extends Controller
     public function getCart()
     {
         if (!Session::has('cart')){
-            return view('cart',['menus'=>null]);
+            return view('cart',['menus'=>null, 'totalPrice'=>0]);
         }
         $oldcart = Session::get('cart');
         $cart =  new Cart($oldcart);
@@ -160,6 +202,6 @@ class FrontendController extends Controller
         $order->phone=request('phone');
         $order->save();
         Session::forget('cart');
-        return redirect()->route('welcome')->with('Success', 'Successfully purchased products!');
+        return view('thankyou')->with('Success', 'Successfully purchased products!');
     }
 }
