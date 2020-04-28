@@ -17,9 +17,6 @@
     .setting{
       margin: 70px 0px;
       width: 100%;
-      min-height: 600px;
-      box-shadow: 1px 1px;
-      
     }
     .accnav{
       background: #75D5D5;
@@ -49,9 +46,9 @@
     color: #fff;
     padding-left: 15px;
     }
-    .button{
+    .Chgbutton{
     height:50px;
-    width:80%;
+    width:100%;
     border-radius:3px;
     border:rgba(0,0,0,.3) 0px solid;
     box-sizing:border-box;

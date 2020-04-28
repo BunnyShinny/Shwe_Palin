@@ -123,11 +123,20 @@
                             <div class="cart_total_title">Shipping</div>
                             <div class="cart_total_price ml-auto">500 kyats</div>
                         </li>
+                        @auth
+                        <li class="d-flex flex-row align-items-center justify-content-start">
+                            <div class="cart_total_title">Promotion</div>
+                            <div class="cart_total_price ml-auto">500 kyats</div>
+                        </li>
+                        @endauth
                         <li class="d-flex flex-row align-items-center justify-content-start">
                             <div class="cart_total_title">Total</div>
                             <div class="cart_total_price ml-auto">
                             @php
                                 $i = 500;
+                                if(Auth::check()){
+                                    $i-=500;
+                                }
                                 $final_total = $totalPrice + $i;
                             @endphp
                         {{$final_total}} Kyats
