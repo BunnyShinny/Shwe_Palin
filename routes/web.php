@@ -31,8 +31,11 @@ Route::get('/branch', 'FrontendController@branch');
 //Cart
 Route::get('/add_to_cart/{id}', 'FrontendController@getAddToCart')->name('addtocart');
 Route::get('/cart', 'FrontendController@getCart');
+Route::get('/deletecart', 'FrontendController@deleteCart')->name('deletecart');
+Route::get('/deleteitemfromcart/{id}', 'FrontendController@deleteItemFromCart')->name('deleteitemfromcart');
 Route::get('/checkout', 'FrontendController@getCartToCheckout')->name('checkout');
 Route::POST('/checkout', 'FrontendController@postCartToCheckout')->name('postcheckout');
+
 
 
 Route::get('/booktable', 'FrontendController@reservation');
@@ -43,12 +46,12 @@ Route::get('/contact', function () {
 });
 
 
-Route::get('/cart', function (){
-	return view('cart');
-});
-Route::get('/checkout', function (){
-	return view('checkout');
-});
+// Route::get('/cart', function (){
+// 	return view('cart');
+// });
+// Route::get('/checkout', function (){
+// 	return view('checkout');
+// });
 Route:: get('/thankyou', function (){
 	return view('thankyou');
 });

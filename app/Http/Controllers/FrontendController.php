@@ -98,6 +98,34 @@ class FrontendController extends Controller
         return view('cart',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
+    public function deleteCart()
+    {
+        if (!Session::has('cart')){
+            return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        Session::forget('cart');
+        // dd($cart =  new Cart($oldcart));
+        return view('cart');
+    }
+
+    public function deleteItemFromCart($id)
+    {
+        if (!Session::has('cart')){
+            return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        // $arraycart = array($oldcart);
+        // dd($arraycart);
+        $cart =  new Cart($oldcart);
+        $cart = $cart->toArray();
+        if(($key = array_search($id, $cart)) !==false){
+            unset($cart[$key]);
+        }
+        // dd($cart =  new Cart($oldcart));
+        return view('cart',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
+    }
+
     public function getCartToCheckout()
     {
         if (!Session::has('cart')){
