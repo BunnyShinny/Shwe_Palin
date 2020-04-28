@@ -101,9 +101,6 @@
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
                                 role="tab" aria-controls="pills-home" aria-selected="true">
                                 <div class="single_menu text-center">
-                                    <div class="icon">
-                                        <i class="flaticon-lunch"></i>
-                                    </div>
                                     <h4>Popular</h4>
                                 </div>
                             </a>
@@ -112,9 +109,6 @@
                             <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
                                 role="tab" aria-controls="pills-profile" aria-selected="false">
                                 <div class="single_menu text-center">
-                                    <div class="icon">
-                                        <i class="flaticon-food"></i>
-                                    </div>
                                     <h4>Best Seller</h4>
                                 </div>
                             </a>
