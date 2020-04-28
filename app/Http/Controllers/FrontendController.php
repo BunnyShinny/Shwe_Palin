@@ -114,15 +114,14 @@ class FrontendController extends Controller
         if (!Session::has('cart')){
             return view('cart',['menus'=>null]);
         }
+        
         $oldcart = Session::get('cart');
-        // $arraycart = array($oldcart);
-        // dd($arraycart);
         $cart =  new Cart($oldcart);
-        $cart = $cart->toArray();
+        
         if(($key = array_search($id, $cart)) !==false){
             unset($cart[$key]);
         }
-        // dd($cart =  new Cart($oldcart));
+        dd($cart =  new Cart($oldcart));
         return view('cart',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
@@ -147,6 +146,13 @@ class FrontendController extends Controller
         $cart =  new Cart($oldcart);
         // dd($cart =  new Cart($oldcart));
         $order = new Order();
+        $request->validate([
+            "name"=>'required',
+            "address"=>'required',
+            "phone"=>'required',
+            "phone"=>'required',
+            
+        ]);
         $order->cart=serialize($cart);
         $order->name=request("name");
         $order->address=request('address');
