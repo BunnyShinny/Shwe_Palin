@@ -98,6 +98,33 @@ class FrontendController extends Controller
         return view('cart',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
+    public function deleteCart()
+    {
+        if (!Session::has('cart')){
+            return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        Session::forget('cart');
+        // dd($cart =  new Cart($oldcart));
+        return view('cart');
+    }
+
+    public function deleteItemFromCart(Request $request,$id)
+    {
+        if (!Session::has('cart')){
+            return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $get_item = $oldcart->items[$id];
+        $oldcart->totalQty = $oldcart->totalQty - $get_item['qty'];
+        $oldcart->totalPrice = $oldcart->totalPrice - ($get_item['qty'] * $get_item['price']);
+
+        unset($oldcart->items[$id]);
+        $request->session()->put('cart',$oldcart);
+        
+        return redirect()->back();
+    }
+
     public function getCartToCheckout()
     {
         if (!Session::has('cart')){
@@ -119,6 +146,13 @@ class FrontendController extends Controller
         $cart =  new Cart($oldcart);
         // dd($cart =  new Cart($oldcart));
         $order = new Order();
+        $request->validate([
+            "name"=>'required',
+            "address"=>'required',
+            "phone"=>'required',
+            "phone"=>'required',
+            
+        ]);
         $order->cart=serialize($cart);
         $order->name=request("name");
         $order->address=request('address');

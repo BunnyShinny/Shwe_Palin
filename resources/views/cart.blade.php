@@ -78,7 +78,7 @@
                                     </div>
                                     <!-- Product Cart Trash Button -->
                                     <div class="cart_product_button">
-                                        <button class="cart_product_remove"><i class="flaticon-delete"></i></button>
+                                        <a class="cart_product_remove" href="{{ route('deleteitemfromcart',$menu['item']['id']) }}"><i class="flaticon-delete"></i></a>
                                     </div>
                                 </div>
                             </div>
@@ -92,8 +92,8 @@
         <div class="row">
             <div class="col">
                 <div class="cart_control_bar d-flex flex-md-row flex-column align-items-start justify-content-start">
-                    <button class="button_clear cart_button">clear cart</button>
-                    <button class="button_update cart_button">Add More Food</button>
+                    <a class="button_clear cart_button" href="{{ route('deletecart') }}">clear cart</a>
+                    <a class="button_clear cart_button" href="foodmenu">Add More Food</a>
                     <!-- <a href="foodmenu"><button class="button_update cart_button_2 ml-md-auto">Add More Food</button></a> -->
                 </div>
             </div>
@@ -106,7 +106,7 @@
                     <form action="" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
                         id="cart_coupon_form">
                         
-                        <a href="booktable"><button class="button_clear cart_button_2">RESERVE</button></a>
+                        <a href="bookdisplay" class="button_clear cart_button_2">RESERVE</a>
                     </form>
                 </div>
             </div>
