@@ -33,7 +33,10 @@ class FrontendController extends Controller
 
     public function index()
     {
-        return view('index');
+        $popular = Menu::all()->random(5);
+        $bestseller = Menu::all()->random(5);
+        
+        return view('index',compact('popular','bestseller'));
     }
 
     public function foodmenu()

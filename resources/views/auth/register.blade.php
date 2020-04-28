@@ -67,8 +67,8 @@
                             </div>
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
                                 <div class="say_hello">
-                                    <a href="#">Log In</a>
-                                    <a href="#">Sign Up</a>
+                                    <a href="login">Log In</a>
+                                    <a href="register">Sign Up</a>
                                 </div>
                             </div>
                             <div class="col-12">

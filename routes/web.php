@@ -46,6 +46,9 @@ Route::POST('/save-device-token', 'UserController@saveToken');
 Route::get('/contact', function () {
     return view('contact');
 });
+Route::get('/accountsetting', function () {
+    return view('accountsetting');
+});
 
 
 // Route::get('/cart', function (){

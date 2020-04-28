@@ -64,9 +64,13 @@
                                 </div>
                             </div>
                         </div>
-                        <button type="submit" class="Chgbutton">
-                            {{ __("Save") }}
-                        </button>
+                        <div class="row">
+                            <div class="col text-center">
+                                <button type="submit" class="btn btn-primary btn-round">
+                                    {{ __("Save") }}
+                                </button>
+                            </div>
+                        </div>
                     </form>
                 </div>
             </div>
@@ -105,7 +109,11 @@
                           </div>
                         </div>
                       </div>
-                        <button type="submit" class="Chgbutton">{{__('Change Password')}}</button>
+                      <div class="row">
+                          <div class="col text-center">
+                              <button type="submit" class="btn btn-primary btn-round text-center">{{__('Change Password')}}</button>
+                          </div>
+                      </div>
                     </form>
                 </div>
             </div>

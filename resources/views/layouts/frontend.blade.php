@@ -304,10 +304,6 @@
     <script src="{{ asset('assets') }}/js/custom.js" type="text/javascript"></script>
     <script>
         $(document).ready(function(){
-            // console.log('hello');
-            // console.log('hello noti');
-            // myNoti.showNotification('bottom','right',{body:'hello',click_action:'hahah'});
-
             const config = {
                 apiKey: "AIzaSyAt17cRDm6O0jBr5_AWwKVOKxkqu5Cd5-U",
                 authDomain: "shwepalin-25d94.firebaseapp.com",
