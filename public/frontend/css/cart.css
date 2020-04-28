@@ -238,7 +238,8 @@
 	border-bottom: solid 1px #b5b5b5;
 }
 .cart_control_bar a{
-    margin-left: 560px;
+	margin-left: 60px;
+	padding-top: 10px;
 }
 .cart_button
 {
@@ -292,7 +293,9 @@
 .button_clear
 {
 	margin-right: 8px;
+	padding-top: 10px;
 }
+
 
 .cart_extra
 {
