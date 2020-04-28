@@ -106,7 +106,7 @@
                     <form action="" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
                         id="cart_coupon_form">
                         
-                        <a href="booktable"><button class="button_clear cart_button_2">RESERVE</button></a>
+                        <a href="bookdisplay" class="button_clear cart_button_2">RESERVE</a>
                     </form>
                 </div>
             </div>
