@@ -111,6 +111,11 @@
                                                 <a href="#">{{auth()->user()->name}}</a>
                                                 <ul class="submenu">
                                                     <li>
+                                                        <a href="/accountsetting" class="dropdown-item">
+                                                            Setting
+                                                        </a>
+                                                    </li>
+                                                    <li>
                                                         <a class="dropdown-item" href="{{ route('logout') }}"
                                                         onclick="event.preventDefault();
                                                                     document.getElementById('logout-form').submit();">

@@ -42,15 +42,15 @@
                         </li>
                     @foreach($categories as $category)
                     <li class="nav-item">
-                    <a class="nav-link " id="{{$category->name}}-tab" data-toggle="pill" onclick="filterSelection('{{$category->name}}')" href="#{{$category->name}}"
-                                role="tab" aria-controls="pills-home" aria-selected="true">
-                                <div class="single_menu text-center">
-                                    <div class="icon">
-                                        
-                                    </div>
-                                    <h4>{{$category->name}}</h4>
+                        <a class="nav-link" id="{{$category->name}}-tab" data-toggle="pill" onclick="filterSelection('{{$category->name}}')" href="#{{$category->name}}"
+                            role="tab" aria-controls="pills-home" aria-selected="true">
+                            <div class="single_menu text-center">
+                                <div class="icon">
+                                    
                                 </div>
-                            </a>
+                                <h4>{{$category->name}}</h4>
+                            </div>
+                        </a>
                     </li>
                     @endforeach
                        
@@ -62,9 +62,7 @@
         
         
         <div class="tab-content" id="pills-tabContent">
-         
-            <div class="tab-pane fade show active" id="" role="tabpanel" aria-labelledby="-tab">
-            
+            <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 <div class="row">
                     @foreach($menus as $menu)
                     <div class="col-xl-6 col-md-6 col-lg-6 {{$menu->category_name}}">
@@ -78,356 +76,38 @@
                                 <p>{{$menu->description}}</p>
                                 <span name="price">{{$menu->price}} MMKS</span>
                                 <h4>Available<span class="available"></span></h4>
-                                <!-- <div class="input-group mb-3" style="max-width: 120px;" name="quantity">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="number" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div> -->
                                 <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
                             </div>
                         </div>
                     </div>
                     @endforeach
-                    <!-- <div class="col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/drinks/drink2.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-
-                    </div>-->
                 </div>
             </div>
-            <!-- <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/bread/bread.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
+            @foreach($categories as $category)
+                <div class="tab-pane fade" id="{{$category->name}}" role="tabpanel" aria-labelledby="{{$category->name}}-tab">
+                    <div class="row">
+                        @foreach($menus as $menu)
+                            @if($menu->category_name == $category->name)
+                            <div class="col-xl-6 col-md-6 col-lg-6 {{$menu->category_name}}">
+                                <div class="single_delicious d-flex align-items-center">
+                                    <div class="thumb">
+                                        
+                                        <a href="{{asset($menu->image)}}"><img src="{{asset($menu->image)}}" alt="" style="max-width: 232px; border-radiu: 232px"></a>
                                     </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
+                                    <div class="info">
+                                        <h3 name="name">{{$menu->name}}</h3>
+                                        <p>{{$menu->description}}</p>
+                                        <span name="price">{{$menu->price}} MMKS</span>
+                                        <h4>Available<span class="available"></span></h4>
+                                        <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
                                     </div>
                                 </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
                             </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/bread/brownies.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/bread/coconut.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/bread/putin.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/bread/shwepalincake.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/6.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
+                            @endif
+                        @endforeach
                     </div>
                 </div>
-            </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/trad/chickenonionkyw.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/trad/fishwavekyw.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/trad/friedrice.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/trad/friedrice2.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/trad/htamintoke.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/trad/tearice.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div> -->
+            @endforeach
         </div>
         
 
