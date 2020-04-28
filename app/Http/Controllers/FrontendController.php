@@ -10,7 +10,7 @@ use App\Cart;
 use App\Order;
 use Illuminate\Http\Request;
 use Session;
-use Reservation_with_Order;
+use App\Reservation_with_Order;
 
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;

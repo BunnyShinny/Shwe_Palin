@@ -40,7 +40,7 @@ Route::POST('/checkout', 'FrontendController@postCartToCheckout')->name('postche
 //Booking
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
-Route::POST('/booktablesave', 'FrontendController@booktable_with_ordersave')->name('booktablewithordersave');
+Route::POST('/booktable_with_ordersave', 'FrontendController@booktable_with_ordersave')->name('booktablewithordersave');
 
 Route::POST('/save-device-token', 'UserController@saveToken');
 Route::get('/contact', function () {

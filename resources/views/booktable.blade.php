@@ -40,7 +40,7 @@
 
             
                 @if(Session::has('cart'))
-                <form class="" method="POST" action="booktablewithordersave" enctype="multipart/form-data">
+                <form class="" method="POST" action="{{route('booktablewithordersave')}}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="book_Form col-md-6">
@@ -167,11 +167,11 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <form action="{{ route('send-push') }}" method="POST">
+                        
                             @csrf
 
                             <input class="btn btn-primary btn-lg py-3 btn-block" type="submit" value="Place Order">
-                        </form>
+                        
                     </div>
                 </form>
                 @else
