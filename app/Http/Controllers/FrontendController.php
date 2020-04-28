@@ -7,6 +7,7 @@ use App\Category;
 use App\Branch;
 use App\Reservation;
 use App\Cart;
+use App\User;
 use App\Order;
 use Illuminate\Http\Request;
 use Session;
@@ -25,6 +26,11 @@ class FrontendController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
+    public function __construct()
+    {
+        $this->serverKey = config('app.firebase_server_key');
+    }
+
     public function index()
     {
         return view('index');
@@ -200,8 +206,47 @@ class FrontendController extends Controller
         $order->address=request('address');
 
         $order->phone=request('phone');
+        if(auth()->user()){
+            $order->user_id = auth()->user()->id;
+        }
         $order->save();
         Session::forget('cart');
+
+        //message
+
+        $user = User::find(1);
+        if (auth()->user()){
+            $orderName = auth()->user()->name;
+        }else{
+            $orderName = $order->name;
+        }
+        $data = [
+            "to" => $user->device_token,
+            "notification" =>
+                [
+                    "title" => 'Reserve',
+                    "body" => "You Got a new Order From ".$orderName,
+                    "icon" => url('/logo.png'),
+                    "click_action"=> 'thankyou',
+                ],
+        ];
+        $dataString = json_encode($data);
+  
+        $headers = [
+            'Authorization: key=' . $this->serverKey,
+            'Content-Type: application/json',
+        ];
+  
+        $ch = curl_init();
+  
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+  
+        curl_exec($ch);
+
         return view('thankyou')->with('Success', 'Successfully purchased products!');
     }
 }

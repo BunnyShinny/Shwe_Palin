@@ -100,6 +100,9 @@
                                             <td class="text-black font-weight-bold"><strong>
                                             @php
                                                 $i = 500;
+                                                if(Auth::check()){
+                                                    $i-=500;
+                                                }
                                                 $final_total = $totalPrice + $i;
                                             @endphp
                                             {{$final_total}} MMK

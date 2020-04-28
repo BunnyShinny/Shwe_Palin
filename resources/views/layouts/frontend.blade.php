@@ -32,6 +32,8 @@
     <link rel="stylesheet" href="frontend/css/style.css">
     <link rel="stylesheet" href="frontend/css/custom.css">
     <link rel="stylesheet" href="frontend/css/cart.css">
+  <link href="{{ asset('assets') }}/css/now-ui-dashboard.css?v=1.3.0" rel="stylesheet" />
+
     <!-- <link rel="stylesheet" href="css/responsive.css"> -->
 
     <script src="https://www.gstatic.com/firebasejs/7.14.2/firebase-app.js"></script>
@@ -297,9 +299,15 @@
 
         });
     </script>
+    <!--  Notifications Plugin    -->
+  <script src="{{ asset('assets') }}/js/plugins/bootstrap-notify.js"></script>
+    <script src="{{ asset('assets') }}/js/custom.js" type="text/javascript"></script>
     <script>
         $(document).ready(function(){
-            console.log('hello')
+            // console.log('hello');
+            // console.log('hello noti');
+            // myNoti.showNotification('bottom','right',{body:'hello',click_action:'hahah'});
+
             const config = {
                 apiKey: "AIzaSyAt17cRDm6O0jBr5_AWwKVOKxkqu5Cd5-U",
                 authDomain: "shwepalin-25d94.firebaseapp.com",
@@ -340,11 +348,16 @@
                 });
         
             messaging.onMessage(function(payload) {
+                console.log('got it');
+                console.log(payload);
                 const noteTitle = payload.notification.title;
                 const noteOptions = {
                     body: payload.notification.body,
                     icon: payload.notification.icon,
+                    click_action: payload.notification.click_action
                 };
+                myNoti.showNotification('bottom','right',noteOptions);
+                
                 new Notification(noteTitle, noteOptions);
             });
         });

@@ -20,7 +20,10 @@ class CreateOrdersTable extends Migration
             $table->string('phone');
             $table->text('cart');
             $table->boolean('confirm')->default(0);
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

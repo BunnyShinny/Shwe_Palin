@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Order;
+use App\User;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -12,6 +13,11 @@ class OrderController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->serverKey = config('app.firebase_server_key');
+    }
+
     public function index()
     {
         $orders = Order::All();
@@ -99,6 +105,36 @@ class OrderController extends Controller
         $orders = Order::find($id);
         $orders->confirm = 1;
         $orders->save();
+        if($orders->user_id){
+            $user = User::find($orders->user_id);
+            $data = [
+                "to" => $user->device_token,
+                "notification" =>
+                    [
+                        "title" => 'Reserve',
+                        "body" => "Your order had been confirmed! <br/> Your order will deliver within 45 min !",
+                        "icon" => url('/logo.png'),
+                        "click_action"=> '/reservations',
+                    ],
+            ];
+            $dataString = json_encode($data);
+      
+            $headers = [
+                'Authorization: key=' . $this->serverKey,
+                'Content-Type: application/json',
+            ];
+      
+            $ch = curl_init();
+      
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+      
+            curl_exec($ch);
+        }
+
         return redirect()->route('orders.index');
     }
     
