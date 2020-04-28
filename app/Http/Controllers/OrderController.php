@@ -92,6 +92,14 @@ class OrderController extends Controller
     {
         $orders = Order::find($id);
         $orders->delete();
-        return view('orders.read',compact('orders'));
+        return redirect()->route('orders.index');
     }
+    public function Confirm($id)
+    {
+        $orders = Order::find($id);
+        $orders->confirm = 1;
+        $orders->save();
+        return redirect()->route('orders.index');
+    }
+    
 }

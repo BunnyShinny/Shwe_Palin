@@ -19,6 +19,7 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->text('cart');
+            $table->boolean('confirm')->default(0);
             $table->timestamps();
         });
     }

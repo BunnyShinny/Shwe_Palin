@@ -75,6 +75,21 @@ sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
                                         > -->
                                         <form
                                             method="POST"
+                                            action="{{route('orders_confirm',$order->id)}}"
+                                            style="display: inline-block;"
+                                        >
+                                            @csrf @method('PUT')
+    
+                                            <button
+                                                type="submit"
+                                                rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon"
+                                                onclick="return confirm('Are You Confirm')"
+                                            >
+                                            <i class="now-ui-icons ui-1_check"></i>
+                                            </button>
+                                        </form>
+                                        <form
+                                            method="POST"
                                             action="{{route('orders.destroy',$order->id)}}"
                                             style="display: inline-block;"
                                         >

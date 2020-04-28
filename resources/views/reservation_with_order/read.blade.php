@@ -68,19 +68,25 @@ sidebar-mini ', 'activePage' => 'reservationwithorderlist', 'backgroundImage' =>
 
                                     <td>{{$rwo->cart->totalPrice}} MMK</td>
                                     <td>
-                                        <!-- <a
-                                            href="{{route('orders.show',$rwo->id)}}"
-                                            class="btn btn-info btn-sm btn-icon"
-                                            ><i class="now-ui-icons travel_info"></i></a
-                                        > -->
-                                        <!-- <a
-                                            href="{{route('orders.edit',$rwo->id)}}"
-                                            class="btn btn-success btn-sm btn-icon"
-                                            ><i class="now-ui-icons ui-2_settings-90"></i></a
-                                        > -->
+                                        
                                         <form
                                             method="POST"
-                                            action="{{route('orders.destroy',$rwo->id)}}"
+                                            action="{{route('reservationwithorders_confirm',$rwo->id)}}"
+                                            style="display: inline-block;"
+                                        >
+                                            @csrf @method('PUT')
+    
+                                            <button
+                                                type="submit"
+                                                rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon"
+                                                onclick="return confirm('Are You Confirm')"
+                                            >
+                                            <i class="now-ui-icons ui-1_check"></i>
+                                            </button>
+                                        </form>
+                                        <form
+                                            method="POST"
+                                            action="{{route('reservationwithorders.destroy',$rwo->id)}}"
                                             style="display: inline-block;"
                                         >
                                             @csrf @method('DELETE')

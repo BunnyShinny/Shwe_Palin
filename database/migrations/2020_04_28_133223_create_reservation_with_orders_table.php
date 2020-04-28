@@ -13,7 +13,7 @@ class CreateReservationWithOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('reservation_with_orders', function (Blueprint $table) {
+        Schema::create('reservation_with__orders', function (Blueprint $table) {
             $table->increments('id');
             $table->text('cart');
             $table->string('name');
@@ -21,6 +21,7 @@ class CreateReservationWithOrdersTable extends Migration
             $table->integer('no_of_people');
             $table->string('date');
             $table->unsignedBigInteger ('branch_id');
+            $table->boolean('confirm')->default(0);
             $table->timestamps();
 
             

@@ -89,8 +89,18 @@ class ReservationWithOrderController extends Controller
      * @param  \App\Reservation_with_Order  $reservation_with_Order
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reservation_with_Order $reservation_with_Order)
+    public function destroy($id)
     {
-        //
+        $rwo = Reservation_with_Order::find($id);
+        $rwo->delete();
+        return redirect()->route('reservationwithorders.index');
+    }
+
+    public function Confirm($id)
+    {
+        $rwo = Reservation_with_Order::find($id);
+        $rwo->confirm = 1;
+        $rwo->save();
+        return redirect()->route('reservationwithorders.index');
     }
 }

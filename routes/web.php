@@ -79,9 +79,11 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 	//Order
 	Route::resource('orders', 'OrderController');
+	Route::PUT('/orders_confirm/{order}/order_confirm', 'OrderController@Confirm')->name('orders_confirm');
 
 	//Reservation With Order
 	Route::resource('reservationwithorders', 'ReservationWithOrderController');
+	Route::PUT('/reservationwithorders_confirm/{reservationwithorder}/reservation_with_order_confirm', 'ReservationWithOrderController@Confirm')->name('reservationwithorders_confirm');
 
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
