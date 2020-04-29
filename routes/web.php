@@ -61,6 +61,9 @@ Route:: get('/bookdisplay', function (){
 Route:: get('/accountsetting', function (){
 	return view('accountsetting');
 });
+Route:: get('/receipt', function (){
+	return view('receipt');
+});
 
 Auth::routes();
 
