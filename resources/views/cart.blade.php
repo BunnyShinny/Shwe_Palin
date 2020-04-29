@@ -137,7 +137,7 @@
                                 if(Auth::check()){
                                     $i-=500;
                                 }
-                                $final_total = $totalPrice + $i;
+                                $final_total = $totalPrice;
                             @endphp
                         {{$final_total}} Kyats
                             </div>

@@ -6,7 +6,7 @@ class Cart
 {
     public $items = null;
     public $totalQty = 0;
-    public $totalPrice = 0 ;
+    public $totalPrice = 500;
 
     public function __construct($oldcart)
     {

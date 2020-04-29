@@ -85,7 +85,7 @@ class FrontendController extends Controller
         $save->no_of_people = request('no_of_people');
     
         $save->save();
-        return view('index');
+        return redirect()->route('welcome');
     }
 
     public function booktable_with_ordersave(Request $request)
