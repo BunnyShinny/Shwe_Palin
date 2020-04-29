@@ -114,7 +114,7 @@ class OrderController extends Controller
                         "title" => 'Reserve',
                         "body" => "Your order had been confirmed! <br/> Your order will deliver within 45 min !",
                         "icon" => url('/logo.png'),
-                        "click_action"=> '/reservations',
+                        "click_action"=> '/receipt?order='.$orders->id,
                     ],
             ];
             $dataString = json_encode($data);

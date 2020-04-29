@@ -133,7 +133,7 @@ class FrontendController extends Controller
         
         $request->session()->put('cart',$cart);
         // dd($request->session()->get('cart'));    
-        return redirect()->route('foodmenu');
+        return redirect()->back();
  
         
     }
@@ -184,7 +184,24 @@ class FrontendController extends Controller
         $oldcart = Session::get('cart');
         $cart =  new Cart($oldcart);
         // dd($cart =  new Cart($oldcart));
-        return view('checkout',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
+        return view('checkout', ['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
+    }
+    public function receipt(Request $request)
+    {
+        // $order = Order::find($request->input('order'));
+        $orders = Order::all();
+        $orders->transform(function($orders, $key){
+            $orders->cart = unserialize($orders->cart);
+            return $orders;
+        });
+        $order = null;
+        foreach($orders as $getOrder) {
+            if ($request->input('order') == $getOrder->id) {
+                $order = $getOrder;
+                break;
+            }
+        }
+        return view('receipt',compact('order'));
     }
 
     public function postCartToCheckout(Request $request)
@@ -230,7 +247,7 @@ class FrontendController extends Controller
                     "title" => 'Reserve',
                     "body" => "You Got a new Order From ".$orderName,
                     "icon" => url('/logo.png'),
-                    "click_action"=> 'thankyou',
+                    "click_action"=> 'receipt',
                 ],
         ];
         $dataString = json_encode($data);

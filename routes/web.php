@@ -66,9 +66,7 @@ Route:: get('/bookdisplay', function (){
 Route:: get('/accountsetting', function (){
 	return view('accountsetting');
 });
-Route:: get('/receipt', function (){
-	return view('receipt');
-});
+Route:: get('/receipt', 'FrontendController@receipt');
 
 Auth::routes();
 

@@ -48,9 +48,9 @@
                             <h3>Order Receipt</h3>
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>Date: <span>Friday, May 10.2019</span></h4>
-                                    <h4>Order ID: <span>34567899</span></h4>
-                                    <h4>Customer Number: <span>56788765</span></h4>
+                                    <h4>Date: <span>{{date("F j, Y, g:i a",strtotime($order->created_at))}}</span></h4>
+                                    <h4>Order ID: <span>{{$order->id}}</span></h4>
+                                    <h4>Customer Number: <span>{{$order->phone}}</span></h4>
 
                                 </div>
                                 <div class="col-md-6"></div>
@@ -60,25 +60,7 @@
                             </div>
                         </div>
                         <div class="third">
-                            <div class="row">
-                                <!-- <div class="col-md-6">
-                                    <h4 class="font-weight-bold">Description</h4>
-                                    <h4>Bayar Kyaw</h4>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="row">
-                                        <div class="col-md-5">
-                                            <h4 class="font-weight-bold">Price</h4>
-                                            <h5>250 KS</h5>
-                                        </div>
-                                        <div class="col-md-3">
-                                            <h4 class="font-weight-bold">Qty</h4>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <h4 class="font-weight-bold">Total</h4>
-                                        </div>
-                                    </div>
-                                </div> -->
+                            <!-- <div class="row">
                                 <div class="col-md-4">
                                     <h4 class="font-weight-bold">Description</h4>
                                     <h5>Bayar Kyaw</h5>
@@ -109,7 +91,32 @@
                                     <h5>750 Ks</h5>
                                     <h5>750 Ks</h5>
                                 </div>
-                            </div>
+                            </div> -->
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th scope="col">Description</th>
+                                        <th scope="col">Price</th>
+                                        <th scope="col">Qty</th>
+                                        <th scope="col">Subtotal</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($order->cart->items as $item)
+                                    <tr>
+                                        <td>{{$item['item']['name']}}</td>
+                                        <td>{{$item['item']['price']}} Ks</td>
+                                        <td>{{$item['qty']}}</td>
+                                        <td>{{$item['item']['price'] * $item['qty']}} Ks</td>
+                                    </tr>
+                                    @endforeach
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td colspan="2">Total</td>
+                                        <td>{{$order->cart->totalPrice}} Ks</td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                         <p class="text-center"><a href="foodmenu" class="btn btn-sm btn-primary">Back to Home</a></p>
                         
