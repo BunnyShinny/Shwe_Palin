@@ -77,36 +77,18 @@
                                 <div class="col-lg-12">
                                     <div class="input_field">
                                         <select class="wide" name="branch">
-                                            <option selected disabled>Select a Branch</option>
+                                            @if(app('request')->input('branch'))
+                                            @else
+                                                <option selected disabled>Select a Branch</option>
+                                            @endif
                                             @foreach($branches as $branch)
-                                            <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                                @if(app('request')->input('branch') == $branch->id)
+                                                    <option value="{{$branch->id}}" selected>{{$branch->name}}</option>
+                                                @else
+                                                    <option value="{{$branch->id}}" >{{$branch->name}}</option>
+                                                @endif
                                             @endforeach
                                         </select>
-                                    </div>
-                                </div>
-                                
-                                
-                                
-                                <div class="col-lg-6">
-                                    <div class="single_add d-flex">
-                                        <div class="icon">
-                                            <img src="img/svg_icon/address.svg" alt="">
-                                        </div>
-                                        <div class="ifno">
-                                            <h4>Address</h4>
-                                            <p>20/D, Kings road, Green lane</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="single_add d-flex">
-                                        <div class="icon">
-                                            <img src="img/svg_icon/head.svg" alt="">
-                                        </div>
-                                        <div class="ifno">
-                                            <h4>Reservation</h4>
-                                            <p>+10 673 567 367</p>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -150,8 +132,6 @@
                                     </table>
 
                                     <div class=" p-3 mb-3">
-                                        <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsebank"
-                                                role="button" aria-expanded="false" aria-controls="collapsebank">Cash On Delivery<span class="text-danger">*</span></a></h3>
 
                                         <div class="collapse" id="collapsebank">
                                             <div class="py-2">

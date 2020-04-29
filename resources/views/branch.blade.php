@@ -45,7 +45,7 @@
                             <div class="info">
                                 <h3>{{$branch->name}}</h3>
                                 <p>{{$branch->phone}}</p>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Table Reserve</a></p>
+                                <p><a href="booktable?branch={{$branch->id}}" class="buy-now btn btn-sm btn-secondary">Table Reserve</a></p>
                                 <h3>Open-Close :<span>{{$branch->open_hour}}</span></h3>
                                 
                                 
