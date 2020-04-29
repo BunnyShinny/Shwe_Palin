@@ -37,12 +37,17 @@ Route::get('/checkout', 'FrontendController@getCartToCheckout')->name('checkout'
 Route::POST('/checkout', 'FrontendController@postCartToCheckout')->name('postcheckout');
 
 
-
+//Booking
 Route::get('/booktable', 'FrontendController@reservation');
 Route::POST('/booktablesave', 'FrontendController@save_reservation')->name('booktablesave');
+Route::POST('/booktable_with_ordersave', 'FrontendController@booktable_with_ordersave')->name('booktablewithordersave');
+
 Route::POST('/save-device-token', 'UserController@saveToken');
 Route::get('/contact', function () {
     return view('contact');
+});
+Route::get('/accountsetting', function () {
+    return view('accountsetting');
 });
 
 
@@ -58,12 +63,15 @@ Route:: get('/thankyou', function (){
 Route:: get('/bookdisplay', function (){
 	return view('bookdisplay');
 });
+<<<<<<< HEAD
 Route:: get('/accountsetting', function (){
 	return view('accountsetting');
 });
 Route:: get('/receipt', function (){
 	return view('receipt');
 });
+=======
+>>>>>>> a800b2a9c1f6a2784f092dad8ea57657a137e568
 
 Auth::routes();
 
@@ -83,13 +91,19 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 	//Order
 	Route::resource('orders', 'OrderController');
+	Route::PUT('/orders_confirm/{order}/order_confirm', 'OrderController@Confirm')->name('orders_confirm');
+
+	//Reservation With Order
+	Route::resource('reservationwithorders', 'ReservationWithOrderController');
+	Route::PUT('/reservationwithorders_confirm/{reservationwithorder}/reservation_with_order_confirm', 'ReservationWithOrderController@Confirm')->name('reservationwithorders_confirm');
 
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
-	Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
-	Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-
+	
 });
+
+Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
+Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
 
 
 

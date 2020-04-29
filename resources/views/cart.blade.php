@@ -106,7 +106,7 @@
                     <form action="" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
                         id="cart_coupon_form">
                         
-                        <a href="booktable" class="button_clear cart_button_2 text-center">RESERVE</a>
+                        <a href="booktable" class="button_clear cart_button_2">RESERVE</a>
                     </form>
                 </div>
             </div>
@@ -123,11 +123,20 @@
                             <div class="cart_total_title">Shipping</div>
                             <div class="cart_total_price ml-auto">500 kyats</div>
                         </li>
+                        @auth
+                        <li class="d-flex flex-row align-items-center justify-content-start">
+                            <div class="cart_total_title">Promotion</div>
+                            <div class="cart_total_price ml-auto">500 kyats</div>
+                        </li>
+                        @endauth
                         <li class="d-flex flex-row align-items-center justify-content-start">
                             <div class="cart_total_title">Total</div>
                             <div class="cart_total_price ml-auto">
                             @php
                                 $i = 500;
+                                if(Auth::check()){
+                                    $i-=500;
+                                }
                                 $final_total = $totalPrice + $i;
                             @endphp
                         {{$final_total}} Kyats
@@ -137,9 +146,29 @@
                     <a href="{{ route('checkout') }}"><button class="cart_total_button">proceed to checkout</button></a>
                 </div>
             </div>
-            @else
-            @endif
+            
         </div>
+
+
+        @else
+        
+        <div class="row cart_extra">
+            <!-- Cart Coupon -->
+            <div class="col-lg-6">
+                <div class="cart_coupon">
+                    <div class="cart_title">Reservation</div>
+                    <form action="" class="cart_coupon_form d-flex flex-row align-items-start justify-content-start"
+                        id="cart_coupon_form">
+                        
+                        <a href="booktable" class="button_clear cart_button_2">RESERVE</a>
+                    </form>
+                </div>
+            </div>
+            <!-- Cart Total -->
+            
+            
+        </div> 
+        @endif
     </div>
 </div>
 @endsection

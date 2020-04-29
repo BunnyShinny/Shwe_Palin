@@ -13,34 +13,19 @@ class CategoriesTableSeeder extends Seeder
     {
         DB::table('categories')->insert([
             [
-                "name"=> 'sa mu sar',
+                "name"=> 'bread',
             ],
             [
-                "name"=> 'Tea',
+                "name"=> 'drinks',
             ],
             [
-                "name"=> 'Bayar Kyaw',
+                "name"=> 'noodle',
             ],
             [
-                "name"=> 'Fried Rice',
+                "name"=> 'puff',
             ],
             [
-                "name"=> 'Brawnies',
-            ],
-            [
-                "name"=> 'Tearice Salad',
-            ],
-            [
-                "name"=> 'Putin Cake',
-            ],
-            [
-                "name"=> 'Lemon Jucie',
-            ],
-            [
-                "name"=> 'Coconut Milk Noodle',
-            ],
-            [
-                "name"=> 'Strawberry Juice',
+                "name"=> 'trad',
             ],
         ]);
     }

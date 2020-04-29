@@ -1,5 +1,5 @@
 @extends('layouts.app', [ 'namePage' => 'Dashboard', 'class' => 'login-page
-sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
+sidebar-mini ', 'activePage' => 'reservationwithorderlist', 'backgroundImage' => asset('now') .
 "/img/bg14.jpg", ]) @section('content')
 <div class="panel-header panel-header-sm"></div>
 <div class="content">
@@ -11,9 +11,7 @@ sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
                     <div class="col-md-6">
                       <h4 class="card-title">Category</h4>
                     </div>
-                    <div class="col-md-6 text-right">
-                      
-                    </div>
+                    
                   </div>
                 </div>
                 <div class="card-body">
@@ -28,10 +26,16 @@ sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
                                         Name
                                     </th>
                                     <th>
-                                        Address
+                                        Phone
                                     </th>
                                     <th>
-                                        Phone
+                                        No of People
+                                    </th>
+                                    <th>
+                                        Date 
+                                    </th>
+                                    <th>
+                                        Branch  
                                     </th>
                                     <th>
                                         Items
@@ -45,37 +49,29 @@ sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
                                 </tr>
                             </thead>
                             <tbody>
-                                @php $i=1; @endphp @foreach($orders as
-                                $order)
+                                @php $i=1; @endphp @foreach($rwo as
+                                $rwo)
 
                                 <tr>
                                     <td class="text-center">{{ $i }}</td>
-                                    <td>{{$order->name}}</td>
-                                    <td>{{$order->address}}</td>
-                                    <td>{{$order->phone}}</td>
-
+                                    <td>{{$rwo->name}}</td>
+                                    <td>{{$rwo->phone}}</td>
+                                    <td>{{$rwo->no_of_people}}</td>
+                                    <td>{{$rwo->date}}</td>
+                                    <td>{{$rwo->branch_name}}</td>
                                     <td>
-                                        <!-- {{$order->cart->totalQty}} -->
-                                        @foreach ($order->cart->items as $item)
+                                        <!-- {{$rwo->cart->totalQty}} -->
+                                        @foreach ($rwo->cart->items as $item)
                                             {{$item['item']['name']}} <strong>x</strong> {{$item['qty']}}  Units<br>
                                         @endforeach
                                     </td>
 
-                                    <td>{{$order->cart->totalPrice}} MMK</td>
+                                    <td>{{$rwo->cart->totalPrice}} MMK</td>
                                     <td>
-                                        <!-- <a
-                                            href="{{route('orders.show',$order->id)}}"
-                                            class="btn btn-info btn-sm btn-icon"
-                                            ><i class="now-ui-icons travel_info"></i></a
-                                        > -->
-                                        <!-- <a
-                                            href="{{route('orders.edit',$order->id)}}"
-                                            class="btn btn-success btn-sm btn-icon"
-                                            ><i class="now-ui-icons ui-2_settings-90"></i></a
-                                        > -->
+                                        
                                         <form
                                             method="POST"
-                                            action="{{route('orders_confirm',$order->id)}}"
+                                            action="{{route('reservationwithorders_confirm',$rwo->id)}}"
                                             style="display: inline-block;"
                                         >
                                             @csrf @method('PUT')
@@ -90,7 +86,7 @@ sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
                                         </form>
                                         <form
                                             method="POST"
-                                            action="{{route('orders.destroy',$order->id)}}"
+                                            action="{{route('reservationwithorders.destroy',$rwo->id)}}"
                                             style="display: inline-block;"
                                         >
                                             @csrf @method('DELETE')

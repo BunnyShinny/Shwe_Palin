@@ -7,9 +7,11 @@ use App\Category;
 use App\Branch;
 use App\Reservation;
 use App\Cart;
+use App\User;
 use App\Order;
 use Illuminate\Http\Request;
 use Session;
+use App\Reservation_with_Order;
 
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
@@ -24,9 +26,17 @@ class FrontendController extends Controller
      * @param  \App\User  $model
      * @return \Illuminate\View\View
      */
+    public function __construct()
+    {
+        $this->serverKey = config('app.firebase_server_key');
+    }
+
     public function index()
     {
-        return view('index');
+        $popular = Menu::all()->random(5);
+        $bestseller = Menu::all()->random(5);
+        
+        return view('index',compact('popular','bestseller'));
     }
 
     public function foodmenu()
@@ -47,8 +57,14 @@ class FrontendController extends Controller
 
     public function reservation()
     {
+        if (!Session::has('cart')){
+            $branches=Branch::all();
+            return view('booktable',compact('branches'),['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $cart =  new Cart($oldcart);
         $branches=Branch::all();
-        return view('booktable',compact('branches'));
+        return view('booktable',compact('branches'), ['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
     public function save_reservation(Request $request)
@@ -72,6 +88,41 @@ class FrontendController extends Controller
         return view('index');
     }
 
+    public function booktable_with_ordersave(Request $request)
+    {
+        if (!Session::has('cart')){
+            return redirect()->route('foodmenu');
+            // return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $cart =  new Cart($oldcart);
+        // dd($cart =  new Cart($oldcart));
+        
+        $request->validate([
+            "name"=>'required',
+            "phone"=>'required',
+            "date"=>'required',
+            "no_of_people"=>'required',
+            "branch"=>'required',
+            
+        ]);
+        
+        
+
+        $rwo = new Reservation_with_Order;
+        $rwo->name = request('name');
+        $rwo->phone = request('phone');
+        $rwo->date = request('date');
+        $rwo->branch_id = request('branch');
+        $rwo->no_of_people = request('no_of_people'); 
+        $rwo->cart=serialize($cart);
+        $rwo->save();
+        
+
+        Session::forget('cart');
+        return view('thankyou')->with('Success', 'Successfully purchased products!');
+    }
+
     public function getAddToCart(Request $request, $id)
     {
 
@@ -90,7 +141,7 @@ class FrontendController extends Controller
     public function getCart()
     {
         if (!Session::has('cart')){
-            return view('cart',['menus'=>null]);
+            return view('cart',['menus'=>null, 'totalPrice'=>0]);
         }
         $oldcart = Session::get('cart');
         $cart =  new Cart($oldcart);
@@ -158,8 +209,47 @@ class FrontendController extends Controller
         $order->address=request('address');
 
         $order->phone=request('phone');
+        if(auth()->user()){
+            $order->user_id = auth()->user()->id;
+        }
         $order->save();
         Session::forget('cart');
-        return redirect()->route('welcome')->with('Success', 'Successfully purchased products!');
+
+        //message
+
+        $user = User::find(1);
+        if (auth()->user()){
+            $orderName = auth()->user()->name;
+        }else{
+            $orderName = $order->name;
+        }
+        $data = [
+            "to" => $user->device_token,
+            "notification" =>
+                [
+                    "title" => 'Reserve',
+                    "body" => "You Got a new Order From ".$orderName,
+                    "icon" => url('/logo.png'),
+                    "click_action"=> 'thankyou',
+                ],
+        ];
+        $dataString = json_encode($data);
+  
+        $headers = [
+            'Authorization: key=' . $this->serverKey,
+            'Content-Type: application/json',
+        ];
+  
+        $ch = curl_init();
+  
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+  
+        curl_exec($ch);
+
+        return view('thankyou')->with('Success', 'Successfully purchased products!');
     }
 }

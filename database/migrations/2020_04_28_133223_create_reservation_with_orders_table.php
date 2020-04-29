@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrdersTable extends Migration
+class CreateReservationWithOrdersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,17 +13,18 @@ class CreateOrdersTable extends Migration
      */
     public function up()
     {
-        Schema::create('orders', function (Blueprint $table) {
+        Schema::create('reservation_with__orders', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name');            
-            $table->string('address');
-            $table->string('phone');
             $table->text('cart');
+            $table->string('name');
+            $table->string('phone');
+            $table->integer('no_of_people');
+            $table->string('date');
+            $table->unsignedBigInteger ('branch_id');
             $table->boolean('confirm')->default(0);
-            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 
-            $table->foreign('user_id')->references('id')->on('users');
+            
         });
     }
 
@@ -34,6 +35,6 @@ class CreateOrdersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('orders');
+        Schema::dropIfExists('reservation_with__orders');
     }
 }

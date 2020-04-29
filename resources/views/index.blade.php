@@ -101,9 +101,6 @@
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home"
                                 role="tab" aria-controls="pills-home" aria-selected="true">
                                 <div class="single_menu text-center">
-                                    <div class="icon">
-                                        <i class="flaticon-lunch"></i>
-                                    </div>
                                     <h4>Popular</h4>
                                 </div>
                             </a>
@@ -112,23 +109,10 @@
                             <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile"
                                 role="tab" aria-controls="pills-profile" aria-selected="false">
                                 <div class="single_menu text-center">
-                                    <div class="icon">
-                                        <i class="flaticon-food"></i>
-                                    </div>
                                     <h4>Best Seller</h4>
                                 </div>
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                                                <a class="nav-link" id="pills-contact-tab" data-toggle="pill" href="#pills-contact" role="tab" aria-controls="pills-contact" aria-selected="false">
-                                                        <div class="single_menu text-center">
-                                                                <div class="icon">
-                                                                    <i class="flaticon-kitchen"></i>
-                                                                </div>
-                                                                <h4>Lunch</h4>
-                                                            </div>
-                                                    </a>
-                                                </li> -->
                     </ul>
                 </div>
             </div>
@@ -137,302 +121,44 @@
         <div class="tab-content" id="pills-tabContent">
             <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                 <div class="row">
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/menu/noodle/01.jpg" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
+                        @foreach($popular as $menu)
+                            <div class="col-xl-6 col-md-6 col-lg-6 {{$menu->category->name}}">
+                                <div class="single_delicious d-flex align-items-center">
+                                    <div class="thumb">
+                                        
+                                        <a href="{{asset($menu->image)}}"><img src="{{asset($menu->image)}}" alt="" style="max-width: 232px; border-radiu: 232px"></a>
                                     </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
+                                    <div class="info">
+                                        <h3 name="name">{{$menu->name}}</h3>
+                                        <p>{{$menu->description}}</p>
+                                        <span name="price">{{$menu->price}} MMKS</span>
+                                        <h4>Available<span class="available"></span></h4>
+                                        <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
                                     </div>
                                 </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/3.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/5.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/2.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/4.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="col-lg-6 col-md-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/6.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>Coconut Noodle</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>1000 MMKS</span>
-                                <h4>Available<span class="available"></span></h4>
-                                <div class="input-group mb-3" style="max-width: 120px;">
-                                    <div class="input-group-prepend">
-                                        <button class="btn btn-outline-primary js-btn-minus"
-                                            type="button">&minus;</button>
-                                    </div>
-                                    <input type="text" class="form-control text-center" value="1" placeholder=""
-                                        aria-label="Example text with button addon" aria-describedby="button-addon1">
-                                    <div class="input-group-append">
-                                        <button class="btn btn-outline-primary js-btn-plus"
-                                            type="button">&plus;</button>
-                                    </div>
-                                </div>
-                                <p><a href="" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
                 </div>
             </div>
             <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 <div class="row">
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/1.png" alt="">
+                    @foreach($bestseller as $menu)
+                            <div class="col-xl-6 col-md-6 col-lg-6 {{$menu->category->name}}">
+                                <div class="single_delicious d-flex align-items-center">
+                                    <div class="thumb">
+                                        
+                                        <a href="{{asset($menu->image)}}"><img src="{{asset($menu->image)}}" alt="" style="max-width: 232px; border-radiu: 232px"></a>
+                                    </div>
+                                    <div class="info">
+                                        <h3 name="name">{{$menu->name}}</h3>
+                                        <p>{{$menu->description}}</p>
+                                        <span name="price">{{$menu->price}} MMKS</span>
+                                        <h4>Available<span class="available"></span></h4>
+                                        <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="info">
-                                <h3>#12. Chicken Chilis</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/3.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#10. Fried Rice</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/5.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#02. Burger Cury</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/2.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#16. Chicken Chilis</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/4.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#08. Vegetable fry</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/6.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#01. Chicken Chilis</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="tab-pane fade" id="pills-contact" role="tabpanel" aria-labelledby="pills-contact-tab">
-                <div class="row">
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/1.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#12. Chicken Chilis</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/3.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#10. Fried Rice</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/5.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#02. Burger Cury</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-6 col-md-6 col-lg-6">
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/2.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#16. Chicken Chilis</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/4.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#08. Vegetable fry</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                        <div class="single_delicious d-flex align-items-center">
-                            <div class="thumb">
-                                <img src="frontend/img/delicious/6.png" alt="">
-                            </div>
-                            <div class="info">
-                                <h3>#01. Chicken Chilis</h3>
-                                <p>Craft beer elit seitan exercitation photo booth et 8-bit kale chips.</p>
-                                <span>$20</span>
-                            </div>
-                        </div>
-                    </div>
+                        @endforeach
                 </div>
             </div>
         </div>
