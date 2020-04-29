@@ -20,6 +20,10 @@ class CreateBranchesTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->string('open_hour');
+
+            $table->string('latitude');
+            $table->string('longtitude');
+            
             $table->timestamps();
         });
     }

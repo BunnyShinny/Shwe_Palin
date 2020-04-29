@@ -37,17 +37,22 @@ class BranchController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            "name"=>'required',
             "phone"=>'required',
             "address"=>'required|unique:branches',
             "phone"=>'required',
             "open_hour"=>'required',
             "image"=>'required',
+            "latitude"=> "required",
+            "longtitude"=> "required"
         ]);
         $save = new Branch;
         $save->name = request('name');
         $save->address = request('address');
         $save->phone = request('phone');
         $save->open_hour = request('open_hour');
+        $save->latitude = request('latitude');
+        $save->longtitude = request('longtitude');
 
         $image=$request->file('image');
         $path='';
@@ -106,12 +111,16 @@ class BranchController extends Controller
             "phone"=>'required',
             "open_hour"=>'required',
             "image"=>'required',
+            "latitude"=> "required",
+            "longtitude"=> "required"
         ]);
         
         $branch->name = request('name');
         $branch->address = request('address');
         $branch->phone = request('phone');
         $branch->open_hour = request('open_hour');
+        $branch->latitude = request('latitude');
+        $branch->longtitude = request('longtitude');
 
         $image=$request->file('image');
         $path='';

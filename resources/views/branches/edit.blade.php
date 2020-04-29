@@ -56,7 +56,10 @@
                           @include('alerts.feedback', ['field' => 'image'])
                   </div>
               </div>
-          </div>
+              <div class="col-md-12">
+                  <input id="lat" type="hidden" name="latitude" class="form-control"  value="{{ old('price',$branch->latitude) }}"/>
+                  <input id="lng" type="hidden" name="longtitude" class="form-control" value="{{ old('price',$branch->longtitude) }}" />
+              </div>
               <div class="card-footer text-center">
                 <button type="submit" class="btn btn-primary btn-round ">Update</button>
                 <a
@@ -69,6 +72,11 @@
         </div>
       </div>
     </div>
+    <div class="col-md-7">
+      <div id="map" style="width: 100%; height: 60vh"></div>
+      @include('alerts.feedback', ['field' => 'longtitude'])
+      @include('alerts.feedback', ['field' => 'latitude'])
+    </div>
   </div>
 </div>
 @endsection
@@ -80,5 +88,35 @@
     demo.initDashboardPageCharts();
 
   });
+
+  var mapOptions = {
+        center: [16.8661, 96.1951],
+        zoom: 12
+    }
+    // Creating a map object
+    var map = new L.map('map', mapOptions);
+    // Creating a Layer object
+    var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    L.control.scale().addTo(map);
+    // var searchControl = new L.esri.Controls.Geosearch().addTo(map);
+    // Adding layer to the map
+    map.addLayer(layer);
+    var existing = {lat:"{{$branch->latitude}}",lng:"{{$branch->longtitude}}"}
+    var marker = new L.marker(existing).addTo(map);;
+    map.on('click', function (e) {
+      console.log('arr')
+      console.log(e)
+        if (marker != undefined) {
+            map.removeLayer(marker);
+        }
+        marker = new L.marker(e.latlng).addTo(map);
+        $("#lat").val(e.latlng.lat);
+        $("#lng").val(e.latlng.lng);
+    });
+
+    $('.leaflet-container').css('cursor','pointer');
 </script>
 @endpush

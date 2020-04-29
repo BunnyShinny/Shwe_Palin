@@ -9,6 +9,6 @@ class Branch extends Model
     
 
     protected $fillable = [
-        'name','image','address','phone','open_hour',
+        'name','image','address','phone','open_hour','latitude','longtitude'
     ];    
 }

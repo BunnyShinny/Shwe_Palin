@@ -28,45 +28,9 @@
             </div>
         </div>
         <div class="d-none d-sm-block mb-5 pb-4">
-                    <div id="map" style="height: 480px; position: relative; overflow: hidden;"> </div>
-                    <script>
-                        function initMap() {
-                            var uluru = {
-                                lat: -25.363,
-                                lng: 131.044
-                            };
-                            var grayStyles = [{
-                                    featureType: "all",
-                                    stylers: [{
-                                            saturation: -90
-                                        },
-                                        {
-                                            lightness: 50
-                                        }
-                                    ]
-                                },
-                                {
-                                    elementType: 'labels.text.fill',
-                                    stylers: [{
-                                        color: '#ccdee9'
-                                    }]
-                                }
-                            ];
-                            var map = new google.maps.Map(document.getElementById('map'), {
-                                center: {
-                                    lat: -31.197,
-                                    lng: 150.744
-                                },
-                                zoom: 9,
-                                styles: grayStyles,
-                                scrollwheel: false
-                            });
-                        }
-                    </script>
-                    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap">
-                    </script>
-    
-                </div>
+            <div id="map" style="height: 480px; position: relative; overflow: hidden;"> </div>
+
+        </div>
         
 
         <div class="tab-content" id="pills-tabContent">
@@ -183,3 +147,29 @@
 </div>
 <!--/ Delicious area start  -->
 @endsection
+@push('scripts')
+    <script>
+    
+    // Creating map options
+
+  var mapOptions = {
+        center: [16.8661, 96.1951],
+        zoom: 12
+    }
+    // Creating a map object
+    var map = new L.map('map', mapOptions);
+    // Creating a Layer object
+    var layer = new L.TileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png');
+    L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+    L.control.scale().addTo(map);
+    // var searchControl = new L.esri.Controls.Geosearch().addTo(map);
+    // Adding layer to the map
+    map.addLayer(layer);
+        @foreach($branches as $branch)
+            L.marker(["{{$branch->latitude}}", "{{$branch->longtitude}}"]).bindPopup("{{$branch->name}}").addTo(map) 
+        @endforeach
+    $('.leaflet-container').css('z-index',0);
+    </script>
+@endpush
