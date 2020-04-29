@@ -121,7 +121,7 @@
 }
 .cart_product_name a:hover
 {
-	color: #937c6f;
+	color: #DB9A64;
 }
 .product_quantity
 {
@@ -238,7 +238,8 @@
 	border-bottom: solid 1px #b5b5b5;
 }
 .cart_control_bar a{
-    margin-left: 560px;
+	padding-top: 10px;
+    margin-left: 10px;
 }
 .cart_button
 {
@@ -264,7 +265,7 @@
 	height: 47px;
 	border: solid 1px #b5b5b5;
 	outline: none;
-	background: #937c6f;
+	background: #DB9A64;
 	padding-left: 34px;
 	padding-right: 34px;
 	text-transform: uppercase;
@@ -285,13 +286,14 @@
 }
 .cart_button:hover
 {
-	background: #937c6f;
+	background: #DB9A64;
 	color: #FFFFFF;
-	border: solid 1px #937c6f;
+	border: solid 1px #DB9A64
 }
 .button_clear
 {
 	margin-right: 8px;
+	padding-top: 10px;
 }
 
 .cart_extra
@@ -369,7 +371,7 @@
 	height: 47px;
 	border: solid 1px #b5b5b5;
 	outline: none;
-	background: #937c6f;
+	background: #DB9A64;
 	text-align: center;
 	text-transform: uppercase;
 	letter-spacing: 0.2em;

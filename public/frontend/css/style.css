@@ -3314,8 +3314,8 @@ h3 {
 
 /* line 9, ../../Arafath/CL/Cl November/225. Restaurant-02/HTML/scss/_footer.scss */
 .footer .footer_top {
-  padding-top: 155px;
-  padding-bottom: 139px;
+  padding-top: 90px;
+  padding-bottom: 39px;
 }
 
 @media (max-width: 767px) {

@@ -238,7 +238,7 @@
         background: #7971ea; }
 
         .check img{
-          width: 200px;
+          width: 150px;
           height: auto;
           object-fit: cover;
         }
@@ -246,6 +246,7 @@
           background: #F5BFEA;
           padding: 50px 0px;
           min-height: 785px;
+          font-family: "Poppins", sans-serif;
         }
         .receiptform{
           padding: 0px 30px;
@@ -254,22 +255,28 @@
             border: 0px solid;
             background: #fff;
             border-radius: 10px;
+            font-family: "Poppins", sans-serif;
         }
         .receiptform p{
           margin-top: 50px;
+          font-family: "Poppins", sans-serif;
         }
         .receiptform h3{
           margin-top: 20px;
           display: block;
+          font-family: "Poppins", sans-serif;
         }
         .second span{
           font-size: 15px;
         }
         .second h4{
           font-weight: 600;
+          font-size: 14px;
+          font-family: "Poppins", sans-serif;
         }
         .third h5{
           font-size: 14px;
+          font-family: "Poppins", sans-serif;
         }
 
         /* alert */

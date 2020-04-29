@@ -25,7 +25,7 @@
             <img src="frontend/img/check.png" alt="">
             <h2 class="display-3 text-black">Thank you!</h2>
             <p class="lead mb-5">You order was successfuly completed.</p>
-            <p><a href="foodmenu" class="btn btn-sm btn-primary">Back to Home</a></p>
+            <p><a href="foodmenu" class="btn btn-md btn-primary">Back to Home</a></p>
           </div>
         </div>
       </div>
