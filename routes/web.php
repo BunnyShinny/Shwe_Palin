@@ -63,15 +63,12 @@ Route:: get('/thankyou', function (){
 Route:: get('/bookdisplay', function (){
 	return view('bookdisplay');
 });
-<<<<<<< HEAD
 Route:: get('/accountsetting', function (){
 	return view('accountsetting');
 });
 Route:: get('/receipt', function (){
 	return view('receipt');
 });
-=======
->>>>>>> a800b2a9c1f6a2784f092dad8ea57657a137e568
 
 Auth::routes();
 
