@@ -22,7 +22,10 @@ class CreateReservationWithOrdersTable extends Migration
             $table->string('date');
             $table->unsignedBigInteger ('branch_id');
             $table->boolean('confirm')->default(0);
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users');
 
             
         });

@@ -85,7 +85,8 @@ class FrontendController extends Controller
         $save->no_of_people = request('no_of_people');
     
         $save->save();
-        return view('index');
+        
+        return redirect()->route('welcome');
     }
 
     public function booktable_with_ordersave(Request $request)
@@ -104,7 +105,6 @@ class FrontendController extends Controller
             "date"=>'required',
             "no_of_people"=>'required',
             "branch"=>'required',
-            
         ]);
         
         
@@ -116,7 +116,45 @@ class FrontendController extends Controller
         $rwo->branch_id = request('branch');
         $rwo->no_of_people = request('no_of_people'); 
         $rwo->cart=serialize($cart);
+        if(auth()->user()){
+            $rwo->user_id = auth()->user()->id;
+        }
         $rwo->save();
+
+        //message
+
+        $user = User::find(1);
+        if (auth()->user()){
+            $orderName = auth()->user()->name;
+        }else{
+            $orderName = $order->name;
+        }
+        $data = [
+            "to" => $user->device_token,
+            "notification" =>
+                [
+                    "title" => 'Reserve',
+                    "body" => "You Got a new reservation From ".$orderName,
+                    "icon" => url('/logo.png'),
+                    "click_action"=> 'reservationwithorders',
+                ],
+        ];
+        $dataString = json_encode($data);
+  
+        $headers = [
+            'Authorization: key=' . $this->serverKey,
+            'Content-Type: application/json',
+        ];
+  
+        $ch = curl_init();
+  
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+  
+        curl_exec($ch);
         
 
         Session::forget('cart');
@@ -188,6 +226,7 @@ class FrontendController extends Controller
     }
     public function receipt(Request $request)
     {
+        dd($request);
         // $order = Order::find($request->input('order'));
         $orders = Order::all();
         $orders->transform(function($orders, $key){
