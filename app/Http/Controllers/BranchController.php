@@ -61,9 +61,9 @@ class BranchController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $image->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $public_path=public_path().'/assets/img/branch/';
+            $public_path=public_path().'/assets/img/';
             $image->move($public_path, $fileNameToStore);
-            $path = '/assets/img/branch/'.$fileNameToStore;
+            $path = '/assets/img/'.$fileNameToStore;
             $save->image =$path;
         }else{
             $save->$image=$path;
@@ -129,9 +129,9 @@ class BranchController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $image->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $public_path=public_path().'/assets/img/branch/';
+            $public_path=public_path().'/assets/img/';
             $image->move($public_path, $fileNameToStore);
-            $path = '/assets/img/branch/'.$fileNameToStore;
+            $path = '/assets/img/'.$fileNameToStore;
             $branch->image =$path;
         }else{
             $branch->$image=$path;
