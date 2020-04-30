@@ -76,7 +76,7 @@
                                 <p>{{$menu->description}}</p>
                                 <span name="price">{{$menu->price}} MMKS</span>
                                 <h4>Available<span class="available"></span></h4>
-                                <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
+                                <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="add-to-cart-btn">Add To Cart</a></p>
                             </div>
                         </div>
                     </div>
@@ -99,7 +99,7 @@
                                         <p>{{$menu->description}}</p>
                                         <span name="price">{{$menu->price}} MMKS</span>
                                         <h4>Available<span class="available"></span></h4>
-                                        <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="buy-now btn btn-sm btn-secondary">Add To Cart</a></p>
+                                        <p><a href="{{ route('addtocart', ['id'=> $menu->id]) }}" class="add-to-cart-btn">Add To Cart</a></p>
                                     </div>
                                 </div>
                             </div>

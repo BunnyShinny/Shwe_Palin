@@ -100,7 +100,7 @@
                                             <td class="text-black font-weight-bold"><strong>
                                             @php
                                                 $i = 500;
-                                                if(Auth::check()){
+                                                if(Auth::check() && $totalPrice>=3000){
                                                     $i-=500;
                                                 }
                                                 $final_total = $totalPrice + $i;

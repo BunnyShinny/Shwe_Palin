@@ -45,12 +45,19 @@
                             </div>
                         </div>
                         <div class="second">
-                            <h3>Order Receipt</h3>
+                            @if($data->branch_name)
+                                <h3>Reservation Receipt</h3>
+                            @else
+                                <h3>Order Receipt</h3>
+                            @endif
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>Date: <span>{{date("F j, Y, g:i a",strtotime($order->created_at))}}</span></h4>
-                                    <h4>Order ID: <span>{{$order->id}}</span></h4>
-                                    <h4>Customer Number: <span>{{$order->phone}}</span></h4>
+                                    <h4>Date: <span>{{date("F j, Y, g:i a",strtotime($data->created_at))}}</span></h4>
+                                    <h4>Order ID: <span>{{$data->id}}</span></h4>
+                                    <h4>Customer Number: <span>{{$data->phone}}</span></h4>
+                                    @if($data->branch_name)
+                                        <h4>Branch : <span>{{$data->branch_name}}</span></h4>
+                                    @endif
 
                                 </div>
                                 <div class="col-md-6"></div>
@@ -92,6 +99,7 @@
                                     <h5>750 Ks</h5>
                                 </div>
                             </div> -->
+                            @if($containCart)
                             <table class="table">
                                 <thead>
                                     <tr>
@@ -102,7 +110,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach($order->cart->items as $item)
+                                    @foreach($data->cart->items as $item)
                                     <tr>
                                         <td>{{$item['item']['name']}}</td>
                                         <td>{{$item['item']['price']}} Ks</td>
@@ -113,10 +121,11 @@
                                     <tr>
                                         <th scope="row"></th>
                                         <td colspan="2">Total</td>
-                                        <td>{{$order->cart->totalPrice}} Ks</td>
+                                        <td>{{$data->cart->totalPrice}} Ks</td>
                                     </tr>
                                 </tbody>
                             </table>
+                            @endif
                         </div>
                         <p class="text-center"><a href="foodmenu" class="btn btn-sm btn-primary">Back to Home</a></p>
                         

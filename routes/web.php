@@ -83,14 +83,18 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 	// Reservation
 	Route::resource('reservations', 'ReservationController');
+	Route::PUT('/reservation_confirm/{reservation}/reservation_confirm', 'ReservationController@Confirm')->name('reservation_confirm');
+	Route::PUT('/reservation_declined/{reservation}/reservation_declined', 'ReservationController@declined')->name('reservation_declined');
 
 	//Order
 	Route::resource('orders', 'OrderController');
 	Route::PUT('/orders_confirm/{order}/order_confirm', 'OrderController@Confirm')->name('orders_confirm');
+	Route::PUT('/orders_declined/{order}/order_declined', 'OrderController@Declined')->name('orders_declined');
 
 	//Reservation With Order
 	Route::resource('reservationwithorders', 'ReservationWithOrderController');
 	Route::PUT('/reservationwithorders_confirm/{reservationwithorder}/reservation_with_order_confirm', 'ReservationWithOrderController@Confirm')->name('reservationwithorders_confirm');
+	Route::PUT('/reservationwithorders_declined/{reservationwithorder}/reservation_with_order_declined', 'ReservationWithOrderController@Declined')->name('reservationwithorders_declined');
 
 	Route::resource('user', 'UserController', ['except' => ['show']]);
 	Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);

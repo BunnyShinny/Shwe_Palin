@@ -124,17 +124,19 @@
                             <div class="cart_total_price ml-auto">500 kyats</div>
                         </li>
                         @auth
-                        <li class="d-flex flex-row align-items-center justify-content-start">
-                            <div class="cart_total_title">Promotion</div>
-                            <div class="cart_total_price ml-auto">500 kyats</div>
-                        </li>
+                            @if($totalPrice>=3000)
+                                <li class="d-flex flex-row align-items-center justify-content-start">
+                                    <div class="cart_total_title">Promotion</div>
+                                    <div class="cart_total_price ml-auto">500 kyats</div>
+                                </li>
+                            @endif
                         @endauth
                         <li class="d-flex flex-row align-items-center justify-content-start">
                             <div class="cart_total_title">Total</div>
                             <div class="cart_total_price ml-auto">
                             @php
                                 $i = 500;
-                                if(Auth::check()){
+                                if(Auth::check() && $totalPrice>=3000){
                                     $i-=500;
                                 }
                                 $final_total = $totalPrice + $i;
@@ -143,6 +145,15 @@
                             </div>
                         </li>
                     </ul>
+                    @auth
+                        @if($totalPrice<3000)
+                        <div class="text-center">
+                            <span class="invalid-feedback" role="alert" style="display: block;{{-- This fixes a bootstrap known-issue --}}">
+                                <strong>Order 3000 MMK to get 500 discount !</strong>
+                            </span>
+                        </div>
+                        @endif
+                    @endauth
                     <a href="{{ route('checkout') }}"><button class="cart_total_button">proceed to checkout</button></a>
                 </div>
             </div>

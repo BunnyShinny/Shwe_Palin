@@ -21,6 +21,8 @@
 }
 .info h4{
     color: #22F17C;
+    margin: 0;
+    font-size: 18px;
 }
 .available{
     margin-left: 5px;
@@ -243,7 +245,7 @@
           object-fit: cover;
         }
         .receipt{
-          background: #F5BFEA;
+          background: #e3972d;
           padding: 50px 0px;
           min-height: 785px;
           font-family: "Poppins", sans-serif;
@@ -251,8 +253,8 @@
         .receiptform{
           padding: 0px 30px;
             width: 100%;
-            height: 560px;
             border: 0px solid;
+            padding-bottom: 20px;
             background: #fff;
             border-radius: 10px;
             font-family: "Poppins", sans-serif;
@@ -368,4 +370,28 @@
     position: absolute;
     top: 50%;
     margin-top: -11px;
+}
+
+.add-to-cart-btn {
+  height: 47px;
+	border: solid 1px #b5b5b5;
+	outline: none;
+	background: #DB9A64;
+	text-transform: uppercase;
+	letter-spacing: 0.2em;
+	font-size: 10px;
+	color: #FFFFFF;
+  cursor: pointer;
+  padding: 10px 15px;
+	-webkit-transition: all 200ms ease;
+	-moz-transition: all 200ms ease;
+	-ms-transition: all 200ms ease;
+	-o-transition: all 200ms ease;
+	transition: all 200ms ease;
+}
+
+.add-to-cart-btn:hover
+{
+	background: #FFFFFF;
+	color: #232323;
 }

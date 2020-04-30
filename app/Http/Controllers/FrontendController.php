@@ -83,8 +83,48 @@ class FrontendController extends Controller
         $save->date = request('date');
         $save->branch_id = request('branch');
         $save->no_of_people = request('no_of_people');
+
+        if(auth()->user()){
+            $save->user_id = auth()->user()->id;
+        }
     
         $save->save();
+
+        //message
+
+        $user = User::find(1);
+        if (auth()->user()){
+            $orderName = auth()->user()->name;
+        }else{
+            $orderName = $save->name;
+        }
+        $data = [
+            "to" => $user->device_token,
+            "notification" =>
+                [
+                    "title" => 'Reserve',
+                    "body" => "You Got a new reservation From ".$orderName,
+                    "icon" => url('/logo.png'),
+                    "click_action"=> 'reservations',
+                ],
+        ];
+        $dataString = json_encode($data);
+  
+        $headers = [
+            'Authorization: key=' . $this->serverKey,
+            'Content-Type: application/json',
+        ];
+  
+        $ch = curl_init();
+  
+        curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+  
+        curl_exec($ch);
+
         
         return redirect()->route('welcome');
     }
@@ -127,7 +167,7 @@ class FrontendController extends Controller
         if (auth()->user()){
             $orderName = auth()->user()->name;
         }else{
-            $orderName = $order->name;
+            $orderName = $rwo->name;
         }
         $data = [
             "to" => $user->device_token,
@@ -226,21 +266,39 @@ class FrontendController extends Controller
     }
     public function receipt(Request $request)
     {
-        dd($request);
         // $order = Order::find($request->input('order'));
-        $orders = Order::all();
-        $orders->transform(function($orders, $key){
-            $orders->cart = unserialize($orders->cart);
-            return $orders;
-        });
-        $order = null;
-        foreach($orders as $getOrder) {
-            if ($request->input('order') == $getOrder->id) {
-                $order = $getOrder;
+        $containCart = true;
+        if($request->input('order')){
+            $all = Order::all();
+            $queryString = $request->input('order');
+        }else if($request->input('rwo')){
+            $all = DB::table('reservation_with__orders')
+            ->join('branches', 'branches.id', '=', 'reservation_with__orders.branch_id')
+            ->select('reservation_with__orders.*', 'branches.name as branch_name')
+            ->get();
+            $queryString = $request->input('rwo');
+        }else if($request->input('reservation')){
+            $all = DB::table('reservations')
+            ->join('branches', 'branches.id', '=', 'reservations.branch_id')
+            ->select('reservations.*', 'branches.name as branch_name')
+            ->get();
+            $containCart = false;
+            $queryString = $request->input('reservation');
+        }
+        if($containCart){
+            $all->transform(function($all, $key){
+                $all->cart = unserialize($all->cart);
+                return $all;
+            });
+        }
+        $data = null;
+        foreach($all as $getOrder) {
+            if ($queryString == $getOrder->id) {
+                $data = $getOrder;
                 break;
             }
         }
-        return view('receipt',compact('order'));
+        return view('receipt',compact(['data','containCart']));
     }
 
     public function postCartToCheckout(Request $request)
@@ -251,7 +309,6 @@ class FrontendController extends Controller
         }
         $oldcart = Session::get('cart');
         $cart =  new Cart($oldcart);
-        // dd($cart =  new Cart($oldcart));
         $order = new Order();
         $request->validate([
             "name"=>'required',
@@ -267,6 +324,7 @@ class FrontendController extends Controller
         $order->phone=request('phone');
         if(auth()->user()){
             $order->user_id = auth()->user()->id;
+            $order->discount = $cart->totalPrice >= 3000 ? 500 : 0; 
         }
         $order->save();
         Session::forget('cart');

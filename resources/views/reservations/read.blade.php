@@ -9,74 +9,194 @@ sidebar-mini ', 'activePage' => 'Reservationlist', 'backgroundImage' => asset('n
                 <div class="card-header">
                   <div class="row">
                     <div class="col-md-6">
-                      <h4 class="card-title">Reservationlists</h4>
+                      <h4 class="card-title">Reservation lists</h4>
                     </div>
                     <div class="col-md-6 text-right">
                     </div>
                   </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">
-                                        No
-                                    </th>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Phone
-                                    </th>
-                                    <th>
-                                        No. of People
-                                    </th>
-                                    <th>
-                                        Date
-                                    </th>
-                                    <th>
-                                        Branch Name
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $i=1; @endphp @foreach($reservations as
-                                $reservation)
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#new" data-toggle="tab">New</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#accepted" data-toggle="tab">Accepted</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#declined" data-toggle="tab">Declined</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content text-center">
+                        <div class="tab-pane active" id="new">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                No
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Phone
+                                            </th>
+                                            <th>
+                                                No. of People
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Branch Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($new_reservations as $key => $reservation)
+                                        <tr>
+                                            <td class="text-center">{{ $key + 1 }}</td>
+                                            <td>{{$reservation->name}}</td>
+                                            <td>{{$reservation->phone}}</td>
+                                            <td>{{$reservation->no_of_people}}</td>
+                                            <td>{{$reservation->date}}</td>
+                                            <td>{{$reservation->branch_name}}</td>
+                                            <td>
+                                                <!-- <a
+                                                    href="{{route('reservations.edit',$reservation->id)}}"
+                                                    class="btn btn-success btn-sm btn-icon"
+                                                    ><i class="now-ui-icons ui-2_settings-90"></i></a
+                                                > -->
+                                                <form
+                                                    method="POST"
+                                                    action="{{route('reservation_confirm',$reservation->id)}}"
+                                                    style="display: inline-block;"
+                                                >
+                                                    @csrf @method('PUT')
+            
+                                                    <button
+                                                        type="submit"
+                                                        rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon"
+                                                        onclick="return confirm('Are You Confirm')"
+                                                    >
+                                                    <i class="now-ui-icons ui-1_check"></i>
+                                                    </button>
+                                                </form>
+                                                <form
+                                                    method="POST"
+                                                    action="{{route('reservation_confirm',$reservation->id)}}"
+                                                    style="display: inline-block;"
+                                                >
+                                                    @csrf @method('PUT')
+            
+                                                    <button
+                                                        type="submit"
+                                                        rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon"
+                                                        onclick="return confirm('Are You Sure?')"
+                                                    >
+                                                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="accepted">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                No
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Phone
+                                            </th>
+                                            <th>
+                                                No. of People
+                                            </th>
+                                            <th>
+                                                Date
+                                            </th>
+                                            <th>
+                                                Branch Name
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($accepted_reservations as $key => $reservation)
 
-                                <tr>
-                                    <td class="text-center">{{ $i }}</td>
-                                    <td>{{$reservation->name}}</td>
-                                    <td>{{$reservation->phone}}</td>
-                                    <td>{{$reservation->no_of_people}}</td>
-                                    <td>{{$reservation->date}}</td>
-                                    <td>{{$reservation->branch_name}}</td>
-                                    <td>
-                                        <a
-                                            href="{{route('reservations.edit',$reservation->id)}}"
-                                            class="btn btn-success btn-sm btn-icon"
-                                            ><i class="now-ui-icons ui-2_settings-90"></i></a
-                                        >
-                                        <form
-                                            method="POST"
-                                            action="{{route('reservations.destroy',$reservation->id)}}"
-                                            style="display: inline-block;"
-                                        >
-                                            @csrf @method('DELETE')
-    
-                                            <button
-                                                type="submit"
-                                                rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon"
-                                                onclick="return confirm('Are You Confirm')"
-                                            >
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @php $i++; @endphp @endforeach
-                            </tbody>
-                        </table>
+                                        <tr>
+                                            <td class="text-center">{{ $key+1 }}</td>
+                                            <td>{{$reservation->name}}</td>
+                                            <td>{{$reservation->phone}}</td>
+                                            <td>{{$reservation->no_of_people}}</td>
+                                            <td>{{$reservation->date}}</td>
+                                            <td>{{$reservation->branch_name}}</td>
+                                            <td>
+
+                                            </td>
+                                        </tr>
+                                         @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="declined">
+                                    <div class="table-responsive">
+                                        <table class="table">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-center">
+                                                        No
+                                                    </th>
+                                                    <th>
+                                                        Name
+                                                    </th>
+                                                    <th>
+                                                        Phone
+                                                    </th>
+                                                    <th>
+                                                        No. of People
+                                                    </th>
+                                                    <th>
+                                                        Date
+                                                    </th>
+                                                    <th>
+                                                        Branch Name
+                                                    </th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            @foreach($declined_reservations as $key => $reservation)
+        
+                                                <tr>
+                                                    <td class="text-center">{{ $key+1 }}</td>
+                                                    <td>{{$reservation->name}}</td>
+                                                    <td>{{$reservation->phone}}</td>
+                                                    <td>{{$reservation->no_of_people}}</td>
+                                                    <td>{{$reservation->date}}</td>
+                                                    <td>{{$reservation->branch_name}}</td>
+                                                    <td>
+        
+                                                    </td>
+                                                </tr>
+                                                @endforeach
+                                            </tbody>
+                                        </table>
+                                    </div>
+                        </div>
                     </div>
                 </div>
             </div>

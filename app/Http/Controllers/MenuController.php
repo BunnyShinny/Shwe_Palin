@@ -143,9 +143,9 @@ class MenuController extends Controller
             $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
             $extension = $image->getClientOriginalExtension();
             $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            $public_path=public_path().'/assets/img/';
+            $public_path=public_path().'/assets/img/menu/';
             $image->move($public_path, $fileNameToStore);
-            $path = '/assets/img/'.$fileNameToStore;
+            $path = '/assets/img/menu/'.$fileNameToStore;
             $menu->image =$path;
         }else{
             $menu->$image=$path;

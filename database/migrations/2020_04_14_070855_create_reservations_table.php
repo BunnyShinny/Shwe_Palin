@@ -20,9 +20,12 @@ class CreateReservationsTable extends Migration
             $table->integer('no_of_people');
             $table->string('date');
             $table->unsignedBigInteger ('branch_id');
+            $table->string('confirm')->default('new');
+            $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 
             $table->foreign('branch_id')->references('id')->on('branches');
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

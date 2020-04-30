@@ -19,7 +19,8 @@ class CreateOrdersTable extends Migration
             $table->string('address');
             $table->string('phone');
             $table->text('cart');
-            $table->boolean('confirm')->default(0);
+            $table->integer('discount')->default(0);
+            $table->text('confirm')->default('new');
             $table->unsignedBigInteger('user_id')->nullable();
             $table->timestamps();
 

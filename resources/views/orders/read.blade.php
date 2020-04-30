@@ -17,97 +17,216 @@ sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
                   </div>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th class="text-center">
-                                        No
-                                    </th>
-                                    <th>
-                                        Name
-                                    </th>
-                                    <th>
-                                        Address
-                                    </th>
-                                    <th>
-                                        Phone
-                                    </th>
-                                    <th>
-                                        Items
-                                    </th>
-                                    <th>
-                                        Total Price
-                                    </th>
-                                    <th>
-                                        Action
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @php $i=1; @endphp @foreach($orders as
-                                $order)
+                    <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                            <ul class="nav nav-tabs" data-tabs="tabs">
+                                <li class="nav-item">
+                                    <a class="nav-link active" href="#new" data-toggle="tab">New</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#accepted" data-toggle="tab">Accepted</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="#declined" data-toggle="tab">Declined</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="tab-content text-center">
+                        <div class="tab-pane active" id="new">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                No
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Address
+                                            </th>
+                                            <th>
+                                                Phone
+                                            </th>
+                                            <th>
+                                                Items
+                                            </th>
+                                            <th>
+                                                dicount
+                                            </th>
+                                            <th>
+                                                Total Price
+                                            </th>
+                                            
+                                            <th>
+                                                Action
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($new_orders as $key => $order)
 
-                                <tr>
-                                    <td class="text-center">{{ $i }}</td>
-                                    <td>{{$order->name}}</td>
-                                    <td>{{$order->address}}</td>
-                                    <td>{{$order->phone}}</td>
+                                        <tr>
+                                            <td class="text-center">{{ $key + 1 }}</td>
+                                            <td>{{$order->name}}</td>
+                                            <td>{{$order->address}}</td>
+                                            <td>{{$order->phone}}</td>
 
-                                    <td>
-                                        <!-- {{$order->cart->totalQty}} -->
-                                        @foreach ($order->cart->items as $item)
-                                            {{$item['item']['name']}} <strong>x</strong> {{$item['qty']}}  Units<br>
+                                            <td>
+                                                <!-- {{$order->cart->totalQty}} -->
+                                                @foreach ($order->cart->items as $item)
+                                                    {{$item['item']['name']}} <strong>x</strong> {{$item['qty']}}  Units<br>
+                                                @endforeach
+                                            </td>
+                                            
+                                            <td>{{$order->discount}} MMK</td>
+                                            <td>{{$order->cart->totalPrice - $order->discount +500}} MMK</td>
+                                            <td>
+                                                <form
+                                                    method="POST"
+                                                    action="{{route('orders_confirm',$order->id)}}"
+                                                    style="display: inline-block;"
+                                                >
+                                                    @csrf @method('PUT')
+            
+                                                    <button
+                                                        type="submit"
+                                                        rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon"
+                                                        onclick="return confirm('Are You Confirm')"
+                                                    >
+                                                    <i class="now-ui-icons ui-1_check"></i>
+                                                    </button>
+                                                </form>
+                                                <form
+                                                    method="POST"
+                                                    action="{{route('orders_declined',$order->id)}}"
+                                                    style="display: inline-block;"
+                                                >
+                                                    @csrf @method('PUT')
+            
+                                                    <button
+                                                        type="submit"
+                                                        rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon"
+                                                        onclick="return confirm('Are You Confirm')"
+                                                    >
+                                                    <i class="now-ui-icons ui-1_simple-remove"></i>
+                                                    </button>
+                                                </form>
+                                            </td>
+                                        </tr>
                                         @endforeach
-                                    </td>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="accepted">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                No
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Address
+                                            </th>
+                                            <th>
+                                                Phone
+                                            </th>
+                                            <th>
+                                                Items
+                                            </th>
+                                            <th>
+                                                dicount
+                                            </th>
+                                            <th>
+                                                Total Price
+                                            </th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($accepted_orders as $key => $order)
 
-                                    <td>{{$order->cart->totalPrice}} MMK</td>
-                                    <td>
-                                        <!-- <a
-                                            href="{{route('orders.show',$order->id)}}"
-                                            class="btn btn-info btn-sm btn-icon"
-                                            ><i class="now-ui-icons travel_info"></i></a
-                                        > -->
-                                        <!-- <a
-                                            href="{{route('orders.edit',$order->id)}}"
-                                            class="btn btn-success btn-sm btn-icon"
-                                            ><i class="now-ui-icons ui-2_settings-90"></i></a
-                                        > -->
-                                        <form
-                                            method="POST"
-                                            action="{{route('orders_confirm',$order->id)}}"
-                                            style="display: inline-block;"
-                                        >
-                                            @csrf @method('PUT')
-    
-                                            <button
-                                                type="submit"
-                                                rel="tooltip" class="btn btn-success btn-sm btn-round btn-icon"
-                                                onclick="return confirm('Are You Confirm')"
-                                            >
-                                            <i class="now-ui-icons ui-1_check"></i>
-                                            </button>
-                                        </form>
-                                        <form
-                                            method="POST"
-                                            action="{{route('orders.destroy',$order->id)}}"
-                                            style="display: inline-block;"
-                                        >
-                                            @csrf @method('DELETE')
-    
-                                            <button
-                                                type="submit"
-                                                rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon"
-                                                onclick="return confirm('Are You Confirm')"
-                                            >
-                                            <i class="now-ui-icons ui-1_simple-remove"></i>
-                                            </button>
-                                        </form>
-                                    </td>
-                                </tr>
-                                @php $i++; @endphp @endforeach
-                            </tbody>
-                        </table>
+                                        <tr>
+                                            <td class="text-center">{{ $key + 1 }}</td>
+                                            <td>{{$order->name}}</td>
+                                            <td>{{$order->address}}</td>
+                                            <td>{{$order->phone}}</td>
+
+                                            <td>
+                                                <!-- {{$order->cart->totalQty}} -->
+                                                @foreach ($order->cart->items as $item)
+                                                    {{$item['item']['name']}} <strong>x</strong> {{$item['qty']}}  Units<br>
+                                                @endforeach
+                                            </td>
+
+                                            <td>{{$order->discount}} MMK</td>
+                                            <td>{{$order->cart->totalPrice - $order->discount +500}} MMK</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="tab-pane" id="declined">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th class="text-center">
+                                                No
+                                            </th>
+                                            <th>
+                                                Name
+                                            </th>
+                                            <th>
+                                                Address
+                                            </th>
+                                            <th>
+                                                Phone
+                                            </th>
+                                            <th>
+                                                Items
+                                            </th>
+                                            <th>
+                                                dicount
+                                            </th>
+                                            <th>
+                                                Total Price
+                                            </th>
+                                            
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach($declined_orders as $key => $order)
+
+                                        <tr>
+                                            <td class="text-center">{{ $key + 1 }}</td>
+                                            <td>{{$order->name}}</td>
+                                            <td>{{$order->address}}</td>
+                                            <td>{{$order->phone}}</td>
+
+                                            <td>
+                                                <!-- {{$order->cart->totalQty}} -->
+                                                @foreach ($order->cart->items as $item)
+                                                    {{$item['item']['name']}} <strong>x</strong> {{$item['qty']}}  Units<br>
+                                                @endforeach
+                                            </td>
+
+                                            <td>{{$order->discount}} MMK</td>
+                                            <td>{{$order->cart->totalPrice - $order->discount +500}} MMK</td>
+                                        </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

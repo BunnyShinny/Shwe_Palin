@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Reservation;
 use App\Branch;
+use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -14,13 +15,26 @@ class ReservationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+    public function __construct()
+    {
+        $this->serverKey = config('app.firebase_server_key');
+    }
+    
     public function index()
     {
-        $reservations = DB::table('reservations')
+        $new_reservations = DB::table('reservations')
         ->join('branches', 'branches.id', '=', 'reservations.branch_id')
         ->select('reservations.*', 'branches.name as branch_name')
-        ->get();
-        return view('reservations.read',compact('reservations'));
+        ->where('confirm','new')->get();
+        $accepted_reservations = DB::table('reservations')
+        ->join('branches', 'branches.id', '=', 'reservations.branch_id')
+        ->select('reservations.*', 'branches.name as branch_name')
+        ->where('confirm','accepted')->get();
+        $declined_reservations = DB::table('reservations')
+        ->join('branches', 'branches.id', '=', 'reservations.branch_id')
+        ->select('reservations.*', 'branches.name as branch_name')
+        ->where('confirm','declined')->get();
+        return view('reservations.read',compact(['new_reservations','accepted_reservations','declined_reservations']));
     }
 
     /**
@@ -128,6 +142,78 @@ class ReservationController extends Controller
     {
         $reservation=Reservation::find($id);
         $reservation->delete();
+        return redirect()->route('reservations.index');
+    }
+
+    public function Confirm($id)
+    {
+        $reservation = Reservation::find($id);
+        $reservation->confirm = 'accepted';
+        $reservation->save();
+        if($reservation->user_id){
+            $user = User::find($reservation->user_id);
+            $data = [
+                "to" => $user->device_token,
+                "notification" =>
+                    [
+                        "title" => 'Reserve',
+                        "body" => "Your reservation had been confirmed!",
+                        "icon" => url('/logo.png'),
+                        "click_action"=> '/receipt?reservation='.$reservation->id,
+                    ],
+            ];
+            $dataString = json_encode($data);
+      
+            $headers = [
+                'Authorization: key=' . $this->serverKey,
+                'Content-Type: application/json',
+            ];
+      
+            $ch = curl_init();
+      
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+      
+            curl_exec($ch);
+        }
+        return redirect()->route('reservations.index');
+    }
+    public function Declined($id)
+    {
+        $reservation = Reservation::find($id);
+        $reservation->confirm = 'declined';
+        $reservation->save();
+        if($reservation->user_id){
+            $user = User::find($reservation->user_id);
+            $data = [
+                "to" => $user->device_token,
+                "notification" =>
+                    [
+                        "title" => 'Reserve',
+                        "body" => "Your reservation had been declined!",
+                        "icon" => url('/logo.png'),
+                    ],
+            ];
+            $dataString = json_encode($data);
+      
+            $headers = [
+                'Authorization: key=' . $this->serverKey,
+                'Content-Type: application/json',
+            ];
+      
+            $ch = curl_init();
+      
+            curl_setopt($ch, CURLOPT_URL, 'https://fcm.googleapis.com/fcm/send');
+            curl_setopt($ch, CURLOPT_POST, true);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $dataString);
+      
+            curl_exec($ch);
+        }
         return redirect()->route('reservations.index');
     }
 }
