@@ -9,7 +9,7 @@ sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
                 <div class="card-header">
                   <div class="row">
                     <div class="col-md-6">
-                      <h4 class="card-title">Category</h4>
+                      <h4 class="card-title">Orders</h4>
                     </div>
                     <div class="col-md-6 text-right">
                       
@@ -54,7 +54,7 @@ sidebar-mini ', 'activePage' => 'orderlist', 'backgroundImage' => asset('now') .
                                                 Items
                                             </th>
                                             <th>
-                                                dicount
+                                                Discount
                                             </th>
                                             <th>
                                                 Total Price

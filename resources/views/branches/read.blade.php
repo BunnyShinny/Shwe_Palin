@@ -32,7 +32,7 @@ sidebar-mini ', 'activePage' => 'Branch', 'backgroundImage' => asset('now') .
                                         Image
                                     </th>
                                     <th>
-                                        name
+                                        Name
                                     </th>                                  
                                     <th>
                                         Address

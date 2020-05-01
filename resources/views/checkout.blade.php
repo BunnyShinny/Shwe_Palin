@@ -96,6 +96,14 @@
                                             <td >500 MMK</td>
                                         </tr>
                                         <tr>
+                                        @auth
+                                            @if($totalPrice>=3000)
+                                                <td >Promotion</td>
+                                                <td >500 MMK</td>
+                                            @endif
+                                        @endauth
+                                        </tr>
+                                        <tr>
                                             <td class="text-black font-weight-bold"><strong>Total</strong></td>
                                             <td class="text-black font-weight-bold"><strong>
                                             @php
