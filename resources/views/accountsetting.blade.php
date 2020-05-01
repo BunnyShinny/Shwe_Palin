@@ -87,7 +87,7 @@
                           <div class="col-md-12">
                             <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }}">
                               <label>{{__(" Current Password")}}</label>
-                              <input class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="old_password" placeholder="{{ __('Current Password') }}" type="password"  required>
+                              <input class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" name="old_password"  type="password"  required>
                               @include('alerts.feedback', ['field' => 'old_password'])
                             </div>
                           </div>
@@ -96,7 +96,7 @@
                           <div class="col-md-12">
                             <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }}">
                               <label>{{__(" New password")}}</label>
-                              <input class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('New Password') }}" type="password" name="password" required>
+                              <input class="form-control {{ $errors->has('password') ? ' is-invalid' : '' }}"  type="password" name="password" required>
                               @include('alerts.feedback', ['field' => 'password'])
                             </div>
                           </div>
@@ -105,7 +105,7 @@
                         <div class="col-md-12">
                           <div class="form-group {{ $errors->has('password') ? ' has-danger' : '' }}">
                             <label>{{__(" Confirm New Password")}}</label>
-                            <input class="form-control" placeholder="{{ __('Confirm New Password') }}" type="password" name="password_confirmation" required>
+                            <input class="form-control" type="password" name="password_confirmation" required>
                           </div>
                         </div>
                       </div>

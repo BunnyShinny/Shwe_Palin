@@ -37,8 +37,9 @@
                     <div class="logo text-center">
                         <a href="/">
                             <img src="frontend/img/shwe/logo.png" alt="">
-                            <h2>Sign in to Shwe Palin</h2>
                         </a>
+                        <h2>Sign in to Shwe Palin</h2>
+                        
                     </div>
                     <div class="lgform">
                         <form role="form" method="POST" action="{{ route('login') }}">

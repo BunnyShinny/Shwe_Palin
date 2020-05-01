@@ -31,14 +31,14 @@
 <body>
     <!-- header-start -->
     <header>
-        <div class="header-area sgup">
+        <div class="header-area ">
             <div id="sticky-header" class="main-header-area">
                 <div class="container-fluid p-0">
                     <div class="header_bottom_border">
                         <div class="row align-items-center no-gutters">
                             <div class="col-xl-3 col-lg-2">
                                 <div class="logo">
-                                    <a href="index.html">
+                                    <a href="/">
                                         <img src="frontend/img/shwe/logo.png" alt="">
                                     </a>
                                 </div>
@@ -48,8 +48,14 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a class="active" href="/">home</a></li>
-                                            <li><a href="foodmenu">Menu</a>
-                                                
+                                            <li><a href="foodmenu">Menu </a>
+                                                <!-- <ul class="submenu">
+                                                    <li><a href="drinks.html">drinks</a></li>
+                                                    <li><a href="">noodles</a></li>
+                                                    <li><a href="">steamed and fried</a></li>
+                                                    <li><a href="">traditional food</a></li>
+                                                    <li><a href="">bread and puff</a></li>
+                                                </ul> -->
                                             </li>
                                             <li><a href="branch">Branches</a>
 
@@ -66,9 +72,48 @@
                                 </div>
                             </div>
                             <div class="col-xl-3 col-lg-3 d-none d-lg-block">
-                                <div class="say_hello">
-                                    <a href="login">Log In</a>
-                                    <a href="register">Sign Up</a>
+                                <div class="main-menu d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li>
+                                                <a href="cart"><i class="flaticon-shopping-cart"></i>
+                                                <span class="badge">{{Session::has('cart') ? Session::get('cart')->totalQty :''}}</span>
+                                                </a>
+                                            </li>
+                                            <li>
+                                                <a href="#"><i class="flaticon-notification"></i></a>
+                                            </li>
+                                            @if (Auth::guest())
+                                            <li>
+                                                <a href="login">Log In</a>
+                                            </li>
+                                            <li>
+                                            <a href="register">Sign Up</a>
+                                            </li>
+                                            @else
+                                            <li>
+                                                <a href="#">{{auth()->user()->name}}</a>
+                                                <ul class="submenu">
+                                                    <li>
+                                                        <a href="/accountsetting" class="dropdown-item">
+                                                            Setting
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="dropdown-item" href="{{ route('logout') }}"
+                                                        onclick="event.preventDefault();
+                                                                    document.getElementById('logout-form').submit();">
+                                                        {{ __('Logout') }}
+                                                        </a>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                                @csrf
+                                            </form>
+                                            @endif
+                                        </ul>
+                                    </nav>
                                 </div>
                             </div>
                             <div class="col-12">
@@ -82,6 +127,17 @@
         </div>
     </header>
     <!-- header-end -->
+    <div class="bradcam_area bradcam_bg_5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-xl-12">
+                        <div class="bradcam_text text-center">
+                            <h3>contact</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
     <div class="signup">
         <div class="container">
             <div class="row">
@@ -137,13 +193,11 @@
                     <div class="col-xl-3 col-md-6 col-lg-3 ">
                         <div class="footer_widget">
                             <div class="footer_logo">
-                                <a href="#">
-                                    <img src="frontend/img/footer_logo.png" alt="">
-                                </a>
+                                <h3>ေရႊပလႅင္ - Shwepalin</h3>
                             </div>
-                            <p>5th flora, 700/D kings road, green <br> lane New York-1782 <br>
-                                <a href="#">+10 367 826 2567</a> <br>
-                                <a href="#">contact@carpenter.com</a>
+                            <p>Kabar Aye Pagoda Rd, Yangon <br> Wall Street English <br>
+                                <a href="#">09 263 950 033</a> <br>
+                                <a href="#">contact@shwepalin.com</a>
                             </p>
                             <p>
 
@@ -218,9 +272,7 @@
                         <p class="copy_right text-center">
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                             Copyright &copy;
-                            <script>document.write(new Date().getFullYear());</script> All rights reserved | This
-                            template is made with <i class="fa fa-heart-o" aria-hidden="true"></i> by <a
-                                href="https://colorlib.com" target="_blank">Colorlib</a>
+                            <script>document.write(new Date().getFullYear());</script> All rights reserved 
                             <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         </p>
                     </div>
