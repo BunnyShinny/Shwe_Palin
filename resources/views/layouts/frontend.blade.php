@@ -70,24 +70,8 @@
                                     <nav>
                                         <ul id="navigation">
                                             <li><a class="active" href="/">home</a></li>
-                                            <li><a href="foodmenu">Menu </a>
-                                                <!-- <ul class="submenu">
-                                                    <li><a href="drinks.html">drinks</a></li>
-                                                    <li><a href="">noodles</a></li>
-                                                    <li><a href="">steamed and fried</a></li>
-                                                    <li><a href="">traditional food</a></li>
-                                                    <li><a href="">bread and puff</a></li>
-                                                </ul> -->
-                                            </li>
-                                            <li><a href="branch">Branches</a>
-
-                                            </li>
-                                            <!-- <li><a href="#">blog <i class="ti-angle-down"></i></a>
-                                                <ul class="submenu">
-                                                    <li><a href="blog.html">blog</a></li>
-                                                    <li><a href="single-blog.html">single-blog</a></li>
-                                                </ul>
-                                            </li> -->
+                                            <li><a href="foodmenu">Menu </a></li>
+                                            <li><a href="branch">Branches</a></li>
                                             <li><a href="contact">Contact</a></li>
                                         </ul>
                                     </nav>

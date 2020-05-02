@@ -116,6 +116,19 @@
                                             {{$final_total}} MMK
                                             </strong></td>
                                         </tr>
+                                        @auth
+                                            @if($totalPrice<3000)
+                                            <tr>
+                                                <td colspan="2">
+                                                    <div class="text-center">
+                                                        <span class="invalid-feedback" role="alert" style="display: block;{{-- This fixes a bootstrap known-issue --}}">
+                                                            <strong>Order 3000 MMK to get 500 discount !</strong>
+                                                        </span>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            @endif
+                                        @endauth
                                     </tbody>
                                 </table>
 
@@ -129,35 +142,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                
-                                <!-- <div class="border p-3 mb-3">
-                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsecheque"
-                                            role="button" aria-expanded="false" aria-controls="collapsecheque">Cheque
-                                            Payment</a></h3>
-
-                                    <div class="collapse" id="collapsecheque">
-                                        <div class="py-2">
-                                            <p class="mb-0">Make your payment directly into our bank account. Please use
-                                                your Order ID as the payment reference. Your order won’t be shipped until
-                                                the funds have cleared in our account.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div class="border p-3 mb-5">
-                                    <h3 class="h6 mb-0"><a class="d-block" data-toggle="collapse" href="#collapsepaypal"
-                                            role="button" aria-expanded="false" aria-controls="collapsepaypal">Paypal</a>
-                                    </h3>
-
-                                    <div class="collapse" id="collapsepaypal">
-                                        <div class="py-2">
-                                            <p class="mb-0">Make your payment directly into our bank account. Please use
-                                                your Order ID as the payment reference. Your order won’t be shipped until
-                                                the funds have cleared in our account.</p>
-                                        </div>
-                                    </div>
-                                </div> -->
-
                                 <div class="form-group">
                                 <form action="{{ route('send-push') }}" method="POST">
                                     @csrf

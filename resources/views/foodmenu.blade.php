@@ -86,12 +86,11 @@
             @foreach($categories as $category)
                 <div class="tab-pane fade" id="{{$category->name}}" role="tabpanel" aria-labelledby="{{$category->name}}-tab">
                     <div class="row">
-                        @foreach($menus as $menu)
-                            @if($menu->category_name == $category->name)
+                @if(count($category->menus)>0)
+                        @foreach($category->menus as $menu)
                             <div class="col-xl-6 col-md-6 col-lg-6 {{$menu->category_name}}">
                                 <div class="single_delicious d-flex align-items-center">
                                     <div class="thumb">
-                                        
                                         <a href="{{asset($menu->image)}}"><img src="{{asset($menu->image)}}" alt="" style="max-width: 232px; border-radiu: 232px"></a>
                                     </div>
                                     <div class="info">
@@ -103,8 +102,14 @@
                                     </div>
                                 </div>
                             </div>
-                            @endif
                         @endforeach
+                        @else
+                        <div class="col text-center">
+                            <span class="invalid-feedback" role="alert" style="display: block;{{-- This fixes a bootstrap known-issue --}}">
+                                <strong>There's no foods for this category !</strong>
+                            </span>
+                        </div>
+                        @endif
                     </div>
                 </div>
             @endforeach
