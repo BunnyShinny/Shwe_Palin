@@ -261,7 +261,7 @@ class FrontendController extends Controller
         $oldcart = Session::get('cart');
         $get_item = $oldcart->items[$id];
         $oldcart->totalQty = $oldcart->totalQty - $get_item['qty'];
-        $oldcart->totalPrice = $oldcart->totalPrice - ($get_item['qty'] * $get_item['price']);
+        $oldcart->totalPrice = $oldcart->totalPrice -  $get_item['price'];
 
         unset($oldcart->items[$id]);
         $request->session()->put('cart',$oldcart);
