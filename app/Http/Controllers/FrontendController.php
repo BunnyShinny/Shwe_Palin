@@ -275,13 +275,10 @@ class FrontendController extends Controller
             return view('cart',['menus'=>null]);
         }
         $oldcart = Session::get('cart');
-        $get_item = $oldcart->items[$id];
-
-        dd($oldcart->$get_item['qty'] = $oldcart->$get_item['qty'] - 1);
+        $oldcart->items[$id]['qty'] -= 1;
+        $oldcart->items[$id]['price'] -= $oldcart->items[$id]['item']->price;
         $oldcart->totalQty = $oldcart->totalQty - 1;
-        $oldcart->totalPrice = $oldcart->totalPrice - $get_item['item']['price'];
-        dd($oldcart);
-        // unset($oldcart->items[$id]);
+        $oldcart->totalPrice -= $oldcart->items[$id]['item']->price;
         $request->session()->put('cart',$oldcart);
         
         return redirect()->back();
