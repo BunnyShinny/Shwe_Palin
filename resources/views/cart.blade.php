@@ -62,9 +62,9 @@
                                         <div class="input-group mb-3" style="max-width: 250px;">
                                         
                                             <div class="form-control text-center">
-                                                <a class="btn" href="{{ route('reducequantitytocart', $menu['item']['id']) }}"><</a>
+                                                <a class="btn btn-sm font-weight-bold" href="{{ route('reducequantitytocart', $menu['item']['id']) }}">-</a>
                                                     {{$menu['qty']}}
-                                                <a class="btn" href="{{ route('addquantitytocart', $menu['item']['id']) }}">></a>
+                                                <a class="btn btn-sm font-weight-bold" href="{{ route('addquantitytocart', $menu['item']['id']) }}">+</a>
                                                 
                                             </div>
                                         

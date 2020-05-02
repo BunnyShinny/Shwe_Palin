@@ -35,40 +35,40 @@
       
       <li class = " @if ($activePage == 'Menu') active @endif">
         <a href="{{ route('menus.index') }}">
-          <i class="now-ui-icons design_bullet-list-67"></i>
+          <i class="now-ui-icons files_paper"></i>
           <p>{{ __('Menu') }}</p>
         </a>
       </li>
       
       <li class = " @if ($activePage == 'Branch') active @endif">
         <a href="{{ route('branches.index') }}">
-          <i class="now-ui-icons text_align-left"></i>
+          <i class="now-ui-icons location_pin"></i>
           <p>{{ __('Branches') }}</p>
         </a>
       </li>
 
       <li class = " @if ($activePage == 'Reservationlist') active @endif">
         <a href="{{ route('reservations.index') }}">
-          <i class="now-ui-icons text_align-left"></i>
+          <i class="now-ui-icons location_bookmark"></i>
           <p>{{ __('Reservations') }}</p>
         </a>
       </li>
 
       <li class = " @if ($activePage == 'orderlist') active @endif">
         <a href="{{ route('orders.index') }}">
-          <i class="now-ui-icons text_align-left"></i>
+          <i class="now-ui-icons shopping_delivery-fast"></i>
           <p>{{ __('Order') }}</p>
         </a>
       </li>
       <li class = " @if ($activePage == 'reservationwithorderlist') active @endif">
         <a href="{{ route('reservationwithorders.index') }}">
-          <i class="now-ui-icons text_align-left"></i>
+          <i class="now-ui-icons emoticons_satisfied"></i>
           <p>{{ __('Reservation With Order') }}</p>
         </a>
       </li>
       <li class = " @if ($activePage == 'Feedback') active @endif">
         <a href="{{ route('feedback.index') }}">
-          <i class="now-ui-icons text_align-left"></i>
+          <i class="now-ui-icons business_bulb-63"></i>
           <p>{{ __('Feedback') }}</p>
         </a>
       </li>
