@@ -216,6 +216,21 @@ class FrontendController extends Controller
         
     }
 
+    public function getAddQuantityToCart(Request $request, $id)
+    {
+
+        $menu = Menu::find($id);
+        $oldcart = Session::has('cart') ? Session::get('cart') :null;
+        $cart = new Cart($oldcart);
+        $cart->add($menu, $menu->id);
+        
+        $request->session()->put('cart',$cart);
+        // dd($request->session()->get('cart'));    
+        return redirect()->route('getcart');
+ 
+        
+    }
+
     public function getCart()
     {
         if (!Session::has('cart')){
@@ -249,6 +264,24 @@ class FrontendController extends Controller
         $oldcart->totalPrice = $oldcart->totalPrice - ($get_item['qty'] * $get_item['price']);
 
         unset($oldcart->items[$id]);
+        $request->session()->put('cart',$oldcart);
+        
+        return redirect()->back();
+    }
+
+    public function getReduceQuantityToCart(Request $request,$id)
+    {
+        if (!Session::has('cart')){
+            return view('cart',['menus'=>null]);
+        }
+        $oldcart = Session::get('cart');
+        $get_item = $oldcart->items[$id];
+
+        dd($oldcart->$get_item['qty'] = $oldcart->$get_item['qty'] - 1);
+        $oldcart->totalQty = $oldcart->totalQty - 1;
+        $oldcart->totalPrice = $oldcart->totalPrice - $get_item['item']['price'];
+        dd($oldcart);
+        // unset($oldcart->items[$id]);
         $request->session()->put('cart',$oldcart);
         
         return redirect()->back();
