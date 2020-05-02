@@ -44,6 +44,23 @@ sidebar-mini ', 'activePage' => 'Feedback', 'backgroundImage' => asset('now') .
                                     <td>{{$feedback->email}}</td>
                                     <td>{{$feedback->subject}}</td>
                                     <td>{{$feedback->message}}</td>
+                                    <td>
+                                        <form
+                                            method="POST"
+                                            action="{{route('feedback.destroy',$feedback->id)}}"
+                                            style="display: inline-block;"
+                                        >
+                                            @csrf @method('DELETE')
+    
+                                            <button
+                                                type="submit"
+                                                rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon"
+                                                onclick="return confirm('Are You Confirm')"
+                                            >
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </button>
+                                        </form>
+                                    </td>
                                 </tr>
                                 @endforeach
                             </tbody>

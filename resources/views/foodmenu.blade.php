@@ -42,7 +42,7 @@
                         </li>
                     @foreach($categories as $category)
                     <li class="nav-item">
-                        <a class="nav-link" id="{{$category->name}}-tab" data-toggle="pill" onclick="filterSelection('{{$category->name}}')" href="#{{$category->name}}"
+                        <a class="nav-link" id="{{preg_replace('/\s+/', '', $category->name)}}-tab" data-toggle="pill" onclick="filterSelection('{{preg_replace('/\s+/', '', $category->name)}}')" href="#{{preg_replace('/\s+/', '', $category->name)}}"
                             role="tab" aria-controls="pills-home" aria-selected="true">
                             <div class="single_menu text-center">
                                 <div class="icon">
@@ -65,7 +65,7 @@
             <div class="tab-pane fade show active" id="all" role="tabpanel" aria-labelledby="all-tab">
                 <div class="row">
                     @foreach($menus as $menu)
-                    <div class="col-xl-6 col-md-6 col-lg-6 {{$menu->category_name}}">
+                    <div class="col-xl-6 col-md-6 col-lg-6 {{preg_replace('/\s+/', '', $menu->category_name)}}">
                         <div class="single_delicious d-flex align-items-center">
                             <div class="thumb">
                                 
@@ -84,7 +84,7 @@
                 </div>
             </div>
             @foreach($categories as $category)
-                <div class="tab-pane fade" id="{{$category->name}}" role="tabpanel" aria-labelledby="{{$category->name}}-tab">
+                <div class="tab-pane fade" id="{{preg_replace('/\s+/', '', $category->name)}}" role="tabpanel" aria-labelledby="{{preg_replace('/\s+/', '', $category->name)}}-tab">
                     <div class="row">
                 @if(count($category->menus)>0)
                         @foreach($category->menus as $menu)

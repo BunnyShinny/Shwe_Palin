@@ -82,7 +82,8 @@ class FeedbackController extends Controller
      */
     public function destroy(Feedback $feedback)
     {
-        //
+        $feedback->delete();
+        return redirect()->route('feedback.index');
     }
 
     public function validatedData()

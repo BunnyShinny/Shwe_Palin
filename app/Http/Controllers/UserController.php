@@ -30,6 +30,11 @@ class UserController extends Controller
         $users = User::role(['member'])->get();
         return view('users.index', compact('users'));
     }
+    public function destroy(User $user)
+    {
+        $user->delete();
+        return redirect()->route('user.index');
+    }
 
     public function saveToken (Request $request)
     {

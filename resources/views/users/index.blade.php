@@ -47,6 +47,21 @@ sidebar-mini ', 'activePage' => 'Customer', 'backgroundImage' => asset('now') .
                                             class="btn btn-success btn-sm btn-icon"
                                             ><i class="now-ui-icons ui-2_settings-90"></i></a
                                         >
+                                        <form
+                                            method="POST"
+                                            action="{{route('user.destroy',$user->id)}}"
+                                            style="display: inline-block;"
+                                        >
+                                            @csrf @method('DELETE')
+    
+                                            <button
+                                                type="submit"
+                                                rel="tooltip" class="btn btn-danger btn-sm btn-round btn-icon"
+                                                onclick="return confirm('Are You Confirm')"
+                                            >
+                                            <i class="now-ui-icons ui-1_simple-remove"></i>
+                                            </button>
+                                        </form>
                                     </td>
                                 </tr>
                                 @php $i++; @endphp @endforeach
