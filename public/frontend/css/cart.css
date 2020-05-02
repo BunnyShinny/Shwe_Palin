@@ -91,14 +91,19 @@
 	width: 31%;
 	text-align: center;
 }
-.product_quantity_container
+.product_qty
 {
-    margin-left: 60px;
+	margin-top: 10px;
+    /* margin-left: 60px; */
 	width: 35%;
 	text-align: center;
 }
-.product_quantity_container a{
+.product_qty a{
 	font-size: 15px;
+	margin: 0px 13px;
+}
+.input-group .form-control:last-child, .input-group-btn:last-child>.dropdown-toggle, .input-group-btn:first-child>.btn:not(:first-child) {
+    border: 0px;
 }
 .cart_product_total
 {

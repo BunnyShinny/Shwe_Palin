@@ -58,13 +58,13 @@
                                     <!-- Product Price -->
                                     <div class="cart_product_price">{{$menu['item']['price']}} MMK</div>
                                     <!-- Product Quantity -->
-                                    <div class="product_quantity_container">
+                                    <div class="product_qty">
                                         <div class="input-group mb-3" style="max-width: 250px;">
                                         
                                             <div class="form-control text-center">
-                                                <a class="btn btn-sm font-weight-bold" href="{{ route('reducequantitytocart', $menu['item']['id']) }}">-</a>
+                                                <a class="btn btn-sm btn-outline-primary" href="{{ route('reducequantitytocart', $menu['item']['id']) }}">&minus;</a>
                                                     {{$menu['qty']}}
-                                                <a class="btn btn-sm font-weight-bold" href="{{ route('addquantitytocart', $menu['item']['id']) }}">+</a>
+                                                <a class="btn btn-sm btn-outline-primary" href="{{ route('addquantitytocart', $menu['item']['id']) }}">&plus;</a>
                                                 
                                             </div>
                                         
