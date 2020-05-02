@@ -65,6 +65,13 @@
           <i class="now-ui-icons text_align-left"></i>
           <p>{{ __('Reservation With Order') }}</p>
         </a>
+      </li>
+      <li class = " @if ($activePage == 'Feedback') active @endif">
+        <a href="{{ route('feedback.index') }}">
+          <i class="now-ui-icons text_align-left"></i>
+          <p>{{ __('Feedback') }}</p>
+        </a>
+      </li>
     </ul>
   </div>
 </div>
