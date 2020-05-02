@@ -260,16 +260,6 @@
     <script src="frontend/js/jquery.magnific-popup.min.js"></script>
     <script src="frontend/js/plugins.js"></script>
 
-
-
-    <!--contact js-->
-    <script src="frontend/js/contact.js"></script>
-    <script src="frontend/js/jquery.ajaxchimp.min.js"></script>
-    <script src="frontend/js/jquery.form.js"></script>
-    <script src="frontend/js/jquery.validate.min.js"></script>
-    <script src="frontend/js/mail-script.js"></script>
-
-
     <script src="frontend/js/main.js"></script>
 
     <script>

@@ -69,6 +69,7 @@ Route:: get('/accountsetting', function (){
 	return view('accountsetting');
 });
 Route:: get('/receipt', 'FrontendController@receipt');
+Route::resource('feedback', 'FeedbackController');
 
 Auth::routes();
 
@@ -105,6 +106,3 @@ Route::group(['middleware' => ['role:admin']], function () {
 
 Route::put('profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
 Route::put('profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-
-
-
