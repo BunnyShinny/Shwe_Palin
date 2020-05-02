@@ -30,7 +30,9 @@ Route::get('/branch', 'FrontendController@branch');
 
 //Cart
 Route::get('/add_to_cart/{id}', 'FrontendController@getAddToCart')->name('addtocart');
-Route::get('/cart', 'FrontendController@getCart');
+Route::get('/add_quantity_to_cart/{id}', 'FrontendController@getAddQuantityToCart')->name('addquantitytocart');
+Route::get('/reduce_quantity_to_cart/{id}', 'FrontendController@getReduceQuantityToCart')->name('reducequantitytocart');
+Route::get('/cart', 'FrontendController@getCart')->name('getcart');
 Route::get('/deletecart', 'FrontendController@deleteCart')->name('deletecart');
 Route::get('/deleteitemfromcart/{id}', 'FrontendController@deleteItemFromCart')->name('deleteitemfromcart');
 Route::get('/checkout', 'FrontendController@getCartToCheckout')->name('checkout');

@@ -59,12 +59,15 @@
                                     <div class="cart_product_price">{{$menu['item']['price']}} MMK</div>
                                     <!-- Product Quantity -->
                                     <div class="product_quantity_container">
-                                        <div class="input-group mb-3" style="max-width: 120px;">
-                                            
+                                        <div class="input-group mb-3" style="max-width: 250px;">
+                                        
                                             <div class="form-control text-center">
-                                                {{$menu['qty']}}
+                                                <a class="btn" href="{{ route('reducequantitytocart', $menu['item']['id']) }}"><</a>
+                                                    {{$menu['qty']}}
+                                                <a class="btn" href="{{ route('addquantitytocart', $menu['item']['id']) }}">></a>
+                                                
                                             </div>
-                                            
+                                        
                                             
                                         </div>
                                     </div>
