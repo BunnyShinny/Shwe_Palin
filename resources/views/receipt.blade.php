@@ -120,8 +120,34 @@
                                     @endforeach
                                     <tr>
                                         <th scope="row"></th>
-                                        <td colspan="2">Total</td>
+                                        <td colspan="2">Subtotal</td>
                                         <td>{{$data->cart->totalPrice}} Ks</td>
+                                    </tr>
+                                    @if(!$data->branch_name)
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td colspan="2">Delivery Fee</td>
+                                        <td>500 Ks</td>
+                                    </tr>
+                                    @endif
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td colspan="2">Discount</td>
+                                        <td>{{$data->cart->totalPrice>= 3000 ? 500 : 0}} Ks</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td colspan="2">Total</td>
+                                        <?php 
+                                            $final_total = $data->cart->totalPrice;
+                                            if(!$data->branch_name){
+                                                $final_total += 500;
+                                            }
+                                            if($data->cart->totalPrice>=3000){
+                                                $final_total -= 500;
+                                            }
+                                        ?>
+                                        <td>{{$final_total}} Ks</td>
                                     </tr>
                                 </tbody>
                             </table>
@@ -129,9 +155,20 @@
                         </div>
                         <p class="text-center">
                             <a href="foodmenu" class="btn btn-sm btn-primary">Back to Home</a>
-                            @if($containCart)
-                                <a href="{{route('download',$data->id)}}" class="btn btn-sm btn-danger"> <i class="fa fa-file-pdf-o"></i> Download</a>
-                            @endif
+                            <?php
+                                $query = '?';
+                                if(app('request')->input('order')){
+                                    $query=$query.'order='.app('request')->input('order');
+                                }
+                                if(app('request')->input('reservation')){
+                                    $query= $query.'reservation='.app('request')->input('reservation');
+                                }
+                                if(app('request')->input('rwo')){
+                                    $query=$query.'rwo='.app('request')->input('rwo');
+                                }
+                            ?>
+                            <a href="{{'download'.$query}}" class="btn btn-sm btn-danger"> <i class="fa fa-file-pdf-o"></i> Download</a>
+                            
                         </p>
                         
                     </div>

@@ -26,7 +26,7 @@ Route::get('/', 'FrontendController@index')->name('welcome');
 Route::POST('/send-push', 'UserController@sendPush')->name('send-push');
 
 Route::get('/foodmenu', 'FrontendController@foodmenu')->name('foodmenu');
-Route::get('download/{id}', 'FrontendController@downloadPDF')->name('download');
+Route::get('/download', 'FrontendController@downloadPDF')->name('download');
 Route::get('/branch', 'FrontendController@branch');
 
 //Cart

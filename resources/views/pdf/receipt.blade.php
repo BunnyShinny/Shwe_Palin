@@ -50,6 +50,7 @@
                                 </div>
                             </div>
                         </div>
+                        @if($containCart)
                         <div class="third">
                             <table class="table">
                                 <thead>
@@ -71,12 +72,39 @@
                                     @endforeach
                                     <tr>
                                         <th scope="row"></th>
-                                        <td colspan="2">Total</td>
+                                        <td colspan="2">Subtotal</td>
                                         <td>{{$data->cart->totalPrice}} Ks</td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td colspan="2">Discount</td>
+                                        <td>{{$data->cart->totalPrice - 500 >= 3000 ? 500 : 0 }} Ks</td>
+                                    </tr>
+                                    @if(!$data->branch_name)
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td colspan="2">Delivery Fee</td>
+                                        <td>500 Ks</td>
+                                    </tr>
+                                    @endif
+                                    <tr>
+                                        <th scope="row"></th>
+                                        <td colspan="2">Total</td>
+                                        <?php 
+                                            $final_total = $data->cart->totalPrice;
+                                            if(!$data->branch_name){
+                                                $final_total += 500;
+                                            }
+                                            if($data->cart->totalPrice>=3000){
+                                                $final_total -= 500;
+                                            }
+                                        ?>
+                                        <td>{{$final_total}} Ks</td>
                                     </tr>
                                 </tbody>
                             </table>
                         </div>
+                        @endif
                         <div class="row">
                             <div class="col-md-12">
                                 <h3 class="text-center">Thank You!</h3>

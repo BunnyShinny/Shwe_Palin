@@ -115,17 +115,21 @@
                                             </tr>
                                             @endforeach
                                             <tr>
-                                                <td >Delivery</td>
-                                                <td >500 MMK</td>
+                                                <td class="text-black font-weight-bold"><strong>Subtotal</strong></td>
+                                                <td class="text-black font-weight-bold"><strong>
+                                                {{$totalPrice}} MMK
+                                                </strong></td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-black font-weight-bold"><strong>Discount</strong></td>
+                                                <td class="text-black font-weight-bold"><strong>
+                                                {{$totalPrice>=3000 ? 500 : 0}} MMK
+                                                </strong></td>
                                             </tr>
                                             <tr>
                                                 <td class="text-black font-weight-bold"><strong>Total</strong></td>
                                                 <td class="text-black font-weight-bold"><strong>
-                                                @php
-                                                    $i = 500;
-                                                    $final_total = $totalPrice + $i;
-                                                @endphp
-                                                {{$final_total}} MMK
+                                                {{$totalPrice>=3000 ? $totalPrice - 500 : $totalPrice}} MMK
                                                 </strong></td>
                                             </tr>
                                         </tbody>

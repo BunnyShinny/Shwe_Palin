@@ -138,7 +138,6 @@ class FrontendController extends Controller
         }
         $oldcart = Session::get('cart');
         $cart =  new Cart($oldcart);
-        // dd($cart =  new Cart($oldcart));
         
         $request->validate([
             "name"=>'required',
@@ -211,7 +210,6 @@ class FrontendController extends Controller
         $cart->add($menu, $menu->id);
         
         $request->session()->put('cart',$cart);
-        // dd($request->session()->get('cart'));    
         return redirect()->back();
  
         
@@ -226,7 +224,6 @@ class FrontendController extends Controller
         $cart->add($menu, $menu->id);
         
         $request->session()->put('cart',$cart);
-        // dd($request->session()->get('cart'));    
         return redirect()->route('getcart');
  
         
@@ -239,7 +236,6 @@ class FrontendController extends Controller
         }
         $oldcart = Session::get('cart');
         $cart =  new Cart($oldcart);
-        // dd($cart =  new Cart($oldcart));
         return view('cart',['menus'=>$cart->items, 'totalPrice'=>$cart->totalPrice]);
     }
 
@@ -250,7 +246,6 @@ class FrontendController extends Controller
         }
         $oldcart = Session::get('cart');
         Session::forget('cart');
-        // dd($cart =  new Cart($oldcart));
         return view('cart');
     }
 
@@ -380,7 +375,7 @@ class FrontendController extends Controller
                     "title" => 'Reserve',
                     "body" => "You Got a new Order From ".$orderName,
                     "icon" => url('/logo.png'),
-                    "click_action"=> 'receipt',
+                    "click_action"=> 'orders',
                 ],
         ];
         $dataString = json_encode($data);
@@ -403,24 +398,40 @@ class FrontendController extends Controller
         return view('thankyou')->with('Success', 'Successfully purchased products!');
     }
 
-    public function downloadPDF($id) {
-        $all = Order::all();
-
-        $all->transform(function($all, $key){
-            $all->cart = unserialize($all->cart);
-            return $all;
-        });
-
+    public function downloadPDF(Request $request) {
+        $containCart = true;
+        if($request->input('order')){
+            $all = Order::all();
+            $queryString = $request->input('order');
+        }else if($request->input('rwo')){
+            $all = DB::table('reservation_with__orders')
+            ->join('branches', 'branches.id', '=', 'reservation_with__orders.branch_id')
+            ->select('reservation_with__orders.*', 'branches.name as branch_name')
+            ->get();
+            $queryString = $request->input('rwo');
+        }else if($request->input('reservation')){
+            $all = DB::table('reservations')
+            ->join('branches', 'branches.id', '=', 'reservations.branch_id')
+            ->select('reservations.*', 'branches.name as branch_name')
+            ->get();
+            $containCart = false;
+            $queryString = $request->input('reservation');
+        }
+        if($containCart){
+            $all->transform(function($all, $key){
+                $all->cart = unserialize($all->cart);
+                return $all;
+            });
+        }
         $data = null;
         foreach($all as $getOrder) {
-            if ($id == $getOrder->id) {
+            if ($queryString == $getOrder->id) {
                 $data = $getOrder;
                 break;
             }
         }
 
-        $pdf = PDF::loadView('pdf.receipt', compact('data'));
-        
+        $pdf = PDF::loadView('pdf.receipt', compact(['data','containCart']));
         return $pdf->download('order.pdf');
 }
 }
