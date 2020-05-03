@@ -52,6 +52,9 @@ Route::get('/contact', function () {
 Route::get('/accountsetting', function () {
     return view('accountsetting');
 });
+Route:: get('/newreceipt', function (){
+	return view('newreceipt');
+});
 
 
 // Route::get('/cart', function (){
