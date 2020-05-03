@@ -2,7 +2,7 @@
 <style>
     .newreceipt{
           background: #F2F2F2;
-          padding: 50px 0px;
+          padding: 10px 0px;
           min-height: 785px;
           font-family: "Poppins", sans-serif;
         }
@@ -48,7 +48,13 @@
             <div class="row">
                 <div class="col-md-3"></div>
                 <div class="col-md-6">
-                    
+                    <div class="logo text-center">
+                        <a href="/">
+                            <img src="frontend/img/shwe/logo.png" alt="">
+                        </a>
+                        
+                        
+                    </div>
                     <div class="newreceiptform">
                         <div class="first">
                             <div class="row">
