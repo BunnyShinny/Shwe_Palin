@@ -11,6 +11,7 @@ use App\User;
 use App\Order;
 use Illuminate\Http\Request;
 use Session;
+use PDF;
 use App\Reservation_with_Order;
 
 use App\Http\Requests\UserRequest;
@@ -73,7 +74,7 @@ class FrontendController extends Controller
             "name"=>'required',
             "phone"=>'required',
             "date"=>'required',
-            "no_of_people"=>'required',
+            "no_of_people"=>'required|min:1',
             "branch"=>'required',
             
         ]);
@@ -401,4 +402,25 @@ class FrontendController extends Controller
 
         return view('thankyou')->with('Success', 'Successfully purchased products!');
     }
+
+    public function downloadPDF($id) {
+        $all = Order::all();
+
+        $all->transform(function($all, $key){
+            $all->cart = unserialize($all->cart);
+            return $all;
+        });
+
+        $data = null;
+        foreach($all as $getOrder) {
+            if ($id == $getOrder->id) {
+                $data = $getOrder;
+                break;
+            }
+        }
+
+        $pdf = PDF::loadView('pdf.receipt', compact('data'));
+        
+        return $pdf->download('order.pdf');
+}
 }

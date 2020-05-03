@@ -69,7 +69,7 @@
                                 </div>
                                 <div class="col-lg-6">
                                     <div class="input_field mb_15">
-                                        <input type="number" placeholder="Person" name="no_of_people"
+                                        <input type="number" placeholder="Person" min="1" name="no_of_people"
                                             value="{{ old('no_of_people') }}" class="form-control">
                                         @include('alerts.feedback', ['field' => 'no_of_people'])
                                     </div>
@@ -183,7 +183,7 @@
                             </div>
                             <div class="col-lg-6">
                                 <div class="input_field mb_15">
-                                    <input type="number" placeholder="Person" name="no_of_people"
+                                    <input type="number" placeholder="Person" min="1" name="no_of_people"
                                         value="{{ old('no_of_people') }}" class="form-control">
                                     @include('alerts.feedback', ['field' => 'no_of_people'])
                                 </div>
@@ -191,9 +191,16 @@
                             <div class="col-lg-12">
                                 <div class="input_field">
                                     <select class="wide" name="branch">
-                                        <option selected disabled>Select a Branch</option>
+                                        @if(app('request')->input('branch'))
+                                            @else
+                                                <option selected disabled>Select a Branch</option>
+                                            @endif
                                         @foreach($branches as $branch)
-                                        <option value="{{$branch->id}}">{{$branch->name}}</option>
+                                            @if(app('request')->input('branch') == $branch->id)
+                                                <option value="{{$branch->id}}" selected>{{$branch->name}}</option>
+                                            @else
+                                                <option value="{{$branch->id}}" >{{$branch->name}}</option>
+                                            @endif
                                         @endforeach
                                     </select>
                                 </div>

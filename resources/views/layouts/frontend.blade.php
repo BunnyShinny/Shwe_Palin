@@ -331,9 +331,9 @@
                     icon: payload.notification.icon,
                     click_action: payload.notification.click_action
                 };
-                myNoti.showNotification('bottom','right',noteOptions);
+                myNoti.showNotification('top','right',noteOptions);
                 
-                new Notification(noteTitle, noteOptions);
+                // new Notification(noteTitle, noteOptions);
             });
         });
     </script>

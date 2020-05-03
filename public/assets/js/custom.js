@@ -14,7 +14,7 @@ myNoti = {
 
         }, {
             type: color,
-            timer: 8000,
+            timer: 1000000000,
             placement: {
                 from: from,
                 align: align

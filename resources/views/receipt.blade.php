@@ -52,7 +52,7 @@
                             @endif
                             <div class="row">
                                 <div class="col-md-6">
-                                    <h4>Date: <span>{{date("F j, Y, g:i a",strtotime($data->created_at))}}</span></h4>
+                                    <h4>Date: <span>{{date("F j, Y",strtotime($data->created_at))}}</span></h4>
                                     <h4>Order ID: <span>{{$data->id}}</span></h4>
                                     <h4>Customer Number: <span>{{$data->phone}}</span></h4>
                                     @if($data->branch_name)
@@ -127,7 +127,10 @@
                             </table>
                             @endif
                         </div>
-                        <p class="text-center"><a href="foodmenu" class="btn btn-sm btn-primary">Back to Home</a></p>
+                        <p class="text-center">
+                            <a href="foodmenu" class="btn btn-sm btn-primary">Back to Home</a>
+                            <a href="{{route('download',$data->id)}}" class="btn btn-sm btn-danger"> <i class="fa fa-file-pdf-o"></i> Download</a>
+                        </p>
                         
                     </div>
                     
