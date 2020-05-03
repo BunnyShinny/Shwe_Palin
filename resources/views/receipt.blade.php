@@ -129,7 +129,9 @@
                         </div>
                         <p class="text-center">
                             <a href="foodmenu" class="btn btn-sm btn-primary">Back to Home</a>
-                            <a href="{{route('download',$data->id)}}" class="btn btn-sm btn-danger"> <i class="fa fa-file-pdf-o"></i> Download</a>
+                            @if($containCart)
+                                <a href="{{route('download',$data->id)}}" class="btn btn-sm btn-danger"> <i class="fa fa-file-pdf-o"></i> Download</a>
+                            @endif
                         </p>
                         
                     </div>
