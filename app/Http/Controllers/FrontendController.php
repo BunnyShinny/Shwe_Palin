@@ -264,8 +264,11 @@ class FrontendController extends Controller
         $oldcart->totalPrice = $oldcart->totalPrice -  $get_item['price'];
 
         unset($oldcart->items[$id]);
-        $request->session()->put('cart',$oldcart);
-        
+        if($oldcart->totalQty<=0){
+            Session::forget('cart');
+        }else{
+            $request->session()->put('cart',$oldcart);
+        }
         return redirect()->back();
     }
 
