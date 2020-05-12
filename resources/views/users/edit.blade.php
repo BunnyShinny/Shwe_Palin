@@ -7,7 +7,7 @@ sidebar-mini ', 'activePage' => 'Customer', 'backgroundImage' => asset('now') .
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Edit User</h3>
+                    <h3 class="card-title">Edit Customer</h3>
                 </div>
                 <div class="card-body">
                     <form
