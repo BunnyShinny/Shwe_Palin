@@ -30,8 +30,30 @@ class UserController extends Controller
         $users = User::role(['member'])->get();
         return view('users.index', compact('users'));
     }
-    public function destroy(User $user)
+
+    public function edit($id)
     {
+        $user = User::find($id);
+        return view('users.edit', compact('user'));
+    }
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            "name"=>'required',
+            "email"=>'required',
+            "password"=>'required',
+        ]);
+        $user=User::find($id);
+        $user->name = request("name");
+        $user->email = request("email");
+        $user->password = request("password");
+        $user->save();
+        return redirect()->route('user.index');
+    }
+    
+    public function destroy($id)
+    {
+        $user=User::find($id);
         $user->delete();
         return redirect()->route('user.index');
     }

@@ -43,7 +43,7 @@ sidebar-mini ', 'activePage' => 'Customer', 'backgroundImage' => asset('now') .
 
                                     <td>
                                         <a
-                                            href="#"
+                                            href="{{route('user.edit',$user->id)}}"
                                             class="btn btn-success btn-sm btn-icon"
                                             ><i class="now-ui-icons ui-2_settings-90"></i></a
                                         >

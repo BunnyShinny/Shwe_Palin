@@ -101,7 +101,7 @@ class MenuController extends Controller
      * @param  \App\Menu  $menu
      * @return \Illuminate\Http\Response
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $categories=Category::all();
         $menu = DB::table('menus')
